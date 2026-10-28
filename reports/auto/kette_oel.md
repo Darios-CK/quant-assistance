@@ -5,7 +5,7 @@
 - **Auslöser:** Schock-Tage CL=F – Tagesbewegung CL=F in Standardabweichungen des Vorjahres (Schwelle 2σ, nach oben)
 - **Ereignisse:** 98 von 06.01.2005 bis 13.07.2026
 - **Test:** Ø Reaktion ≠ 0 (alle Auslöser zeigen in dieselbe Richtung); 39 Tests (13 Glieder × 3 Horizonte), gemeinsam korrigiert (q).
-- **Quelle:** Kurse CL=F (Yahoo/FRED) · Erstellt 28.10.2026 11:34
+- **Quelle:** Kurse CL=F (Yahoo/FRED) · Erstellt 28.10.2026 15:56
 - **Gemessen** wird pro Glied der Horizont mit dem kleinsten p-Wert; alle Horizonte stehen unten in der Tabelle und zählen in der Korrektur mit.
 
 Erwartung ↑ = bewegt sich mit dem Auslöser, ↓ = dagegen. Einzelaktien und Sektor-ETFs marktbereinigt (gegen S&P 500 bzw. DAX).
