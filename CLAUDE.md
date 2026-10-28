@@ -10,7 +10,7 @@ Berichte an den Nutzer: **Deutsch**. Code, Kommentare, Commit-Messages: Englisch
 - `qa/chain.py` Kettenprüfung aus `chains/*.json`; `qa/report.py` Bericht; `qa/__main__.py` Befehlszeile.
 - Befehle für Claude Code: `/kette` (Denkweise: weit denken, hart messen, ehrlich berichten), `/ereignis`.
 - Stand aller Anforderungen: `docs/ROADMAP.md` – bei neuen Funktionen dort nachführen.
-- Betrieb ohne eigenen Rechner: `routine.json` + `qa/routine.py` (täglicher Lauf nach `reports/auto/`, GitHub Actions `.github/workflows/routine.yml`), Weboberfläche `app.py` (Streamlit Community Cloud). Repository privat; die Streamlit-App ist auf Wunsch des Nutzers (28.10.) öffentlich im Testbetrieb – Yahoo erlaubt nur private Nutzung, das Risiko ist dem Nutzer bekannt. Impressum/Datenschutz: `qa/legal.py`, Angaben aus Streamlit-Secrets.
+- Betrieb ohne eigenen Rechner: `routine.json` + `qa/routine.py` (täglicher Lauf nach `reports/auto/`, GitHub Actions `.github/workflows/routine.yml`), Weboberfläche `app.py` (Streamlit Community Cloud). Repository und Streamlit-App sind auf Wunsch des Nutzers (28.10.) öffentlich im Testbetrieb (Streamlit fand das private Repository nicht) – Yahoo erlaubt nur private Nutzung, das Risiko ist dem Nutzer bekannt. Impressum/Datenschutz: `qa/legal.py`, Angaben aus Streamlit-Secrets.
 - `qa/cache.py`: alles wird einmal nach `data/` geladen (Parquet / Rohdateien) und danach von der Platte gelesen.
 - Ergebnisse: `reports/<Datum>_<Analyse>.md` (Bericht) und `.csv` (jedes Ereignis einzeln).
 

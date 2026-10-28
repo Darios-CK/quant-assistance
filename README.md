@@ -50,7 +50,7 @@ Bereiche: automatische Berichte lesen, Ereignis-Analyse, Kette prüfen, Quartals
 | Weboberfläche | Streamlit Community Cloud, Hauptdatei `app.py` | 1 private App gratis, schläft nach Inaktivität ein |
 
 Einrichten:
-1. Auf GitHub ein **privates** Repository `quant-analyst` anlegen und diesen Ordner hochladen (der Code bleibt privat, auch wenn die App öffentlich ist).
+1. Repository auf GitHub anlegen und diesen Ordner hochladen (aktuell öffentlich: `Darios-CK/quant-assistance`). Nie Schlüssel oder `.env` committen.
 2. Repository → Settings → Secrets and variables → Actions → `FRED_API_KEY` eintragen.
 3. Reiter „Actions“ → „Tägliche Berichte“ → „Run workflow“ für den ersten Lauf. Danach läuft er jeden Werktag selbst; die Übersicht steht in `reports/auto/README.md` (auch in der GitHub-App lesbar).
 4. [share.streamlit.io](https://share.streamlit.io) → mit GitHub anmelden → „Create app“ → Repository `quant-analyst`, Branch `main`, Datei `app.py`, unter „Advanced settings“ Python 3.12 und die Secrets aus `.streamlit/secrets.example.toml` (FRED-Schlüssel, Impressum-Angaben). Öffentlich schalten: in der App oben rechts „Share“ → „Make this app public“. Hinweis: Yahoo erlaubt nur private Nutzung – öffentlich ist ein Testbetrieb auf eigenes Risiko.
