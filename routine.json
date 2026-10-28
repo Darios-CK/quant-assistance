@@ -1,0 +1,10 @@
+[
+  {"name": "ezb", "titel": "EZB-Überraschungen seit 1999", "args": ["ereignis", "ezb"]},
+  {"name": "ezb_negativzins", "titel": "EZB-Überraschungen 2014–2022 (Negativzinsen)", "args": ["ereignis", "ezb", "--von", "2014", "--bis", "2022"]},
+  {"name": "fed", "titel": "Fed-Überraschungen seit 1988", "args": ["ereignis", "fed"]},
+  {"name": "kette_oel", "titel": "Kette: Ölpreis-Schock nach oben", "args": ["kette", "chains/oel_transport.json"]},
+  {"name": "earnings_bigtech", "titel": "Quartalszahlen US-Tech zusammen", "args": ["earnings", "AAPL,MSFT,GOOGL,AMZN,META,NVDA"]},
+  {"name": "earnings_dax", "titel": "Quartalszahlen DAX-Schwergewichte zusammen", "args": ["earnings", "SAP.DE,SIE.DE,ALV.DE,DTE.DE,MBG.DE,BAS.DE"]},
+  {"name": "earnings_nvda_umfeld", "titel": "Wer reagiert auf Nvidias Zahlen?", "args": ["earnings", "NVDA", "--maerkte", "AMD,TSM,ASML,SAP.DE,bitcoin"]},
+  {"name": "ppi", "titel": "US-Erzeugerpreise (PPI)", "args": ["ereignis", "fred:PPIFIS"]}
+]

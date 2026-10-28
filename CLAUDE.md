@@ -1,0 +1,38 @@
+# Quant-Analyst – Regeln für jede Sitzung
+
+Persönliches Forschungswerkzeug (nur Eigengebrauch) für Ereignis-Analysen auf freien Daten. Getrennt von PFMM.
+Berichte an den Nutzer: **Deutsch**. Code, Kommentare, Commit-Messages: Englisch.
+
+## Aufbau
+- `qa/sources/` Datenquellen: `prices.py` (Yahoo, FRED-Tagesreihen ohne Schlüssel), `shocks.py` (EZB: EA-MPD, Fed: Bauer/Swanson), `fred.py` (ALFRED-Erstveröffentlichungen, braucht `FRED_API_KEY` in `.env`), `earnings.py` (Quartalszahlen mit Konsens), `moves.py` (Kurs-Schocks).
+- `qa/triggers.py` eine Schreibweise für alle Auslöser (ezb, fed, fred:, earnings:, kurs:).
+- `qa/study.py` Statistik (Marktbereinigung, Steigung, Drittel, Hälften-Test, BH-Korrektur), `qa/quality.py` Datenprüfung, `qa/assets.py` Märkte laden.
+- `qa/chain.py` Kettenprüfung aus `chains/*.json`; `qa/report.py` Bericht; `qa/__main__.py` Befehlszeile.
+- Befehle für Claude Code: `/kette` (Denkweise: weit denken, hart messen, ehrlich berichten), `/ereignis`.
+- Stand aller Anforderungen: `docs/ROADMAP.md` – bei neuen Funktionen dort nachführen.
+- Betrieb ohne eigenen Rechner: `routine.json` + `qa/routine.py` (täglicher Lauf nach `reports/auto/`, GitHub Actions `.github/workflows/routine.yml`), Weboberfläche `app.py` (Streamlit Community Cloud). Repository privat; die Streamlit-App ist auf Wunsch des Nutzers (28.10.) öffentlich im Testbetrieb – Yahoo erlaubt nur private Nutzung, das Risiko ist dem Nutzer bekannt. Impressum/Datenschutz: `qa/legal.py`, Angaben aus Streamlit-Secrets.
+- `qa/cache.py`: alles wird einmal nach `data/` geladen (Parquet / Rohdateien) und danach von der Platte gelesen.
+- Ergebnisse: `reports/<Datum>_<Analyse>.md` (Bericht) und `.csv` (jedes Ereignis einzeln).
+
+## Befehle
+- Tests: `.venv/bin/python -m pytest -q`
+- Analyse: `.venv/bin/python -m qa ereignis ezb|fed|fred:<Reihe>|earnings:<Ticker>|kurs:<Symbol> [--maerkte …] [--von …] [--bis …] [--art …]`
+- Earnings: `.venv/bin/python -m qa earnings <Ticker>[,<Ticker>…] [--maerkte …]` · Kette: `.venv/bin/python -m qa kette chains/<datei>.json`
+- Märkte-Kürzel: `.venv/bin/python -m qa maerkte`
+
+## Regeln für Analysen (wichtiger als alles andere)
+- **Zahlen nur aus Messungen.** Jede Zahl in einer Antwort stammt aus einem Bericht oder einer Rechnung in diesem Projekt – nie aus dem Gedächtnis des Sprachmodells. Kursverläufe und Ereignisse vor dem Trainingsende kennt das Modell auswendig; das ist kein Beleg.
+- **Immer Fallzahl, p/q-Wert und Zeitraum nennen.** „Belastbar“ nur, wenn der Bericht es sagt (q < 0,10, mindestens 20 Fälle).
+- **Nichts aus der Zukunft:** Makrodaten nur als Erstveröffentlichung (ALFRED), erwartete Werte nur aus vorher bekannten Daten, Reaktion erst ab dem Schlusskurs vor dem Ereignis.
+- **Jede getestete Variante zählt.** Wer zehn Varianten probiert und eine zeigt, muss die anderen neun erwähnen.
+- **Regime prüfen:** wichtige Ergebnisse auch für Teilzeiträume rechnen (`--von/--bis`, z. B. vor/nach 2014 wegen Negativzinsen).
+- Bekannte Grenzen nennen: Tagesdaten (andere Nachrichten am selben Tag), Yahoo ohne delistete Firmen, Futures ohne Roll-Bereinigung, kein Konsens bei FRED-Reihen.
+- Keine Kauf-/Verkaufsempfehlungen; beschreiben, was gemessen wurde.
+
+## Konventionen
+- Neue Berechnungen bekommen Unit-Tests (`tests/`). Kein Ersatzwert, wenn eine Quelle fehlt: Hinweis ausgeben.
+- Kostenlose Quellen bevorzugen; kostenpflichtige Anbieter nur nach Zustimmung. Schlüssel nur in `.env`, nie ausgeben.
+- FRED-Downloads ohne eigenen User-Agent (FREDs CDN verwirft unbekannte Browser-Kennungen).
+- **Neue Quelle = Tagesversatz prüfen:** Tagesänderung am Ereignistag und am Folgetag mit einer bekannten Überraschung korrelieren (z. B. EZB). Bundesbank datiert Werte einen Handelstag zu spät (in `_bbk` korrigiert); EZB-Referenzkurse werden um 14:15 festgestellt (Markt `ecb_fix`).
+- Keine Quellen, deren Bedingungen das Auslesen verbieten oder die Bot-Schutz einsetzen (investing.com, Stooq) – Sperren nicht umgehen.
+- Commit/Push nur auf ausdrücklichen Wunsch.

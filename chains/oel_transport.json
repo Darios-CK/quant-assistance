@@ -1,0 +1,38 @@
+{
+  "name": "Ölpreis-Schock nach oben",
+  "frage": "Wenn Öl an einem Tag ungewöhnlich stark steigt: wer reagiert – direkt, über die Transportkosten, über die Rohstoffkette, über Währungen?",
+  "ausloeser": {"quelle": "kurs:CL=F", "schwelle": 2, "richtung": "hoch"},
+  "von": "2005",
+  "horizonte": [0, 5, 20],
+  "glieder": [
+    {"id": "energie", "symbol": "XOM", "name": "ExxonMobil", "nach": "ausloeser", "erwartung": "+",
+     "warum": "Förderer: höherer Ölpreis = höhere Erlöse"},
+    {"id": "raffinerie", "symbol": "VLO", "name": "Valero (Raffinerie)", "nach": "ausloeser", "erwartung": "?",
+     "warum": "Rohöl ist Einkauf, Benzin/Diesel Verkauf – Marge hängt am Abstand, Richtung offen"},
+
+    {"id": "airline_us", "symbol": "DAL", "name": "Delta Air Lines", "nach": "ausloeser", "erwartung": "-",
+     "warum": "Kerosin ist einer der größten Kostenblöcke"},
+    {"id": "airline_de", "symbol": "LHA.DE", "name": "Lufthansa", "nach": "ausloeser", "erwartung": "-",
+     "warum": "wie Delta, aber teils abgesichert (Hedging) und in Euro"},
+
+    {"id": "trucking", "symbol": "JBHT", "name": "J.B. Hunt (Lkw-Transport)", "nach": "ausloeser", "erwartung": "-",
+     "warum": "Diesel teurer; Zuschläge (fuel surcharge) geben das nur mit Verzögerung weiter"},
+    {"id": "bahn", "symbol": "UNP", "name": "Union Pacific (Güterbahn)", "nach": "trucking", "erwartung": "+",
+     "warum": "Bahn braucht pro Tonne weniger Treibstoff als Lkw – Fracht wandert auf die Schiene"},
+    {"id": "reifen_us", "symbol": "GT", "name": "Goodyear", "nach": "trucking", "erwartung": "-",
+     "warum": "Synthesekautschuk und Ruß kommen aus Öl (Kosten ↑); weniger Lkw-Kilometer = weniger Ersatzreifen"},
+    {"id": "reifen_de", "symbol": "CON.DE", "name": "Continental", "nach": "reifen_us", "erwartung": "-",
+     "warum": "gleiche Rohstoffkette wie Goodyear, zusätzlich Autozulieferer"},
+    {"id": "chemie", "symbol": "BAS.DE", "name": "BASF", "nach": "ausloeser", "erwartung": "-",
+     "warum": "Öl und Gas sind Rohstoff und Energie der Chemie"},
+
+    {"id": "cad", "symbol": "CAD=X", "name": "USD/CAD", "nach": "ausloeser", "erwartung": "-",
+     "warum": "Kanada exportiert Öl: Kanadischer Dollar wird stärker, USD/CAD fällt"},
+    {"id": "nok", "symbol": "NOK=X", "name": "USD/NOK", "nach": "ausloeser", "erwartung": "-",
+     "warum": "Norwegen exportiert Öl: Krone wird stärker"},
+    {"id": "inflation", "symbol": "FRED:T5YIE", "name": "US-Inflationserwartung 5J", "nach": "ausloeser", "erwartung": "+",
+     "warum": "Energie treibt die Inflation – der Anleihemarkt preist das ein"},
+    {"id": "bitcoin", "symbol": "BTC-USD", "name": "Bitcoin", "nach": "ausloeser", "erwartung": "?",
+     "warum": "keine klare Theorie – Inflationsschutz oder Risiko-Anlage?"}
+  ]
+}
