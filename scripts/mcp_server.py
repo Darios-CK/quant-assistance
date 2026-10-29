@@ -31,6 +31,17 @@ def _reply(msg_id, result=None, error=None) -> None:
     OUT.flush()
 
 
+def _instructions() -> str:
+    """System prompt plus the user's own instructions and memory (read once when Claude connects)."""
+    try:
+        from qa import workspace
+
+        extra = workspace.context_for_ai()
+    except Exception:
+        extra = ""
+    return SYSTEM + ("\n\n" + extra if extra else "")
+
+
 def main() -> None:
     for line in sys.stdin:
         line = line.strip()
@@ -45,7 +56,7 @@ def main() -> None:
             continue
         if method == "initialize":
             _reply(msg_id, {"protocolVersion": params.get("protocolVersion", "2024-11-05"), "capabilities": {"tools": {}},
-                            "serverInfo": {"name": "quant-analyst", "version": "1.0"}, "instructions": SYSTEM})
+                            "serverInfo": {"name": "quant-assistance", "version": "2.0"}, "instructions": _instructions()})
         elif method == "tools/list":
             _reply(msg_id, {"tools": [{"name": t["name"], "description": t["description"], "inputSchema": t["input_schema"]} for t in TOOLS]})
         elif method == "tools/call":

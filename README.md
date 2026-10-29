@@ -1,4 +1,4 @@
-# Quant-Analyst
+# Quant Assistance
 
 Ereignis-Analysen auf kostenlosen Daten: **Wie haben Märkte in der Vergangenheit auf EZB-, Fed- oder Konjunktur-Überraschungen reagiert?** Nur für den Eigengebrauch.
 
@@ -38,10 +38,35 @@ Kombinationen und weitere Ereignisse:
 .venv/bin/python -m qa ereignis kalender:santa                             # Saisonalität (auch januar, optionsverfall, hexensabbat …)
 .venv/bin/python -m qa ereignis wahl:de · split:AAPL · dividende:ALV.DE · termine:2019-05-05,2019-08-01
 .venv/bin/python -m qa katalog                                             # welche ~70 Markttreiber messbar sind
-.venv/bin/python -m qa chat "Wie reagieren Banken auf harte EZB-Überraschungen bei hohem VIX?"   # KI-Analyst (kostet je Frage Geld)
+.venv/bin/python -m qa chat "Wie reagieren Banken auf harte EZB-Überraschungen bei hohem VIX?"   # freie Frage über die Claude-API (kostet je Frage Geld; gratis: Claude Code + MCP)
 ```
 
-## KI-Analyst kostenlos in Claude Code / Claude-App (MCP)
+## Website: Projekte, Quant Copilot, Daten, Community
+
+Aufbau wie eine Research-Plattform (https://quant-assistance.streamlit.app):
+
+| Bereich | Was |
+|---|---|
+| Start | Beispiel-Workflows (Einstiege, P&L nach Regime, Über Nacht vs. Handelszeit, Optionen, Walk-Forward, Kombinationen) |
+| Projekte | virtuelles Dateisystem je Projekt: Dateien anlegen/hochladen/bearbeiten/ausführen, Artefakte (jedes Ergebnis), Chats, Projekt-Befehle, Veröffentlichen |
+| Quant Copilot | Slash-Befehle kostenlos (`/commands`), Chats werden gespeichert; freie Fragen über Claude Code (gratis, MCP) oder mit API-Schlüssel (Stufe wählbar) |
+| Daten | Abdeckung, Symbolsuche, Kerzen-Vorschau (1 Min. bis 1 Monat), Optionsketten, 29 CME-Futures, Schemas, Python & MCP, Nutzung |
+| Community | veröffentlichte Projekte und Befehle ansehen und übernehmen |
+| Konto | Gedächtnis (einsehbar, änderbar, löschbar, abschaltbar), eigene Anweisungen, eigene Befehle (.md, importierbar) |
+
+Befehle (auch `python -m qa befehl "/…" --projekt start`): `/review`, `/walk-forward … is=24 oos=6 schritt=3`, `/regime-pnl`,
+`/overnight`, `/trades`, `/goal … sharpe>=0.8` (status/weiter/pause/stopp), `/compact`, `/create-command`, `/commands`,
+`/kerzen`, `/suche`, `/abdeckung`, `/aufloesen`, `/schema`, `/optionen`, `/nutzung`, `/anleitung`, `/merken`, `/ausfuehren`
+sowie alle Analysen (`/ereignis`, `/earnings`, `/kette`, `/backtest`). Eigene Befehle: `.md` mit Kopf (`name`, `beschreibung`) und
+Zeilen, die mit `/` beginnen; `$1 … $9`, `$ARGUMENTS`.
+
+Daten-API für eigene Skripte im Projekt: `from qa import data` → `data.bars("NQ=F", "5m", days=30)`, `data.search`, `data.coverage`,
+`data.option_chain` (Grenzen: Yahoo-Intraday nur jüngste Tage, keine Ticks/Quotes/Orderbuch, keine Options-Historie).
+
+**Speicher:** lokal `workspace/` (nicht in Git). Für die Website dauerhaft: privates GitHub-Repository + Token in den Secrets
+(`GITHUB_TOKEN`, `WORKSPACE_REPO`, `COMMUNITY_REPO`), persönlicher Bereich online nur mit `APP_PASSWORD`. Python-Skripte laufen nur lokal.
+
+## Quant Copilot kostenlos in Claude Code / Claude-App (MCP)
 
 Die Analysen stehen Claude als Werkzeuge zur Verfügung – ohne API-Schlüssel, im bestehenden Claude-Abo. Einmal anmelden
 (Terminal in VS Code):
@@ -53,7 +78,10 @@ Die Analysen stehen Claude als Werkzeuge zur Verfügung – ohne API-Schlüssel,
 
 Danach in einem neuen Claude-Code-Gespräch einfach fragen, z. B. „Wie reagieren Banken auf harte EZB-Überraschungen bei
 hohem VIX?“ – Claude ruft `ereignis_analyse`, `kette_pruefen`, `earnings_analyse`, `backtest`, `katalog`,
-`marktphasen_aktuell` und `kursstand` auf und bekommt die Denkweise (weit denken, hart messen, ehrlich berichten) mit.
+`marktphasen_aktuell`, `kursstand`, `befehl` (jeder Slash-Befehl), `projekte`, `datei_lesen`/`datei_schreiben`, `merken`,
+`gedaechtnis` und die Daten-Werkzeuge (`symbole_suchen`, `abdeckung`, `symbol_aufloesen`, `schema_erklaeren`, `nutzung`,
+`daten_anleitung`, `kerzen_vorschau`) auf und bekommt die Denkweise (weit denken, hart messen, ehrlich berichten) sowie
+Gedächtnis und eigene Anweisungen mit.
 
 In Claude Code geht es auch in Worten:
 - `/kette Ölpreis steigt stark` – die KI denkt die Kettenreaktion über mehrere Ebenen durch und lässt jedes Glied messen
@@ -67,9 +95,7 @@ Was schon umgesetzt ist und was noch kommt: [docs/ROADMAP.md](docs/ROADMAP.md).
 .venv/bin/streamlit run app.py      # öffnet http://localhost:8501
 ```
 
-Bereiche: KI-Analyst (Chat), automatische Berichte, Ereignis-Analyse, Kette prüfen, Quartalszahlen, Backtest, Abdeckung.
-
-**KI-Analyst:** braucht in den Secrets `ANTHROPIC_API_KEY` (kostenpflichtig, Claude Opus 5.5: ca. 0,10–1 $ je Frage) und `CHAT_PASSWORD`, weil die App öffentlich ist. Tageslimit: `QA_CHAT_LIMIT` (Standard 30 Fragen).
+Lokal bist du automatisch angemeldet. Freie Fragen im Copilot der Website brauchen `ANTHROPIC_API_KEY` (kostenpflichtig, ca. 0,10–1 $ je Frage) – gratis geht es über Claude Code (MCP).
 
 ## Betrieb ohne eigenen Rechner (kostenlos)
 

@@ -4,6 +4,7 @@
     python -m qa kette chains/<datei>.json
     python -m qa backtest strategies/<datei>.json
     python -m qa maerkte
+    python -m qa befehl "/overnight es" [--projekt start]
 """
 
 from __future__ import annotations
@@ -241,12 +242,17 @@ def parser() -> argparse.ArgumentParser:
     m = sub.add_parser("maerkte", help="Kürzel für Märkte anzeigen")
     m.set_defaults(func=cmd_markets)
 
-    c = sub.add_parser("chat", help="Frage an den KI-Analysten (braucht ANTHROPIC_API_KEY, kostet je Frage Geld)")
+    c = sub.add_parser("chat", help="Freie Frage an den Copilot über die Claude-API (braucht ANTHROPIC_API_KEY, kostet je Frage Geld)")
     c.add_argument("frage", nargs="+")
     c.set_defaults(func=cmd_chat)
 
     k2 = sub.add_parser("katalog", help="welche Markttreiber mit freien Daten messbar sind")
     k2.set_defaults(func=cmd_catalog)
+
+    b2 = sub.add_parser("befehl", help="Slash-Befehl ausführen, z. B. '/overnight es' oder '/commands'")
+    b2.add_argument("zeile", nargs="+")
+    b2.add_argument("--projekt", default=None)
+    b2.set_defaults(func=cmd_command)
 
     r = sub.add_parser("routine", help="alle Analysen aus routine.json nach reports/auto/ rechnen (täglicher Lauf)")
     r.set_defaults(func=cmd_routine)
@@ -263,6 +269,15 @@ def cmd_chat(args) -> None:
     text, _, usage = agent.ask(" ".join(args.frage), [], on_step=step)
     print(text)
     print(f"\n[{usage['steps']} Werkzeug-Aufrufe · {usage['input'] + usage['cache_read'] + usage['cache_write']} Eingabe- / {usage['output']} Ausgabe-Tokens · ca. {usage['cost_usd']:.2f} $]", file=sys.stderr)
+
+
+def cmd_command(args) -> None:
+    from qa import commands
+
+    for res in commands.run(" ".join(args.zeile), commands.Ctx(args.projekt)):
+        print(res.text)
+        if res.artifact:
+            print(f"(gespeichert: {args.projekt}/{res.artifact})", file=sys.stderr)
 
 
 def cmd_catalog(_args) -> None:
@@ -285,7 +300,7 @@ def run(argv: list[str]) -> tuple[str, pd.DataFrame, str]:
 
 def main(argv: list[str] | None = None) -> int:
     args = parser().parse_args(argv)
-    if args.func in (cmd_markets, cmd_chat, cmd_catalog):
+    if args.func in (cmd_markets, cmd_chat, cmd_catalog, cmd_command):
         args.func(args)
         return 0
     if args.func is cmd_routine:

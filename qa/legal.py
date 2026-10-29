@@ -49,7 +49,7 @@ E-Mail: {f('email', 'E-Mail')}{f"  {chr(10)}Telefon: {phone}" if phone else ""}
 {f('name', 'Name')}, Anschrift wie oben
 
 ## Hinweis zu den Inhalten
-Der Quant-Analyst ist ein Testbetrieb. Er zeigt, wie Märkte in der Vergangenheit auf Ereignisse reagiert haben – berechnet
+Quant Assistance ist ein Testbetrieb. Er zeigt, wie Märkte in der Vergangenheit auf Ereignisse reagiert haben – berechnet
 aus frei zugänglichen Daten (Yahoo Finance, FRED/ALFRED, Bundesbank, EZB, Federal Reserve Bank of San Francisco).
 Es handelt sich nicht um Anlageberatung, Anlagevermittlung oder eine Empfehlung zum Kauf oder Verkauf von
 Finanzinstrumenten. Vergangene Reaktionen sind keine Vorhersage. Daten können verzögert, lückenhaft oder fehlerhaft sein.
@@ -73,16 +73,17 @@ Betrieb). Einzelheiten: [Datenschutzhinweise von Streamlit](https://streamlit.io
 [Snowflake](https://www.snowflake.com/en/legal/privacy/privacy-policy/).
 
 ## 3. Was wir selbst verarbeiten
-Es gibt keine Konten, keine Anmeldung, keine Analyse-, Werbe- oder Tracking-Werkzeuge; die Nutzungsstatistik von
-Streamlit ist abgeschaltet. Was Sie in die Formulare eingeben (Ticker, Zeiträume), wird nur zum Rechnen der Analyse
+Es gibt keine Nutzerkonten und keine Analyse-, Werbe- oder Tracking-Werkzeuge; die Nutzungsstatistik von Streamlit ist
+abgeschaltet. Der persönliche Bereich (Projekte, Copilot, Konto) ist nur für den Betreiber und passwortgeschützt; seine
+Dateien liegen in einem privaten GitHub-Repository des Betreibers (GitHub Inc., USA). Was in der Community veröffentlicht
+wird, ist öffentlich einsehbar. Was Sie in die Formulare eingeben (Ticker, Zeiträume), wird nur zum Rechnen der Analyse
 verwendet und höchstens sechs Stunden zwischengespeichert, nicht Ihrer Person zugeordnet und nicht weitergegeben.
 Für die Analysen ruft der Server Kursdaten bei den genannten Datenquellen ab; dabei werden keine Daten über Sie übermittelt.
 
-## 4. KI-Analyst
-Fragen an den KI-Analysten werden zusammen mit den Analyse-Ergebnissen an Anthropic PBC (USA)
-übermittelt, die das Sprachmodell Claude betreibt; dabei kann eine Übermittlung in die USA stattfinden. Bitte geben
-Sie dort keine personenbezogenen Daten ein. Der Chat ist passwortgeschützt; gespeichert wird bei uns nur die Zahl der
-Fragen je Tag, der Gesprächsverlauf nur für die Dauer Ihrer Sitzung im Browser-Tab. Rechtsgrundlage: Art. 6 Abs. 1
+## 4. Quant Copilot
+Befehle im Copilot werden auf dem Server gerechnet, ohne Dritte. Nur wenn der Betreiber freie Fragen an die KI stellt,
+werden diese zusammen mit den Analyse-Ergebnissen an Anthropic PBC (USA) übermittelt, die das Sprachmodell Claude
+betreibt. Der Copilot ist passwortgeschützt und nur für den Betreiber. Rechtsgrundlage: Art. 6 Abs. 1
 lit. f DSGVO. Einzelheiten: [Datenschutzhinweise von Anthropic](https://www.anthropic.com/legal/privacy).
 
 ## 5. Ihre Rechte

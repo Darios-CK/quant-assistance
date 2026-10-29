@@ -5,10 +5,32 @@ Jeder Punkt aus der Anforderungsliste vom 28.10.2026 mit Stand.
 
 **Stufen:** 1–2 Ereignisse, Ketten, Earnings (fertig) · 3 Backtests & Kennzahlen (Kern fertig) · 4 Faktoren, Signale & Fundamentaldaten · 5 Risiko & Portfolio · 6 weitere Datenquellen & Lieferketten
 
+## Plattform wie QuantPad (Grundbausteine, 29.10.2026)
+| Punkt | Stand |
+|---|---|
+| Navigation Projekte · Quant Copilot · Community, Website-Aufbau, Hellblau | ✅ `app.py`, `web/` |
+| Projekte: virtuelles Dateisystem, Dateien ausführen, Chats und Artefakte | ✅ (.json überall, .py nur lokal) |
+| Quant Copilot: Agent mit Werkzeugen, Stufen wählbar | ✅ Befehle gratis; freie Fragen gratis über Claude Code (MCP), auf der Website mit API-Schlüssel (Stufe = effort) |
+| Community: veröffentlichen, Projekte und Befehle übernehmen | ✅ Ordner `community/` (öffentliches Repository) |
+| Widgets/Artifacts | ✅ Diagramme (Kapitalkurven, Kerzen), Tabellen, Downloads, Artefakte je Projekt |
+| Beispiel-Workflows: Einstiege, P&L nach Regime, Über Nacht vs. Handelszeit, Optionsrecherche | ✅ `/trades`, `/regime-pnl`, `/overnight`, `/optionen` · ❌ Orderflow vor dem Einstieg (Ticks/Orderbuch gratis nicht verfügbar; Ersatz: Tagesverlauf vorher) |
+| Slash-Befehle /review, /compact, /create-command, /goal, /commands, eigener /walk-forward | ✅ (`/goal` prüft Varianten auf Entwicklungsdaten, Test einmal) |
+| Befehle als .md importierbar | ✅ |
+| Memory (einsehbar, korrigierbar, löschbar, abschaltbar) und Instructions | ✅ Konto; MCP-Werkzeuge `merken`, `gedaechtnis` |
+| Daten-API über MCP: search_symbols, get_coverage, resolve_symbology, describe_schema, get_usage, get_api_usage_guide, preview_bars | ✅ `symbole_suchen`, `abdeckung`, `symbol_aufloesen`, `schema_erklaeren`, `nutzung`, `daten_anleitung`, `kerzen_vorschau` (500 Kerzen/31 Tage) |
+| Python-SDK | ✅ `qa.data` · 🟡 Futures ohne Roll-Bereinigung |
+| Kerzen 1 Sekunde bis 1 Jahr | 🟡 1 Minute bis 1 Monat (Yahoo); Intraday nur 30/60/730 Tage zurück |
+| Trades, Quotes, Orderbuch (10 Level), Options-Historie | ❌ gratis nicht verfügbar |
+| 40+ CME-Futures | 🟡 29 Märkte (Yahoo, vorderster Kontrakt) |
+| SEC EDGAR | 🔜 Stufe 4 |
+| Cloud-Rechner je Projekt mit Schlafmodus | 🟡 Streamlit-Server (schläft bei Inaktivität), tägliche Läufe über GitHub Actions; eigene Skripte lokal |
+| Pine-Script / pine-runner | 🔜 später |
+| Abo, Stripe, API-Schlüssel-Verwaltung | – nicht nötig (Eigengebrauch, kostenlos) |
+
 ## Denkweise
 | Punkt | Stand |
 |---|---|
-| KI-Chat wie bei QuantPad, alle Analysen als Werkzeuge | ✅ App-Seite „KI-Analyst“, `qa chat` (Claude, kostenpflichtig, Passwort + Tageslimit) |
+| KI-Chat wie bei QuantPad, alle Analysen als Werkzeuge | ✅ Quant Copilot: Befehle gratis, freie Fragen gratis über Claude Code (MCP) oder mit API-Schlüssel; `qa chat` |
 | Kombinationen mehrerer Muster | ✅ Marktphasen + `--zusammen-mit` / `--ohne` (±Tage), Ketten über mehrere Ebenen |
 | Alle ~70 Markttreiber der Liste vom 29.10. | ✅ Katalog `qa katalog` / App „Abdeckung“: 16 ✅, 8 ✅🔑, 23 🟡, 14 🔜, 10 ❌ |
 | Kettenreaktionen über mehrere Ebenen (Öl → Transport → Reifen …) | ✅ `/kette`, `qa kette` – KI denkt weit, jedes Glied wird gemessen |

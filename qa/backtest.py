@@ -159,8 +159,8 @@ def walk_forward(matrix: pd.DataFrame, start_year: int) -> tuple[pd.Series, list
     return (pd.concat(out) if out else pd.Series(dtype=float)), picks
 
 
-def run(path: Path) -> tuple[str, pd.DataFrame]:
-    spec = json.loads(Path(path).read_text(encoding="utf-8"))
+def prepare(spec: dict) -> dict:
+    """Prices, every variant's daily returns after costs, and the development/test split."""
     symbol, label = prices.resolve(spec["markt"])
     if prices.unit(symbol) != "pct":
         raise SystemExit(f"{label} ist eine Zinsreihe, kein handelbarer Kurs – bitte ein Instrument mit Preis wählen (z. B. ein Future oder ETF).")
@@ -175,10 +175,25 @@ def run(path: Path) -> tuple[str, pd.DataFrame]:
     cost = float(spec.get("kosten_bp", 5))
     held = {k: positions(c, spec, g, ctx) for k, g in enumerate(grid)}
     matrix = pd.DataFrame({k: strategy_returns(c, h, cost) for k, h in held.items()}).iloc[1:]
-    bench = c.pct_change().iloc[1:]
-
     holdout = pd.Timestamp(spec.get("holdout_ab") or matrix.index[int(len(matrix) * 0.7)])
-    is_mask = pd.Series(matrix.index < holdout, index=matrix.index)
+    return {"symbol": symbol, "label": label, "c": c, "grid": grid, "cost": cost, "held": held, "matrix": matrix,
+            "bench": c.pct_change().iloc[1:], "holdout": holdout,
+            "is_mask": pd.Series(matrix.index < holdout, index=matrix.index)}
+
+
+def load_spec(path) -> dict:
+    try:
+        return json.loads(Path(path).read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise SystemExit(f"Strategie-Datei ist kein gültiges JSON: {exc}")
+
+
+def run(path: Path) -> tuple[str, pd.DataFrame]:
+    spec = load_spec(path)
+    p = prepare(spec)
+    label, c, grid, cost, held, matrix, bench = (p[k] for k in ("label", "c", "grid", "cost", "held", "matrix", "bench"))
+
+    holdout, is_mask = p["holdout"], p["is_mask"]
     k = _best(matrix, is_mask)
     chosen = grid[k]
     r_is, r_oos = matrix.loc[is_mask, k], matrix.loc[~is_mask, k]

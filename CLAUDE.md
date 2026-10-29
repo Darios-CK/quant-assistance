@@ -1,4 +1,4 @@
-# Quant-Analyst – Regeln für jede Sitzung
+# Quant Assistance (Quant-Analyst) – Regeln für jede Sitzung
 
 Persönliches Forschungswerkzeug (nur Eigengebrauch) für Ereignis-Analysen auf freien Daten. Getrennt von PFMM.
 Berichte an den Nutzer: **Deutsch**. Code, Kommentare, Commit-Messages: Englisch.
@@ -9,7 +9,10 @@ Berichte an den Nutzer: **Deutsch**. Code, Kommentare, Commit-Messages: Englisch
 - `qa/regimes.py` Marktphasen als Bedingung (Stand am Schluss VOR dem Ereignis) und Kombinationen (`--bedingung`, `--zusammen-mit`, `--ohne`, `--fenster`).
 - `qa/catalog.py` Abdeckung aller ~70 Markttreiber (✅/🟡/🔜/❌) – bei neuen Quellen nachführen.
 - `scripts/mcp_server.py` dieselben Werkzeuge als MCP-Server für Claude Code / Claude-App (kostenlos im Abo, Anmeldung durch den Nutzer: README).
-- `qa/agent.py` KI-Analyst (Claude Opus 5.5, Werkzeuge = Analysen dieses Projekts, Zahlen nur aus Werkzeug-Ergebnissen); App-Seite „KI-Analyst“ mit Passwort `CHAT_PASSWORD` und Tageslimit `QA_CHAT_LIMIT`, CLI `python -m qa chat`. Kostet je Frage Geld (ANTHROPIC_API_KEY).
+- `qa/agent.py` Werkzeugliste (Analysen, Befehle, Projekte, Gedächtnis, Daten) und System-Prompt für MCP und den optionalen API-Chat (Claude Opus 5.5, kostet je Frage Geld, ANTHROPIC_API_KEY; Stufe = effort).
+- Website wie eine Research-Plattform (`app.py` + `web/`: `public.py` Start/Daten/Community/Berichte/Werkzeuge/Rechtliches, `workbench.py` Projekte/Copilot/Konto, `ui.py` Stil in Hellblau, Anmeldung). Online ist der persönliche Bereich nur mit `APP_PASSWORD` offen; lokal immer.
+- `qa/workspace.py` Projekte (virtuelles Dateisystem), Chats, Artefakte, eigene Befehle (.md), Gedächtnis, Anweisungen, Community; `qa/store.py` Speicher lokal (`workspace/`, nicht in Git – persönlich) oder privates GitHub-Repository (`GITHUB_TOKEN` + `WORKSPACE_REPO`).
+- `qa/commands.py` Slash-Befehle (eingebaut + eigene, `$1`…`$9`), jedes Ergebnis als Artefakt; `.py` nur lokal ausführen (`is_cloud`). `qa/workflows.py` Über Nacht vs. Handelszeit, P&L nach Marktphase, eigene Trades, rollierender Walk-Forward, `/review`, `/goal` (Ziel nur auf Entwicklungsdaten, Test einmal). `qa/data.py` Daten-API (Suche, Abdeckung, Kerzen, Optionen, Schemas, Nutzung).
 - `qa/study.py` Statistik (Marktbereinigung, Steigung, Drittel, Hälften-Test, BH-Korrektur), `qa/quality.py` Datenprüfung, `qa/assets.py` Märkte laden.
 - `qa/chain.py` Kettenprüfung aus `chains/*.json`; `qa/report.py` Bericht; `qa/__main__.py` Befehlszeile.
 - `qa/backtest.py` Backtests aus `strategies/*.json` (trend, momentum, umkehr, ereignis), `qa/metrics.py` Kennzahlen, Deflated Sharpe, PBO; Versuchsprotokoll `data/trials.jsonl`.
@@ -21,6 +24,7 @@ Berichte an den Nutzer: **Deutsch**. Code, Kommentare, Commit-Messages: Englisch
 
 ## Befehle
 - Tests: `.venv/bin/python -m pytest -q`
+- Befehl: `.venv/bin/python -m qa befehl "/overnight es" [--projekt start]` · Website lokal: `.venv/bin/streamlit run app.py`
 - Analyse: `.venv/bin/python -m qa ereignis ezb|fed|fred:<Reihe>|earnings:<Ticker>|kurs:<Symbol> [--maerkte …] [--von …] [--bis …] [--art …]`
 - Katalog: `.venv/bin/python -m qa katalog` · Chat: `.venv/bin/python -m qa chat "Frage"`
 - Earnings: `.venv/bin/python -m qa earnings <Ticker>[,<Ticker>…] [--maerkte …]` · Kette: `.venv/bin/python -m qa kette chains/<datei>.json` · Backtest: `.venv/bin/python -m qa backtest strategies/<datei>.json`

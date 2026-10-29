@@ -52,6 +52,21 @@ ALIASES = {
     "euro_aaa_10j": ("EZB:YC/B.U2.EUR.4F.G_N_A.SV_C_YM.SR_10Y", "Euro-AAA-Rendite 10J (EZB)"),
     "eurusd_ezb": ("EZB:EXR/D.USD.EUR.SP00.A", "EUR/USD Referenzkurs (EZB)"),
 }
+# CME-group futures, continuous front month from Yahoo (no roll adjustment: jumps on roll days)
+FUTURES = {
+    "es": ("ES=F", "S&P 500 E-mini (Future)"), "nq": ("NQ=F", "Nasdaq 100 E-mini (Future)"),
+    "ym": ("YM=F", "Dow E-mini (Future)"), "rty": ("RTY=F", "Russell 2000 E-mini (Future)"),
+    "zt": ("ZT=F", "US-Note 2J (Future)"), "zf": ("ZF=F", "US-Note 5J (Future)"), "zn": ("ZN=F", "US-Note 10J (Future)"),
+    "zb": ("ZB=F", "US-Bond 30J (Future)"), "cl": ("CL=F", "Rohöl WTI (Future)"), "ng": ("NG=F", "Erdgas (Future)"),
+    "rb": ("RB=F", "Benzin (Future)"), "ho": ("HO=F", "Heizöl (Future)"), "gc": ("GC=F", "Gold (Future)"),
+    "si": ("SI=F", "Silber (Future)"), "hg": ("HG=F", "Kupfer (Future)"), "pl": ("PL=F", "Platin (Future)"),
+    "pa": ("PA=F", "Palladium (Future)"), "6e": ("6E=F", "Euro (Future)"), "6j": ("6J=F", "Yen (Future)"),
+    "6b": ("6B=F", "Pfund (Future)"), "6a": ("6A=F", "Australischer Dollar (Future)"),
+    "6c": ("6C=F", "Kanadischer Dollar (Future)"), "6s": ("6S=F", "Franken (Future)"), "btc": ("BTC=F", "Bitcoin (CME-Future)"),
+    "zc": ("ZC=F", "Mais (Future)"), "zs": ("ZS=F", "Sojabohnen (Future)"), "zw": ("ZW=F", "Weizen (Future)"),
+    "le": ("LE=F", "Lebendrind (Future)"), "he": ("HE=F", "Mastschwein (Future)"),
+}
+ALIASES.update(FUTURES)
 OFFICIAL = ("FRED:", "BBK:", "EZB:")
 
 EU_SUFFIXES = (".DE", ".F", ".PA", ".AS", ".MI", ".MC", ".SW", ".L")
@@ -154,6 +169,27 @@ def _ecb(path: str) -> pd.DataFrame:
     df["date"] = pd.to_datetime(df["date"])
     df["close"] = pd.to_numeric(df["close"], errors="coerce")
     return df.dropna().set_index("date")
+
+
+def _yahoo_ohlc(symbol: str) -> pd.DataFrame:
+    import yfinance as yf
+
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore")
+        h = yf.Ticker(symbol).history(period="max", auto_adjust=True)
+    if h.empty:
+        raise ValueError(f"Yahoo liefert keine Daten für {symbol}")
+    idx = h.index.tz_localize(None) if h.index.tz is not None else h.index
+    out = h[["Open", "High", "Low", "Close", "Volume"]].astype(float)
+    out.columns = ["open", "high", "low", "close", "volume"]
+    out.index = idx.normalize().rename("date")
+    return out
+
+
+def ohlc(symbol: str) -> pd.DataFrame:
+    """Daily open, high, low, close, volume from Yahoo (adjusted), oldest first."""
+    df = cached(f"yahoo_ohlc_{symbol}", lambda: _yahoo_ohlc(symbol), max_age_h=12)
+    return df[~df.index.duplicated(keep="last")].sort_index()
 
 
 def closes(symbol: str) -> pd.Series:

@@ -29,7 +29,7 @@ MAX_RESULT_CHARS = 24000
 PRICE_PER_MTOK = {"claude-opus-5-5": (4.0, 20.0, 0.20)}  # input, output, cache read (USD) – for the cost line only
 COST_NOTE = "Claude Opus 5.5: 4 $ je 1 Mio. Eingabe-Tokens, 20 $ je 1 Mio. Ausgabe-Tokens; eine Analyse-Frage kostet typischerweise 0,10–1 $."
 
-SYSTEM = f"""Du bist der Quant-Analyst dieses Projekts. Du beantwortest Fragen zu Märkten, indem du die Werkzeuge
+SYSTEM = f"""Du bist der Quant Copilot von Quant Assistance. Du beantwortest Fragen zu Märkten, indem du die Werkzeuge
 benutzt, die echte historische Daten auswerten. Antworte auf Deutsch.
 
 ## Denkweise: weit denken, hart messen, ehrlich berichten
@@ -61,6 +61,17 @@ benutzt, die echte historische Daten auswerten. Antworte auf Deutsch.
   anderen Weg.
 - Halte die Antwort gegliedert: kurzes Ergebnis zuerst, dann die Belege (Tabelle oder Liste), dann Grenzen.
   Höchstens so viele Werkzeug-Aufrufe wie für eine belastbare Antwort nötig.
+
+## Projekte, Befehle, Gedächtnis
+- Arbeite in Projekten: Strategien, Ketten, Trades-CSV und Skripte liegen dort (projekte, datei_lesen, datei_schreiben).
+  Neue Strategien/Ketten schreibst du als Datei ins Projekt und testest sie mit befehl ('/backtest datei.json').
+- Slash-Befehle über das Werkzeug befehl: /review vor jedem Ergebnis, das du als tragfähig darstellst; /walk-forward,
+  /regime-pnl, /overnight, /trades, /goal, /optionen, /kerzen; eigene Befehle des Nutzers stehen in /commands.
+- Lies zu Beginn eines Gesprächs gedaechtnis. Eigene Anweisungen des Nutzers befolgst du immer und änderst sie nie.
+  Mit merken speicherst du nur Dauerhaftes, das der Nutzer gesagt oder bestätigt hat (Arbeitsweise, Entscheidungen
+  im Projekt) – nie Marktzahlen.
+- Daten: symbole_suchen, symbol_aufloesen, abdeckung, kerzen_vorschau (max. 500 Kerzen/31 Tage), schema_erklaeren,
+  daten_anleitung. Ticks, Quotes, Orderbuch und Options-Historie gibt es gratis nicht – sag das und nimm Ersatz.
 
 ## Quellen für Ereignisse (Parameter quelle)
 {triggers.__doc__}
@@ -121,6 +132,55 @@ TOOLS = [
      "description": "Welche Marktphasen gerade gelten (VIX, Trend, Zinskurve, Kreditstress, Leitzins) – um zu prüfen, wie "
                     "Muster in einer Lage wie heute verliefen.",
      "input_schema": {"type": "object", "properties": {}}},
+    {"name": "befehl",
+     "description": "Führt einen Slash-Befehl aus (eingebaut oder eigener des Nutzers), z. B. '/overnight es', "
+                    "'/walk-forward trend_dax.json is=24 oos=6 schritt=3', '/review strategie.json', '/regime-pnl strategie.json', "
+                    "'/trades meine_trades.csv', '/goal strategie.json sharpe>=0.8', '/optionen AAPL', '/commands'. "
+                    "Dateinamen beziehen sich auf das Projekt. Ergebnisse werden im Projekt als Artefakt gespeichert.",
+     "input_schema": {"type": "object", "properties": {
+         "zeile": {"type": "string"}, "projekt": {"type": "string", "description": "Projektname (siehe projekte)"}},
+         "required": ["zeile"]}},
+    {"name": "projekte",
+     "description": "Projekte des Nutzers; mit projekt: dessen Dateien (Strategien, Ketten, Trades, Skripte, Artefakte, Chats).",
+     "input_schema": {"type": "object", "properties": {"projekt": {"type": "string"}}}},
+    {"name": "datei_lesen",
+     "description": "Liest eine Datei aus einem Projekt.",
+     "input_schema": {"type": "object", "properties": {"projekt": {"type": "string"}, "pfad": {"type": "string"}}, "required": ["projekt", "pfad"]}},
+    {"name": "datei_schreiben",
+     "description": "Schreibt eine Datei in ein Projekt (z. B. eine Strategie- oder Ketten-JSON, Notizen, ein Python-Skript). "
+                    "Legt das Projekt an, falls es fehlt.",
+     "input_schema": {"type": "object", "properties": {"projekt": {"type": "string"}, "pfad": {"type": "string"}, "inhalt": {"type": "string"}},
+                      "required": ["projekt", "pfad", "inhalt"]}},
+    {"name": "merken",
+     "description": "Merkt sich etwas Dauerhaftes über den Nutzer, seine Arbeitsweise oder eine Projekt-Entscheidung (sichtbar und "
+                    "löschbar für den Nutzer). Nur Fakten, die der Nutzer gesagt oder bestätigt hat; keine Marktzahlen.",
+     "input_schema": {"type": "object", "properties": {"text": {"type": "string"}, "projekt": {"type": "string"}}, "required": ["text"]}},
+    {"name": "gedaechtnis",
+     "description": "Liest Gedächtnis und eigene Anweisungen des Nutzers (Anweisungen immer befolgen, nie ändern).",
+     "input_schema": {"type": "object", "properties": {"projekt": {"type": "string"}}}},
+    {"name": "symbole_suchen",
+     "description": "Sucht Symbole: Kürzel, CME-Futures, Aktien, ETFs, Indizes, Währungen, Krypto.",
+     "input_schema": {"type": "object", "properties": {"text": {"type": "string"},
+                      "art": {"type": "string", "description": "aktie|etf|index|future|waehrung|krypto|fonds"}}, "required": ["text"]}},
+    {"name": "abdeckung",
+     "description": "Welche Daten es für ein Symbol gibt: Tageswerte (Zeitraum), Intraday-Grenzen, Optionen.",
+     "input_schema": {"type": "object", "properties": {"symbol": {"type": "string"}}, "required": ["symbol"]}},
+    {"name": "symbol_aufloesen",
+     "description": "Übersetzt Kürzel oder Ticker in das eindeutige Symbol mit Quelle, Einheit, Börse und Vergleichsindex.",
+     "input_schema": {"type": "object", "properties": {"namen": {"type": "string", "description": "Kommaliste"}}, "required": ["namen"]}},
+    {"name": "schema_erklaeren",
+     "description": "Erklärt die Felder eines Datenschemas: kerzen, schlusskurse, ereignisse, reaktionen, backtest, optionskette, trades, orderbuch.",
+     "input_schema": {"type": "object", "properties": {"name": {"type": "string"}}}},
+    {"name": "nutzung",
+     "description": "Was geladen und gespeichert ist (Cache, Projekte, Speicherort).",
+     "input_schema": {"type": "object", "properties": {}}},
+    {"name": "daten_anleitung",
+     "description": "Anleitung: Kerzen und Intervalle, Futures ohne Roll-Bereinigung, große Abfragen per Skript, Grenzen der freien Daten.",
+     "input_schema": {"type": "object", "properties": {}}},
+    {"name": "kerzen_vorschau",
+     "description": "Vorschau von höchstens 500 OHLCV-Kerzen über höchstens 31 Tage. Intervalle 1m, 2m, 5m, 15m, 30m, 60m, 90m, 1h, 1d, 5d, 1wk, 1mo.",
+     "input_schema": {"type": "object", "properties": {"symbol": {"type": "string"}, "intervall": {"type": "string"},
+                      "tage": {"type": "integer"}}, "required": ["symbol"]}},
     {"name": "kursstand",
      "description": "Letzter Kurs und Veränderung über 1 Tag, 1 Woche, 1 Monat, 1 Jahr für Symbole oder Kürzel.",
      "input_schema": {"type": "object", "properties": {"symbole": {"type": "string", "description": "Kommaliste"}}, "required": ["symbole"]}},
@@ -189,6 +249,49 @@ def execute(name: str, i: dict) -> str:
         return "\n".join(rows)
     if name == "kursstand":
         return _quotes(i["symbole"])
+    return _workspace_tool(name, i)
+
+
+def _workspace_tool(name: str, i: dict) -> str:
+    from qa import commands, data, workspace
+
+    project = i.get("projekt") or None
+    if name == "befehl":
+        if project and project not in workspace.projects():
+            raise SystemExit(f"Projekt '{project}' gibt es nicht – vorhanden: {', '.join(workspace.projects()) or 'keine'}")
+        results = commands.run(str(i["zeile"]), commands.Ctx(project))
+        return "\n\n".join(r.text + (f"\n_(gespeichert: {r.artifact})_" if r.artifact else "") for r in results)
+    if name == "projekte":
+        if project:
+            return f"Dateien in {project}:\n" + "\n".join(f"- {f}" for f in workspace.files(project))
+        return "Projekte: " + (", ".join(workspace.projects()) or "keine")
+    if name == "datei_lesen":
+        return workspace.read(i["projekt"], i["pfad"])
+    if name == "datei_schreiben":
+        if i["projekt"] not in workspace.projects():
+            workspace.create(i["projekt"])
+        workspace.write(i["projekt"], i["pfad"], str(i["inhalt"]))
+        return f"Gespeichert: {i['projekt']}/{i['pfad']}"
+    if name == "merken":
+        e = workspace.remember(i["text"], project)
+        return f"Gemerkt [{e['id']}]: {e['text']}"
+    if name == "gedaechtnis":
+        return workspace.context_for_ai(project) or "Gedächtnis und Anweisungen sind leer."
+    if name == "symbole_suchen":
+        return data.table(data.search(i["text"], i.get("art", "")))
+    if name == "abdeckung":
+        return "\n".join(f"- {k}: {v}" for k, v in data.coverage(i["symbol"]).items())
+    if name == "symbol_aufloesen":
+        return data.table([data.resolve(n.strip()) for n in str(i["namen"]).split(",") if n.strip()])
+    if name == "schema_erklaeren":
+        return commands.c_schema([i["name"]] if i.get("name") else [], commands.Ctx()).text
+    if name == "nutzung":
+        return commands.c_nutzung([], commands.Ctx()).text
+    if name == "daten_anleitung":
+        return data.GUIDE
+    if name == "kerzen_vorschau":
+        df = data.preview_bars(i["symbol"], i.get("intervall") or "1d", int(i.get("tage") or 31))
+        return f"{len(df)} Kerzen\n\n" + data.frame_md(df)
     raise ValueError(f"unbekanntes Werkzeug {name}")
 
 
@@ -208,8 +311,11 @@ def client() -> anthropic.Anthropic:
     return anthropic.Anthropic()
 
 
+LEVELS = {"Niedrig": "low", "Mittel": "medium", "Hoch": "high", "Maximal": "max"}
+
+
 def ask(question: str, history: list, on_step: Callable[[str, dict, str, bool], None] | None = None,
-        api: anthropic.Anthropic | None = None) -> tuple[str, list, dict]:
+        api: anthropic.Anthropic | None = None, effort: str | None = None, context: str = "") -> tuple[str, list, dict]:
     """One user question.  history: earlier messages (append-only, returned extended).
     Returns (answer text, new history, usage with tokens and estimated cost)."""
     api = api or client()
@@ -219,10 +325,10 @@ def ask(question: str, history: list, on_step: Callable[[str, dict, str, bool], 
     for _ in range(MAX_STEPS + 3):                         # tool rounds plus room for the final answer after the limit
         response = api.beta.messages.create(
             model=MODEL, max_tokens=16000,
-            system=[{"type": "text", "text": SYSTEM}],
+            system=[{"type": "text", "text": SYSTEM}] + ([{"type": "text", "text": context}] if context else []),
             tools=TOOLS, messages=messages,
             thinking={"type": "adaptive"},
-            output_config={"effort": EFFORT},
+            output_config={"effort": effort or EFFORT},
             cache_control={"type": "ephemeral"},            # system prompt + tools + earlier turns are reused
             betas=["server-side-fallback-2026-07-01"],
             fallbacks="default",                            # a safety refusal is retried on a suitable model
