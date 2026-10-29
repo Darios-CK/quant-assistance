@@ -5,7 +5,7 @@
 - **Markt:** S&P 500 · **Regel:** umkehr (nur long) · **Kosten:** 3,0 Bp je Positionswechsel
 - **Gewählte Parameter:** {"tage": 5, "schwelle": 2.0, "halten": 5} – ausgewählt nur auf Daten vor 01.01.2015
 - **Getestete Varianten:** 8 in diesem Lauf, 8 insgesamt für sp500/umkehr (Versuchsprotokoll) · 100 % der Varianten mit positivem Sharpe vor dem Testzeitraum
-- **Erstellt:** 28.10.2026 20:42
+- **Erstellt:** 29.10.2026 00:43
 
 ## Einordnung: ❌ hält nicht stand: Deflated Sharpe ≤ 0,95 (Glück nicht auszuschließen)
 
@@ -24,7 +24,7 @@
 
 ## Risiko im Testzeitraum
 
-Schiefe -0,67 · Kurtosis (Überschuss) 110,3 · Trefferquote 53 % · Gewinn/Verlust-Verhältnis 0,95 · VaR 95 % (1 Tag) +0,00 % · Expected Shortfall 95 % -0,06 % · Turnover 4,7 Wechsel p. a. · Beta 0,36 · Alpha p. a. -3,9 % · Korrelation an den 10 % schlechtesten Markttagen 0,74
+Schiefe -0,67 · Kurtosis (Überschuss) 110,3 · Trefferquote 53 % · Gewinn/Verlust-Verhältnis 0,95 · VaR 95 % (1 Tag) -0,00 % · Expected Shortfall 95 % -0,06 % · Turnover 4,7 Wechsel p. a. · Beta 0,36 · Alpha p. a. -3,9 % · Korrelation an den 10 % schlechtesten Markttagen 0,74
 
 ## Stresstests (gewählte Parameter, Gesamtrendite in der Phase)
 

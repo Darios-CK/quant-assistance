@@ -5,7 +5,7 @@
 - **Markt:** EUR/USD · **Regel:** ereignis (auch short) · **Kosten:** 1,0 Bp je Positionswechsel
 - **Gewählte Parameter:** {"halten": 1, "schwelle": 1.0} – ausgewählt nur auf Daten vor 01.01.2018
 - **Getestete Varianten:** 12 in diesem Lauf, 12 insgesamt für eurusd/ereignis (Versuchsprotokoll) · 83 % der Varianten mit positivem Sharpe vor dem Testzeitraum
-- **Erstellt:** 28.10.2026 20:42
+- **Erstellt:** 29.10.2026 00:43
 
 ## Einordnung: ❌ hält nicht stand: Deflated Sharpe ≤ 0,95 (Glück nicht auszuschließen); PBO ≥ 0,5 (Auswahl nicht besser als Zufall)
 

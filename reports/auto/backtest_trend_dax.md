@@ -5,7 +5,7 @@
 - **Markt:** DAX · **Regel:** trend (nur long) · **Kosten:** 5,0 Bp je Positionswechsel
 - **Gewählte Parameter:** {"schnell": 50, "langsam": 150} – ausgewählt nur auf Daten vor 01.01.2017
 - **Getestete Varianten:** 9 in diesem Lauf, 9 insgesamt für dax/trend (Versuchsprotokoll) · 100 % der Varianten mit positivem Sharpe vor dem Testzeitraum
-- **Erstellt:** 28.10.2026 20:42
+- **Erstellt:** 29.10.2026 00:43
 
 ## Einordnung: ✅ hält der Prüfung stand, schlägt Kaufen-und-Halten aber nicht
 

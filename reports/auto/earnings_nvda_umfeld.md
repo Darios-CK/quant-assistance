@@ -4,7 +4,7 @@
 - **Ereignisse:** 66 von 13.02.2007 bis 26.08.2026
 - **Typische Überraschung (1 Standardabweichung):** 11,60 %
 - **Quelle:** Yahoo Finance (Gewinntermine mit Konsens) · Kurse: Yahoo Finance / FRED (Tagesschlusskurse)
-- **Erstellt:** 28.10.2026 20:42
+- **Erstellt:** 29.10.2026 00:43
 
 Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte, wenn die Überraschung um eine typische Größe höher ausfiel. *Oberes/unteres Drittel* = Ereignisse mit den größten bzw. kleinsten Überraschungen (Ø Bewegung, Anteil steigend, Fälle). *Normal* = durchschnittliche Bewegung über gleich viele Tage ohne Bezug zum Ereignis. *q* = p-Wert nach Korrektur für alle Tests dieser Tabelle; belastbar heißt q < 0,10 und mindestens 20 Fälle. *Hälften gleich* = Richtung in der ersten und zweiten Hälfte der Ereignisse dieselbe. *(bereinigt)* = Einzelaktie/Sektor abzüglich Beta × Index (S&P 500 bzw. DAX), Beta aus dem Jahr vor dem Ereignis.
 
