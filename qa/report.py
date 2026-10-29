@@ -47,7 +47,7 @@ def render(ev: EventSet, summary: pd.DataFrame, used: pd.DataFrame, filters: lis
         f"- **Ereignisse:** {len(used)} von {first:%d.%m.%Y} bis {last:%d.%m.%Y}"
         + (f" · Filter: {', '.join(filters)}" if filters else ""),
         f"- **Typische Überraschung (1 Standardabweichung):** {num(sd, 2)} {ev.unit}",
-        f"- **Quelle:** {ev.source} · Kurse: Yahoo Finance / FRED (Tagesschlusskurse)",
+        f"- **Quelle:** {ev.source} · Kurse: Yahoo Finance, FRED, Bundesbank, EZB (Tageswerte)",
         f"- **Erstellt:** {datetime.now():%d.%m.%Y %H:%M}",
         "",
         "Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte, wenn die Überraschung um eine "
