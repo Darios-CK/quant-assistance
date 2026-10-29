@@ -44,5 +44,6 @@ Berichte an den Nutzer: **Deutsch**. Code, Kommentare, Commit-Messages: Englisch
 - Kostenlose Quellen bevorzugen; kostenpflichtige Anbieter nur nach Zustimmung. Schlüssel nur in `.env`, nie ausgeben.
 - FRED-Downloads ohne eigenen User-Agent (FREDs CDN verwirft unbekannte Browser-Kennungen).
 - **Neue Quelle = Tagesversatz prüfen:** Tagesänderung am Ereignistag und am Folgetag mit einer bekannten Überraschung korrelieren (z. B. EZB). Bundesbank datiert Werte einen Handelstag zu spät (in `_bbk` korrigiert); EZB-Referenzkurse werden um 14:15 festgestellt (Markt `ecb_fix`).
-- Keine Quellen, deren Bedingungen das Auslesen verbieten oder die Bot-Schutz einsetzen (investing.com, Stooq) – Sperren nicht umgehen.
+- Inoffizielle Quellen (Stooq, pytrends, Websites) darf ich nutzen (Entscheidung des Nutzers 29.10.2026, Risiko bei ihm) – aber nie Captchas, Logins oder aktive Sperren umgehen; dann Faktor „blockiert“ mit Grund.
+- Arbeitsweise seit 29.10.2026: Faktorenliste in `FEATURES.md` (Status offen/in Arbeit/fertig/blockiert; „fertig“ nur mit Daten → Event/Feature → nutzbar in Ereignisstudie und Kette → Live-Test mit echten Daten, Ausgabe zeigen). Etappen: Datenschicht → Event-Speicher → Analyse → Ketten → Oberfläche; nach jeder Etappe FEATURES.md + kurze Zusammenfassung. Schlüsselfreie Quellen zuerst. SEC-Kontakt steht in `.env` (`SEC_USER_AGENT`). Live-Tests: `pytest -m live` lokal und wöchentlich in GitHub Actions.
 - Commit/Push nur auf ausdrücklichen Wunsch.

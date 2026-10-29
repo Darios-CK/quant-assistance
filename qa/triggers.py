@@ -14,6 +14,8 @@
     split:<ticker>              stock splits (Yahoo)
     dividende:<ticker>          dividend ex-dates, surprise = change of the dividend (Yahoo)
     termine:<date,date,…>       own list of dates (YYYY-MM-DD) for events without a free source
+    faktor:<alias|A:quelle:reihe>  unusual change of a data series (epu, skew, vix_struktur, finanzstress, sofr …),
+                                stamped with its publication time   options: schwelle, richtung
 """
 
 from __future__ import annotations
@@ -50,8 +52,12 @@ def load(source: str, **opt) -> EventSet:
         return corporate.events(kind, arg)
     if kind == "termine":
         return calendar.custom(arg)
+    if kind == "faktor":
+        from qa.adapters import events as series_events
+
+        return series_events.events(arg, float(opt.get("schwelle") or 2.0), opt.get("richtung") or "beide")
     raise SystemExit(f"Unbekannte Quelle '{source}'. Möglich: ezb, fed, fred:<Reihe>, makro:<Name>, earnings:<Ticker>, "
-                     "kurs:<Symbol>, technik:<Symbol>:<Marke>, kalender:<Art>, wahl:<Art>, split:<Ticker>, dividende:<Ticker>, termine:<Datum,…>")
+                     "kurs:<Symbol>, faktor:<Reihe>, technik:<Symbol>:<Marke>, kalender:<Art>, wahl:<Art>, split:<Ticker>, dividende:<Ticker>, termine:<Datum,…>")
 
 
 def one_sided(source: str, **opt) -> bool:
@@ -59,4 +65,4 @@ def one_sided(source: str, **opt) -> bool:
     kind = source.split(":")[0].lower()
     if kind in ONE_SIDED:
         return True
-    return kind == "kurs" and (opt.get("richtung") or "beide") in ("hoch", "runter")
+    return kind in ("kurs", "faktor") and (opt.get("richtung") or "beide") in ("hoch", "runter")

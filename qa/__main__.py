@@ -38,6 +38,7 @@ DEFAULT_MARKETS = {
     "fed": "sp500,nasdaq100,us2y,us10y,eurusd,gold,dax",
     "fred": "sp500,us2y,us10y,eurusd,gold,dax",
     "kurs": "sp500,dax,us10y,eurusd,gold,bitcoin",
+    "faktor": "sp500,nasdaq100,dax,us2y,us10y,eurusd,gold,bitcoin",
     "earnings": "sp500",
 }
 EARNINGS_HORIZONS = (0, 5, 20, 60)   # 60 days: does the price keep drifting after the surprise (post-earnings drift)?

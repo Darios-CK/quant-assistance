@@ -67,6 +67,10 @@ FUTURES = {
     "le": ("LE=F", "Lebendrind (Future)"), "he": ("HE=F", "Mastschwein (Future)"),
 }
 ALIASES.update(FUTURES)
+
+from qa.adapters import ALIASES as _ADAPTER_ALIASES  # noqa: E402  (series of the data adapters: epu, skew …)
+
+ALIASES.update(_ADAPTER_ALIASES)
 OFFICIAL = ("FRED:", "BBK:", "EZB:")
 
 EU_SUFFIXES = (".DE", ".F", ".PA", ".AS", ".MI", ".MC", ".SW", ".L")
@@ -84,6 +88,11 @@ def resolve(name: str) -> tuple[str, str]:
 def unit(symbol: str) -> str:
     """'bp' for rate series (change in basis points), 'pct' for prices (change in percent)."""
     s = symbol.upper()
+    if s.startswith("A:"):
+        from qa.adapters import split
+
+        adapter, series = split(symbol)
+        return adapter.meta(series)["unit"]
     if s.startswith("EZB:EXR/"):
         return "pct"
     return "bp" if s.startswith(OFFICIAL) else "pct"
@@ -93,6 +102,11 @@ def market(symbol: str) -> str:
     """Where the daily value is set: 'eu' (17:30 Frankfurt; also Bundesbank and ECB yields), 'ecb_fix' (ECB reference
     rates, 14:15 Frankfurt), 'crypto' (midnight UTC) or 'us' (16:00 New York; also FX, futures, FRED)."""
     s = symbol.upper()
+    if s.startswith("A:"):
+        from qa.adapters import split
+
+        adapter, series = split(symbol)
+        return adapter.meta(series)["market"]
     if s.startswith("EZB:EXR/"):
         return "ecb_fix"
     if s.startswith(("BBK:", "EZB:")):
@@ -105,7 +119,7 @@ def market(symbol: str) -> str:
 def default_bench(symbol: str) -> str | None:
     """Market index a single stock or sector ETF is adjusted for; None for indices, rates, FX, futures, crypto."""
     s = symbol.upper()
-    if s.startswith(OFFICIAL + ("^",)) or s.endswith(("=X", "=F", ".NYB")) or market(s) == "crypto":
+    if s.startswith(OFFICIAL + ("^", "A:")) or s.endswith(("=X", "=F", ".NYB")) or market(s) == "crypto":
         return None
     return "^GDAXI" if market(s) == "eu" else "^GSPC"
 
@@ -195,6 +209,13 @@ def ohlc(symbol: str) -> pd.DataFrame:
 def closes(symbol: str) -> pd.Series:
     """Daily closes, oldest first, index = trading dates (no time of day)."""
     head, _, rest = symbol.partition(":")
+    if head.upper() == "A":
+        from qa.adapters import split
+
+        adapter, series = split(symbol)
+        s = adapter.load(series)["value"]
+        s.index = s.index.rename("date")
+        return s
     if head.upper() == "FRED":
         sid = rest.upper()
         df = cached(f"fred_daily_{sid}", lambda: _fred_daily(sid), max_age_h=12)
