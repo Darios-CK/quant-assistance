@@ -5,7 +5,7 @@
 - **Markt:** S&P 500 · **Regel:** umkehr (nur long) · **Kosten:** 3,0 Bp je Positionswechsel
 - **Gewählte Parameter:** {"tage": 5, "schwelle": 2.0, "halten": 5} – ausgewählt nur auf Daten vor 01.01.2015
 - **Getestete Varianten:** 8 in diesem Lauf, 8 insgesamt für sp500/umkehr (Versuchsprotokoll) · 100 % der Varianten mit positivem Sharpe vor dem Testzeitraum
-- **Erstellt:** 29.10.2026 00:43
+- **Erstellt:** 29.10.2026 01:25
 
 ## Einordnung: ❌ hält nicht stand: Deflated Sharpe ≤ 0,95 (Glück nicht auszuschließen)
 
