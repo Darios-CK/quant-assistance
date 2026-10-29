@@ -41,6 +41,20 @@ Kombinationen und weitere Ereignisse:
 .venv/bin/python -m qa chat "Wie reagieren Banken auf harte EZB-Überraschungen bei hohem VIX?"   # KI-Analyst (kostet je Frage Geld)
 ```
 
+## KI-Analyst kostenlos in Claude Code / Claude-App (MCP)
+
+Die Analysen stehen Claude als Werkzeuge zur Verfügung – ohne API-Schlüssel, im bestehenden Claude-Abo. Einmal anmelden
+(Terminal in VS Code):
+
+```bash
+~/.vscode/extensions/anthropic.claude-code-*-darwin-arm64/resources/native-binary/claude mcp add --scope user quant -- \
+  ~/quant-analyst/.venv/bin/python ~/quant-analyst/scripts/mcp_server.py
+```
+
+Danach in einem neuen Claude-Code-Gespräch einfach fragen, z. B. „Wie reagieren Banken auf harte EZB-Überraschungen bei
+hohem VIX?“ – Claude ruft `ereignis_analyse`, `kette_pruefen`, `earnings_analyse`, `backtest`, `katalog`,
+`marktphasen_aktuell` und `kursstand` auf und bekommt die Denkweise (weit denken, hart messen, ehrlich berichten) mit.
+
 In Claude Code geht es auch in Worten:
 - `/kette Ölpreis steigt stark` – die KI denkt die Kettenreaktion über mehrere Ebenen durch und lässt jedes Glied messen
 - `/ereignis Wie reagieren Vonovia und Banken auf EZB-Überraschungen seit 2015?`

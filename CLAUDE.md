@@ -8,6 +8,7 @@ Berichte an den Nutzer: **Deutsch**. Code, Kommentare, Commit-Messages: Englisch
 - `qa/triggers.py` eine Schreibweise für alle Auslöser (ezb, fed, fred:/makro:, earnings:, kurs:, technik:, kalender:, wahl:, split:, dividende:, termine:).
 - `qa/regimes.py` Marktphasen als Bedingung (Stand am Schluss VOR dem Ereignis) und Kombinationen (`--bedingung`, `--zusammen-mit`, `--ohne`, `--fenster`).
 - `qa/catalog.py` Abdeckung aller ~70 Markttreiber (✅/🟡/🔜/❌) – bei neuen Quellen nachführen.
+- `scripts/mcp_server.py` dieselben Werkzeuge als MCP-Server für Claude Code / Claude-App (kostenlos im Abo, Anmeldung durch den Nutzer: README).
 - `qa/agent.py` KI-Analyst (Claude Opus 5.5, Werkzeuge = Analysen dieses Projekts, Zahlen nur aus Werkzeug-Ergebnissen); App-Seite „KI-Analyst“ mit Passwort `CHAT_PASSWORD` und Tageslimit `QA_CHAT_LIMIT`, CLI `python -m qa chat`. Kostet je Frage Geld (ANTHROPIC_API_KEY).
 - `qa/study.py` Statistik (Marktbereinigung, Steigung, Drittel, Hälften-Test, BH-Korrektur), `qa/quality.py` Datenprüfung, `qa/assets.py` Märkte laden.
 - `qa/chain.py` Kettenprüfung aus `chains/*.json`; `qa/report.py` Bericht; `qa/__main__.py` Befehlszeile.
