@@ -78,7 +78,14 @@ Streamlit ist abgeschaltet. Was Sie in die Formulare eingeben (Ticker, Zeiträum
 verwendet und höchstens sechs Stunden zwischengespeichert, nicht Ihrer Person zugeordnet und nicht weitergegeben.
 Für die Analysen ruft der Server Kursdaten bei den genannten Datenquellen ab; dabei werden keine Daten über Sie übermittelt.
 
-## 4. Ihre Rechte
+## 4. KI-Analyst
+Fragen an den KI-Analysten werden zusammen mit den Analyse-Ergebnissen an Anthropic PBC (USA)
+übermittelt, die das Sprachmodell Claude betreibt; dabei kann eine Übermittlung in die USA stattfinden. Bitte geben
+Sie dort keine personenbezogenen Daten ein. Der Chat ist passwortgeschützt; gespeichert wird bei uns nur die Zahl der
+Fragen je Tag, der Gesprächsverlauf nur für die Dauer Ihrer Sitzung im Browser-Tab. Rechtsgrundlage: Art. 6 Abs. 1
+lit. f DSGVO. Einzelheiten: [Datenschutzhinweise von Anthropic](https://www.anthropic.com/legal/privacy).
+
+## 5. Ihre Rechte
 Sie haben das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung (Art. 18),
 Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21 DSGVO). Sie können sich bei einer Datenschutz-Aufsichtsbehörde
 beschweren, z. B. {authority}.

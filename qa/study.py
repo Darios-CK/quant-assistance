@@ -166,8 +166,11 @@ def finish(summary: pd.DataFrame) -> pd.DataFrame:
     return summary
 
 
-def study(events: pd.DataFrame, assets: list[dict], horizons: tuple[int, ...] = HORIZONS) -> tuple[pd.DataFrame, pd.DataFrame]:
+def study(events: pd.DataFrame, assets: list[dict], horizons: tuple[int, ...] = HORIZONS,
+          one_sided: bool = False) -> tuple[pd.DataFrame, pd.DataFrame]:
     """assets: dicts with symbol, name, unit, market, closes and optionally bench (closes of the index).
+    one_sided: all events point the same way (calendar dates, up-shocks …) – then the test is whether the average
+    reaction differs from the market's normal move over the same days (markets drift up; zero is the wrong baseline).
     Returns (summary, reactions per event)."""
     rows, per_event = [], []
     start, end = events["ts"].min().tz_localize(None), events["ts"].max().tz_localize(None)
@@ -176,9 +179,14 @@ def study(events: pd.DataFrame, assets: list[dict], horizons: tuple[int, ...] = 
         per_event.append(rx.assign(asset=a["name"]))
         adjusted = a.get("bench") is not None
         for h in horizons:
-            s = summarize(rx["surprise"].to_numpy(float), rx[f"h{h}"].to_numpy(float))
+            normal = np.nan if adjusted else normal_move(a["closes"], a["unit"], h, start, end)
+            y = rx[f"h{h}"].to_numpy(float)
+            base = 0.0 if adjusted or np.isnan(normal) else normal
+            s = summarize(rx["surprise"].to_numpy(float), y - base if one_sided else y)
+            if one_sided:   # report the plain average, test the difference to normal
+                s |= {"slope_sd": s.get("mean", np.nan) + base, "p": s.get("mean_p", np.nan), "stable": s.get("mean_stable")}
             s |= {"asset": a["name"], "symbol": a["symbol"], "unit": a["unit"], "h": h, "adjusted": adjusted,
-                  "normal": np.nan if adjusted else normal_move(a["closes"], a["unit"], h, start, end)}
+                  "normal": normal, "one_sided": one_sided}
             rows.append(s)
     return finish(pd.DataFrame(rows)), pd.concat(per_event, ignore_index=True)
 

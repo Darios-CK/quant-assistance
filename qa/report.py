@@ -39,6 +39,7 @@ def group(mean: float, up: float, n: int, unit: str) -> str:
 
 def render(ev: EventSet, summary: pd.DataFrame, used: pd.DataFrame, filters: list[str], notes: list[str] | None = None) -> str:
     sd = float(np.std(used["surprise"], ddof=1)) if len(used) > 1 else float("nan")
+    one = bool(summary.get("one_sided", pd.Series([False])).any())
     first, last = used["ts"].min(), used["ts"].max()
     lines = [
         f"# Ereignis-Analyse: {ev.name}",
@@ -46,7 +47,8 @@ def render(ev: EventSet, summary: pd.DataFrame, used: pd.DataFrame, filters: lis
         f"- **Überraschung:** {ev.measure}",
         f"- **Ereignisse:** {len(used)} von {first:%d.%m.%Y} bis {last:%d.%m.%Y}"
         + (f" · Filter: {', '.join(filters)}" if filters else ""),
-        f"- **Typische Überraschung (1 Standardabweichung):** {num(sd, 2)} {ev.unit}",
+        (f"- **Test:** Ø Reaktion gegenüber der normalen Bewegung an allen Tagen (alle Ereignisse zeigen in dieselbe Richtung)" if one
+         else f"- **Typische Überraschung (1 Standardabweichung):** {num(sd, 2)} {ev.unit}"),
         f"- **Quelle:** {ev.source} · Kurse: Yahoo Finance, FRED, Bundesbank, EZB (Tageswerte)",
         f"- **Erstellt:** {datetime.now():%d.%m.%Y %H:%M}",
         "",
@@ -57,16 +59,17 @@ def render(ev: EventSet, summary: pd.DataFrame, used: pd.DataFrame, filters: lis
         "*Hälften gleich* = Richtung in der ersten und zweiten Hälfte der Ereignisse dieselbe. *(bereinigt)* = Einzelaktie/Sektor abzüglich "
         "Beta × Index (S&P 500 bzw. DAX), Beta aus dem Jahr vor dem Ereignis.",
         "",
-        "| Markt | Horizont | Fälle | Je typ. Überraschung | Oberes Drittel | Unteres Drittel | Normal | p | q | Hälften gleich | Einordnung |",
+        f"| Markt | Horizont | Fälle | {'Ø Reaktion' if one else 'Je typ. Überraschung'} | Oberes Drittel | Unteres Drittel | Normal | p | q | Hälften gleich | Einordnung |",
         "|---|---|---:|---:|---|---|---:|---:|---:|---|---|",
     ]
     for r in summary.itertuples(index=False):
         u = UNIT[r.unit]
         stable = {True: "ja", False: "nein"}.get(getattr(r, "stable", None), "–")
+        hi = "–" if one else group(getattr(r, 'hi_mean', np.nan), getattr(r, 'hi_up', np.nan), getattr(r, 'hi_n', 0), u)
+        lo = "–" if one else group(getattr(r, 'lo_mean', np.nan), getattr(r, 'lo_up', np.nan), getattr(r, 'lo_n', 0), u)
         lines.append(
             f"| {r.asset}{' (bereinigt)' if getattr(r, 'adjusted', False) else ''} | {horizon(r.h)} | {r.n} | {num(r.slope_sd, 2, True, u)} | "
-            f"{group(getattr(r, 'hi_mean', np.nan), getattr(r, 'hi_up', np.nan), getattr(r, 'hi_n', 0), u)} | "
-            f"{group(getattr(r, 'lo_mean', np.nan), getattr(r, 'lo_up', np.nan), getattr(r, 'lo_n', 0), u)} | "
+            f"{hi} | {lo} | "
             f"{num(r.normal, 2, True, u)} | {p_text(r.p)} | {p_text(r.q)} | {stable} | {r.verdict} |")
     lines += ["", "## Hinweise", ""]
     lines += [f"- {n}" for n in ev.notes + (notes or [])]

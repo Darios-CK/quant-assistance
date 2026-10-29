@@ -5,7 +5,10 @@ Berichte an den Nutzer: **Deutsch**. Code, Kommentare, Commit-Messages: Englisch
 
 ## Aufbau
 - `qa/sources/` Datenquellen: `prices.py` (Yahoo, FRED-Tagesreihen ohne Schlüssel), `shocks.py` (EZB: EA-MPD, Fed: Bauer/Swanson), `fred.py` (ALFRED-Erstveröffentlichungen, braucht `FRED_API_KEY` in `.env`), `earnings.py` (Quartalszahlen mit Konsens), `moves.py` (Kurs-Schocks).
-- `qa/triggers.py` eine Schreibweise für alle Auslöser (ezb, fed, fred:, earnings:, kurs:).
+- `qa/triggers.py` eine Schreibweise für alle Auslöser (ezb, fed, fred:/makro:, earnings:, kurs:, technik:, kalender:, wahl:, split:, dividende:, termine:).
+- `qa/regimes.py` Marktphasen als Bedingung (Stand am Schluss VOR dem Ereignis) und Kombinationen (`--bedingung`, `--zusammen-mit`, `--ohne`, `--fenster`).
+- `qa/catalog.py` Abdeckung aller ~70 Markttreiber (✅/🟡/🔜/❌) – bei neuen Quellen nachführen.
+- `qa/agent.py` KI-Analyst (Claude Opus 5.5, Werkzeuge = Analysen dieses Projekts, Zahlen nur aus Werkzeug-Ergebnissen); App-Seite „KI-Analyst“ mit Passwort `CHAT_PASSWORD` und Tageslimit `QA_CHAT_LIMIT`, CLI `python -m qa chat`. Kostet je Frage Geld (ANTHROPIC_API_KEY).
 - `qa/study.py` Statistik (Marktbereinigung, Steigung, Drittel, Hälften-Test, BH-Korrektur), `qa/quality.py` Datenprüfung, `qa/assets.py` Märkte laden.
 - `qa/chain.py` Kettenprüfung aus `chains/*.json`; `qa/report.py` Bericht; `qa/__main__.py` Befehlszeile.
 - `qa/backtest.py` Backtests aus `strategies/*.json` (trend, momentum, umkehr, ereignis), `qa/metrics.py` Kennzahlen, Deflated Sharpe, PBO; Versuchsprotokoll `data/trials.jsonl`.
@@ -18,6 +21,7 @@ Berichte an den Nutzer: **Deutsch**. Code, Kommentare, Commit-Messages: Englisch
 ## Befehle
 - Tests: `.venv/bin/python -m pytest -q`
 - Analyse: `.venv/bin/python -m qa ereignis ezb|fed|fred:<Reihe>|earnings:<Ticker>|kurs:<Symbol> [--maerkte …] [--von …] [--bis …] [--art …]`
+- Katalog: `.venv/bin/python -m qa katalog` · Chat: `.venv/bin/python -m qa chat "Frage"`
 - Earnings: `.venv/bin/python -m qa earnings <Ticker>[,<Ticker>…] [--maerkte …]` · Kette: `.venv/bin/python -m qa kette chains/<datei>.json` · Backtest: `.venv/bin/python -m qa backtest strategies/<datei>.json`
 - Märkte-Kürzel: `.venv/bin/python -m qa maerkte`
 

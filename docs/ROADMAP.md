@@ -8,6 +8,9 @@ Jeder Punkt aus der Anforderungsliste vom 28.10.2026 mit Stand.
 ## Denkweise
 | Punkt | Stand |
 |---|---|
+| KI-Chat wie bei QuantPad, alle Analysen als Werkzeuge | ✅ App-Seite „KI-Analyst“, `qa chat` (Claude, kostenpflichtig, Passwort + Tageslimit) |
+| Kombinationen mehrerer Muster | ✅ Marktphasen + `--zusammen-mit` / `--ohne` (±Tage), Ketten über mehrere Ebenen |
+| Alle ~70 Markttreiber der Liste vom 29.10. | ✅ Katalog `qa katalog` / App „Abdeckung“: 16 ✅, 8 ✅🔑, 23 🟡, 14 🔜, 10 ❌ |
 | Kettenreaktionen über mehrere Ebenen (Öl → Transport → Reifen …) | ✅ `/kette`, `qa kette` – KI denkt weit, jedes Glied wird gemessen |
 | Verflechtungen (Sparten, Töchter, Kunden) | 🟡 KI liest Geschäftsberichte und nennt Fundstelle · 🔜 6: Kunden > 10 % Umsatz automatisch aus 10-K |
 | Earnings-Muster über Jahre und viele Firmen | ✅ `qa earnings` (Konsens von Yahoo, einzeln und zusammen, bis 60 Tage danach) |
@@ -31,7 +34,7 @@ Jeder Punkt aus der Anforderungsliste vom 28.10.2026 mit Stand.
 | Walk-Forward | ✅ jährlich neu gewählt, nur aus Vorjahren |
 | Zeitreihen-Cross-Validation (Purging, Embargo) | 🟡 PBO über zeitliche Blöcke (CSCV) · 🔜 Purging/Embargo für Modelle mit überlappenden Zielen (Stufe 4) |
 | Deflated Sharpe Ratio | ✅ mit Zahl aller je getesteten Varianten |
-| Regime-Wechsel | 🟡 `--von/--bis`, Hälften, Zins- vs. Info-Schock · 🔜 4: Regime automatisch (VIX, Zinskurve, Trend) |
+| Regime-Wechsel | ✅ Marktphasen als Bedingung (`--bedingung` vix_hoch, trend_ab, zinskurve_invers, kreditstress, zinsen_hoch …), Hälften, Zins- vs. Info-Schock |
 | Ökonomische Begründung | ✅ Pflichtfeld „warum“ je Kettenglied |
 | Robustheit (Zeiträume, Märkte, Parameter) | ✅ Zeiträume, Märkte, Parameter-Gitter (Anteil positiver Varianten, PBO) |
 
@@ -49,7 +52,7 @@ Positionsgrößen (Volatility Targeting, Risk Parity), Kelly (Bruchteil), Divers
 | Momentum, Value, Quality, Size, Low Vol, Investment | 🔜 4: Faktor-Renditen aus French Library / AQR; Einzelaktien-Kennzahlen aus SEC XBRL (nur US) |
 | Kurzfristige Mean Reversion, Time-Series-Momentum | 🔜 4 |
 | Carry | 🔜 4: Währungen über Zinsdifferenzen (FRED/EZB) · 🟡 Futures-Roll: Yahoo ohne Roll-Daten |
-| Saisonalität | 🔜 4 |
+| Saisonalität | ✅ `kalender:` januar, santa, monatsanfang/-ende, Wochentage, Optionsverfall, Hexensabbat |
 | Earnings-Effekte, Post-Earnings-Drift | ✅ `qa earnings` (60-Tage-Horizont) |
 | Analystenrevisionen | ❌ gratis keine Historie |
 | Insider-Käufe | 🔜 4: SEC Form 4 |

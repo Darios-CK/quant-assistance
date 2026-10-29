@@ -15,13 +15,16 @@ import streamlit as st
 ROOT = Path(__file__).resolve().parent
 AUTO = ROOT / "reports" / "auto"
 
-try:                                    # cloud: the key lives in Streamlit's secrets, locally in .env
-    if "FRED_API_KEY" in st.secrets:
-        os.environ["FRED_API_KEY"] = st.secrets["FRED_API_KEY"]
+try:                                    # cloud: keys live in Streamlit's secrets, locally in .env
+    for _k in ("FRED_API_KEY", "ANTHROPIC_API_KEY"):
+        if _k in st.secrets:
+            os.environ[_k] = st.secrets[_k]
 except Exception:
     pass
 
-from qa import legal                 # noqa: E402
+from datetime import date                 # noqa: E402
+
+from qa import catalog, legal             # noqa: E402
 from qa.__main__ import run          # noqa: E402  (after the key is in the environment)
 from qa.sources.prices import ALIASES  # noqa: E402
 
@@ -70,11 +73,111 @@ def secrets():
         return {}
 
 
-page = st.sidebar.radio("Bereich", ["Berichte", "Ereignis-Analyse", "Kette prüfen", "Quartalszahlen", "Backtest", "Impressum", "Datenschutz"])
+page = st.sidebar.radio("Bereich", ["KI-Analyst", "Berichte", "Ereignis-Analyse", "Kette prüfen", "Quartalszahlen", "Backtest",
+                                   "Abdeckung", "Impressum", "Datenschutz"])
 st.sidebar.caption("Testbetrieb. Nur gemessene Werte aus der Vergangenheit, keine Anlageberatung. "
                    "Daten: Yahoo Finance, FRED/ALFRED, Bundesbank, EZB, SF Fed.")
 
-if page == "Berichte":
+CHAT_LIMIT = int(os.getenv("QA_CHAT_LIMIT", "30"))     # questions per day for the whole app (it is public, every question costs money)
+EXAMPLES = [
+    "Ölpreis steigt an einem Tag stark: Wer reagiert – direkt, über Transport und Reifen, über Währungen und Krypto?",
+    "Wie reagieren Bund-Renditen, DAX-Banken und Vonovia auf harte EZB-Überraschungen – und ist das anders, wenn der VIX hoch ist?",
+    "Schlagen Microsoft, Apple und Nvidia den Konsens: steigt die Aktie danach über Wochen weiter (Post-Earnings-Drift)?",
+    "Was passierte historisch mit S&P 500 und DAX, wenn der S&P unter seine 200-Tage-Linie fiel – in einer Lage wie heute?",
+]
+
+
+@st.cache_resource
+def _counter() -> dict:
+    return {}
+
+
+def _chat_allowed() -> tuple[bool, str]:
+    from qa import agent
+
+    ok, why = agent.available()
+    if not ok:
+        return False, why
+    password = str(secrets().get("CHAT_PASSWORD", "") or "")
+    if not password:
+        return False, ("Der Chat ist gesperrt, bis ein Passwort gesetzt ist (CHAT_PASSWORD in den Secrets) – "
+                       "die App ist öffentlich und jede Frage kostet über den API-Schlüssel Geld.")
+    if st.session_state.get("chat_ok"):
+        return True, ""
+    entered = st.text_input("Passwort für den KI-Analysten", type="password")
+    if entered and entered == password:
+        st.session_state["chat_ok"] = True
+        st.rerun()
+    if entered:
+        st.error("Falsches Passwort.")
+    return False, ""
+
+
+if page == "KI-Analyst":
+    st.title("KI-Analyst")
+    st.caption("Fragen in eigenen Worten. Die KI denkt die Kette weit durch und prüft jede Aussage mit den Analysen dieser App – "
+               "Zahlen stammen nur aus Messungen. Keine Anlageberatung. Antworten werden von einer KI erzeugt (Claude, Anthropic).")
+    allowed, why = _chat_allowed()
+    if why:
+        st.info(why)
+    if allowed:
+        from qa import agent
+
+        used = _counter().get(str(date.today()), 0)
+        st.session_state.setdefault("chat_messages", [])
+        st.session_state.setdefault("chat_view", [])
+        for entry in st.session_state["chat_view"]:
+            with st.chat_message(entry["role"]):
+                for step in entry.get("steps", []):
+                    with st.expander(f"{'⚠️' if step['err'] else '🔧'} {step['name']}: {step['short']}"):
+                        st.markdown(step["out"])
+                st.markdown(entry["text"])
+                if entry.get("usage"):
+                    st.caption(entry["usage"])
+        cols = st.columns(2)
+        clicked = None
+        if not st.session_state["chat_view"]:
+            for k, ex in enumerate(EXAMPLES):
+                if cols[k % 2].button(ex, key=f"ex{k}"):
+                    clicked = ex
+        question = st.chat_input(f"Frage stellen ({max(0, CHAT_LIMIT - used)} von {CHAT_LIMIT} heute übrig)") or clicked
+        if question:
+            if used >= CHAT_LIMIT:
+                st.warning("Tageslimit erreicht – morgen geht es weiter.")
+            else:
+                _counter()[str(date.today())] = used + 1
+                st.session_state["chat_view"].append({"role": "user", "text": question})
+                with st.chat_message("user"):
+                    st.markdown(question)
+                with st.chat_message("assistant"):
+                    steps = []
+                    status = st.status("Denke nach und rechne …", expanded=True)
+
+                    def on_step(name, i, out, err):
+                        short = i.get("quelle") or i.get("ticker") or (i.get("kette") or {}).get("name") or \
+                            (i.get("strategie") or {}).get("name") or i.get("symbole") or ""
+                        steps.append({"name": name, "short": str(short)[:80], "out": out, "err": err})
+                        status.write(f"{'⚠️' if err else '🔧'} {name}: {str(short)[:80]}")
+
+                    try:
+                        text, msgs, usage = agent.ask(question, st.session_state["chat_messages"], on_step)
+                        st.session_state["chat_messages"] = msgs
+                        line = f"{usage['steps']} Analysen · ca. {usage['cost_usd']:.2f} $"
+                    except Exception as exc:
+                        text, line = f"Fehler beim KI-Aufruf: {exc}", ""
+                    status.update(label=f"Fertig – {len(steps)} Analysen", state="complete", expanded=False)
+                    st.markdown(text)
+                    if line:
+                        st.caption(line)
+                st.session_state["chat_view"].append({"role": "assistant", "text": text, "steps": steps, "usage": line})
+        if st.session_state["chat_view"] and st.button("Neues Gespräch"):
+            st.session_state["chat_messages"], st.session_state["chat_view"] = [], []
+            st.rerun()
+
+elif page == "Abdeckung":
+    st.markdown(catalog.as_markdown())
+
+elif page == "Berichte":
     st.title("Automatische Berichte")
     index = AUTO / "README.md"
     if not index.exists():

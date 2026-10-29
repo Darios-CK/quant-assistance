@@ -9,6 +9,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sys
 from datetime import date
@@ -17,7 +18,7 @@ from pathlib import Path
 import pandas as pd
 
 from qa import assets as asset_loader
-from qa import backtest, chain, triggers
+from qa import backtest, chain, regimes, triggers
 from qa.cache import ROOT
 from qa.report import render
 from qa.sources import earnings, prices
@@ -25,6 +26,13 @@ from qa.sources.shocks import EventSet
 from qa.study import HORIZONS, finish, pooled, study
 
 DEFAULT_MARKETS = {
+    "makro": "sp500,us2y,us10y,eurusd,gold,dax",
+    "technik": "sp500,dax,us10y,eurusd,gold",
+    "kalender": "sp500,dax,us10y,eurusd,gold,bitcoin",
+    "wahl": "sp500,dax,us10y,eurusd,gold,dollar",
+    "termine": "sp500,dax,us10y,eurusd,gold,oel,bitcoin",
+    "split": "",
+    "dividende": "",
     "ezb": "bund2j,bund10j,dax,stoxx50,banken_eu,immobilien_eu,eurusd,deutsche_bank,vonovia",
     "fed": "sp500,nasdaq100,us2y,us10y,eurusd,gold,dax",
     "fred": "sp500,us2y,us10y,eurusd,gold,dax",
@@ -61,6 +69,30 @@ def _filter(df: pd.DataFrame, args) -> tuple[pd.DataFrame, list[str]]:
     return df, filters
 
 
+def combine(df: pd.DataFrame, args) -> tuple[pd.DataFrame, list[str]]:
+    """Market phases (--bedingung) and other events nearby (--zusammen-mit / --ohne, ±--fenster days)."""
+    labels = []
+    if getattr(args, "bedingung", None):
+        df, names = regimes.filter_phases(df, [b.strip() for b in args.bedingung.split(",") if b.strip()])
+        labels += [f"nur bei: {n}" for n in names]
+    for flag, keep in (("zusammen_mit", True), ("ohne", False)):
+        src = getattr(args, flag, None)
+        if src:
+            other = triggers.load(src).df
+            # outside the other source's coverage "nearby" cannot be known: keep only the overlapping period
+            lo, hi = other["ts"].min(), other["ts"].max()
+            cut = (df["ts"] >= lo - pd.Timedelta(days=args.fenster)) & (df["ts"] <= hi + pd.Timedelta(days=args.fenster))
+            if not cut.all():
+                labels.append(f"nur {lo:%Y}–{hi:%Y}, soweit {src} Daten hat")
+            df = df[cut]
+            hit = regimes.near(df, other, args.fenster)
+            df = df[hit if keep else ~hit]
+            labels.append(f"{'mit' if keep else 'ohne'} {src} innerhalb ±{args.fenster} Tagen")
+    if df.empty:
+        raise SystemExit("Nach den Bedingungen bleiben keine Ereignisse übrig.")
+    return df, labels
+
+
 def _horizons(args, default) -> tuple[int, ...]:
     return tuple(int(h) for h in args.horizonte.split(",")) if args.horizonte else default
 
@@ -85,14 +117,19 @@ def run_event(args) -> tuple[str, pd.DataFrame, str]:
             "uhrzeit": args.uhrzeit, "schwelle": args.schwelle, "richtung": args.richtung}
     ev = triggers.load(args.quelle, **opts)
     df, filters = _filter(ev.df, args)
+    df, more = combine(df, args)
+    filters += more
     kind = args.quelle.split(":")[0].lower()
-    loaded, notes = asset_loader.load(_items(args.maerkte or DEFAULT_MARKETS[kind], not args.ohne_bereinigung), (df["ts"].min(), df["ts"].max()))
+    default = DEFAULT_MARKETS[kind] or args.quelle.split(":", 1)[1]          # split/dividende: the stock itself
+    loaded, notes = asset_loader.load(_items(args.maerkte or default, not args.ohne_bereinigung), (df["ts"].min(), df["ts"].max()))
     if not loaded:
         raise SystemExit("Keine Kursdaten verfügbar.")
     horizons = _horizons(args, HORIZONS)
-    summary, per_event = study(df, loaded, horizons)
+    summary, per_event = study(df, loaded, horizons, one_sided=triggers.one_sided(args.quelle, **opts))
     text = render(ev, summary, df, filters, notes)
-    return text, per_event, "_".join(x for x in (args.quelle, args.mass or "", args.art, args.von or "", args.bis or "") if x)
+    parts = (args.quelle, args.mass or "", args.art, args.von or "", args.bis or "", args.bedingung or "",
+             f"mit_{args.zusammen_mit}" if args.zusammen_mit else "", f"ohne_{args.ohne}" if args.ohne else "")
+    return text, per_event, "_".join(x for x in parts if x and x != "alle")
 
 
 def run_earnings(args) -> tuple[str, pd.DataFrame, str]:
@@ -169,7 +206,8 @@ def parser() -> argparse.ArgumentParser:
     sub = p.add_subparsers(dest="cmd", required=True)
 
     e = sub.add_parser("ereignis", help="Wie reagierten Märkte auf Ereignisse?")
-    e.add_argument("quelle", help="ezb | fed | fred:<Reihe> | earnings:<Ticker> | kurs:<Symbol>")
+    e.add_argument("quelle", help="ezb | fed | fred:<Reihe> | makro:<Name> | earnings:<Ticker> | kurs:<Symbol> | technik:<Symbol>:<Marke> | "
+                                  "kalender:<Art> | wahl:<Art> | split:<Ticker> | dividende:<Ticker> | termine:<Datum,…>")
     e.add_argument("--mass", choices=["zins", "ausblick", "gesamt", "roh", "bereinigt"],
                    help="ezb zins|ausblick|gesamt (Standard gesamt), fed roh|bereinigt (Standard roh)")
     e.add_argument("--art", default="alle", choices=["alle", "zins-schock", "info-schock"], help="nur Zins- oder Informations-Schocks (ezb, fed)")
@@ -178,6 +216,10 @@ def parser() -> argparse.ArgumentParser:
     e.add_argument("--schwelle", type=float, default=2.0, help="kurs: Schock ab so vielen Standardabweichungen (Standard 2)")
     e.add_argument("--richtung", default="beide", choices=["beide", "hoch", "runter"], help="kurs: nur Anstiege, nur Rückgänge oder beide")
     e.add_argument("--ausserplanmaessig", action="store_true", help="fed: auch außerplanmäßige Sitzungen")
+    e.add_argument("--bedingung", help="nur Ereignisse in diesen Marktphasen (Kommaliste, alle müssen gelten): " + ", ".join(regimes.PHASES))
+    e.add_argument("--zusammen-mit", dest="zusammen_mit", help="nur Ereignisse, bei denen eine andere Quelle in der Nähe lag, z. B. fed oder makro:nfp")
+    e.add_argument("--ohne", help="nur Ereignisse OHNE eine andere Quelle in der Nähe")
+    e.add_argument("--fenster", type=int, default=3, help="Abstand in Kalendertagen für --zusammen-mit/--ohne (Standard 3)")
     _common(e)
     e.set_defaults(func=run_event)
 
@@ -199,9 +241,34 @@ def parser() -> argparse.ArgumentParser:
     m = sub.add_parser("maerkte", help="Kürzel für Märkte anzeigen")
     m.set_defaults(func=cmd_markets)
 
+    c = sub.add_parser("chat", help="Frage an den KI-Analysten (braucht ANTHROPIC_API_KEY, kostet je Frage Geld)")
+    c.add_argument("frage", nargs="+")
+    c.set_defaults(func=cmd_chat)
+
+    k2 = sub.add_parser("katalog", help="welche Markttreiber mit freien Daten messbar sind")
+    k2.set_defaults(func=cmd_catalog)
+
     r = sub.add_parser("routine", help="alle Analysen aus routine.json nach reports/auto/ rechnen (täglicher Lauf)")
     r.set_defaults(func=cmd_routine)
     return p
+
+
+def cmd_chat(args) -> None:
+    from qa import agent
+
+    ok, why = agent.available()
+    if not ok:
+        raise SystemExit(why)
+    step = lambda name, i, out, err: print(f"→ {name} {json.dumps(i, ensure_ascii=False)[:160]}{'  (Fehler)' if err else ''}", file=sys.stderr)  # noqa: E731
+    text, _, usage = agent.ask(" ".join(args.frage), [], on_step=step)
+    print(text)
+    print(f"\n[{usage['steps']} Werkzeug-Aufrufe · {usage['input'] + usage['cache_read'] + usage['cache_write']} Eingabe- / {usage['output']} Ausgabe-Tokens · ca. {usage['cost_usd']:.2f} $]", file=sys.stderr)
+
+
+def cmd_catalog(_args) -> None:
+    from qa import catalog
+
+    print(catalog.as_markdown())
 
 
 def cmd_routine(_args) -> int:
@@ -218,8 +285,8 @@ def run(argv: list[str]) -> tuple[str, pd.DataFrame, str]:
 
 def main(argv: list[str] | None = None) -> int:
     args = parser().parse_args(argv)
-    if args.func is cmd_markets:
-        cmd_markets(args)
+    if args.func in (cmd_markets, cmd_chat, cmd_catalog):
+        args.func(args)
         return 0
     if args.func is cmd_routine:
         failed = cmd_routine(args)

@@ -25,6 +25,17 @@ NEW_YORK = ZoneInfo("America/New_York")
 MAX_DELAY_DAYS = {"m": 75, "q": 120, "w": 14}
 
 
+# short names for common releases: (FRED series, release time New York)
+MACRO = {
+    "cpi": ("CPIAUCSL", "08:30"), "kerninflation": ("CPILFESL", "08:30"), "pce": ("PCEPI", "08:30"),
+    "ppi": ("PPIFIS", "08:30"), "nfp": ("PAYEMS", "08:30"), "arbeitslosenquote": ("UNRATE", "08:30"),
+    "erstantraege": ("ICSA", "08:30"), "bip": ("GDPC1", "08:30"), "einzelhandel": ("RSAFS", "08:30"),
+    "industrieproduktion": ("INDPRO", "09:15"), "verbrauchervertrauen": ("UMCSENT", "10:00"),
+    "handelsbilanz": ("BOPGSTB", "08:30"), "geldmenge_m2": ("M2SL", "13:00"), "fed_bilanz": ("WALCL", "16:30"),
+    "oel_lager": ("WCESTUS1", "10:30"), "baubeginne": ("HOUST", "08:30"),
+}
+
+
 def _key() -> str:
     load_dotenv(ROOT / ".env")
     key = os.getenv("FRED_API_KEY", "").strip()
@@ -56,10 +67,11 @@ def _info(series: str) -> pd.DataFrame:
     return pd.DataFrame([{k: s.get(k, "") for k in ("title", "units", "frequency_short")}])
 
 
-def surprises(first: pd.DataFrame, method: str = "naiv", window: int = 12, freq: str = "m") -> pd.DataFrame:
-    """Release table -> (released, value, change, surprise), only rows with a plausible release date."""
+def surprises(first: pd.DataFrame, method: str = "naiv", window: int = 12, freq: str = "m", rate: bool = False) -> pd.DataFrame:
+    """Release table -> (released, value, change, surprise), only rows with a plausible release date.
+    rate: the series is itself a rate in percent (unemployment rate) – change in percentage points, not percent."""
     df = first.sort_values("period").reset_index(drop=True)
-    df["change"] = df["value"].pct_change() * 100
+    df["change"] = df["value"].diff() if rate else df["value"].pct_change() * 100
     if method == "naiv":
         # only past releases enter the expectation (shift(1)): nothing from the future
         expected = df["change"].shift(1).rolling(window, min_periods=window).mean()
@@ -73,12 +85,18 @@ def surprises(first: pd.DataFrame, method: str = "naiv", window: int = 12, freq:
     return df.dropna(subset=["surprise"]).reset_index(drop=True)
 
 
-def macro(series: str, method: str = "naiv", release_time: str = "08:30") -> EventSet:
+def macro(series: str, method: str = "naiv", release_time: str | None = None) -> EventSet:
+    if series.lower() in MACRO:
+        series, default_time = MACRO[series.lower()]
+        release_time = release_time or default_time
+    release_time = release_time or "08:30"
     series = series.upper()
     first = cached(f"alfred_first_{series}", lambda: _first_releases(series), max_age_h=24)
     info = cached(f"fred_info_{series}", lambda: _info(series), max_age_h=24 * 30).iloc[0]
     freq = str(info["frequency_short"]).lower()[:1] or "m"
-    df = surprises(first, method, freq=freq)
+    units = str(info["units"])
+    rate = units.startswith("Percent") and "Change" not in units
+    df = surprises(first, method, freq=freq, rate=rate)
     hh, mm = (int(x) for x in release_time.split(":"))
     ts = [datetime(d.year, d.month, d.day, hh, mm, tzinfo=NEW_YORK) for d in df["released"]]
     out = pd.DataFrame({"ts": pd.to_datetime(ts, utc=True), "surprise": df["surprise"].to_numpy(float),

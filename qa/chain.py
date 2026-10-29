@@ -63,8 +63,8 @@ def status(verdict_: str, value: float, expect: str) -> str:
 def evaluate(summary: pd.DataFrame, one_sided: bool) -> pd.DataFrame:
     """Pick the test (average reaction for one-sided triggers, slope otherwise), correct all p-values together."""
     s = summary.copy()
-    if one_sided:
-        s["value"], s["p_used"], s["stable_used"] = s.get("mean"), s.get("mean_p"), s.get("mean_stable")
+    if one_sided:   # study() already put the average reaction and its test against normal into slope_sd / p / stable
+        s["value"], s["p_used"], s["stable_used"] = s["slope_sd"], s["p"], s["stable"]
     else:
         s["value"], s["p_used"], s["stable_used"] = s["slope_sd"], s["p"], s["stable"]
     s["q_used"] = bh_q(s["p_used"].astype(float).tolist())
@@ -89,8 +89,8 @@ def run(path: Path) -> tuple[str, pd.DataFrame]:
     items = [{"symbol": l["symbol"], "key": l["id"], "name": l.get("name"), "adjust": l.get("marktbereinigt", True)} for l in links]
     loaded, notes = asset_loader.load(items, (df["ts"].min(), df["ts"].max()))
     horizons = tuple(spec.get("horizonte") or HORIZONS)
-    summary, per_event = study(df, loaded, horizons)
     one = triggers.one_sided(source, **opts)
+    summary, per_event = study(df, loaded, horizons, one_sided=one)
     s = evaluate(summary, one)
     return render(spec, ev, df, links, loaded, s, one, notes, horizons), per_event
 

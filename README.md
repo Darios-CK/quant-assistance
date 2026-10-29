@@ -29,6 +29,18 @@ cp .env.example .env    # nur für Konjunkturdaten: kostenlosen FRED-Schlüssel 
 .venv/bin/python -m qa backtest strategies/trend_dax.json        # Strategie testen: Kosten, Testzeitraum, Walk-Forward, Deflated Sharpe, PBO
 ```
 
+Kombinationen und weitere Ereignisse:
+
+```bash
+.venv/bin/python -m qa ereignis ezb --bedingung vix_hoch,trend_ab          # nur EZB-Sitzungen bei hohem VIX und Abwärtstrend
+.venv/bin/python -m qa ereignis makro:cpi --ohne fed --fenster 3           # Inflationszahlen ohne Fed-Sitzung in der Nähe
+.venv/bin/python -m qa ereignis technik:^GSPC:sma200_runter --maerkte dax  # S&P fällt unter die 200-Tage-Linie
+.venv/bin/python -m qa ereignis kalender:santa                             # Saisonalität (auch januar, optionsverfall, hexensabbat …)
+.venv/bin/python -m qa ereignis wahl:de · split:AAPL · dividende:ALV.DE · termine:2019-05-05,2019-08-01
+.venv/bin/python -m qa katalog                                             # welche ~70 Markttreiber messbar sind
+.venv/bin/python -m qa chat "Wie reagieren Banken auf harte EZB-Überraschungen bei hohem VIX?"   # KI-Analyst (kostet je Frage Geld)
+```
+
 In Claude Code geht es auch in Worten:
 - `/kette Ölpreis steigt stark` – die KI denkt die Kettenreaktion über mehrere Ebenen durch und lässt jedes Glied messen
 - `/ereignis Wie reagieren Vonovia und Banken auf EZB-Überraschungen seit 2015?`
@@ -41,7 +53,9 @@ Was schon umgesetzt ist und was noch kommt: [docs/ROADMAP.md](docs/ROADMAP.md).
 .venv/bin/streamlit run app.py      # öffnet http://localhost:8501
 ```
 
-Bereiche: automatische Berichte lesen, Ereignis-Analyse, Kette prüfen, Quartalszahlen, Backtest.
+Bereiche: KI-Analyst (Chat), automatische Berichte, Ereignis-Analyse, Kette prüfen, Quartalszahlen, Backtest, Abdeckung.
+
+**KI-Analyst:** braucht in den Secrets `ANTHROPIC_API_KEY` (kostenpflichtig, Claude Opus 5.5: ca. 0,10–1 $ je Frage) und `CHAT_PASSWORD`, weil die App öffentlich ist. Tageslimit: `QA_CHAT_LIMIT` (Standard 30 Fragen).
 
 ## Betrieb ohne eigenen Rechner (kostenlos)
 
