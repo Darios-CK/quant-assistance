@@ -1,0 +1,10 @@
+{
+  "name": "Zeitreihen-Momentum S&P 500",
+  "markt": "sp500",
+  "regel": "momentum",
+  "parameter": {"lookback": [126, 252], "skip": [0, 21]},
+  "short": false,
+  "kosten_bp": 3,
+  "holdout_ab": "2015-01-01",
+  "warum": "Time-Series-Momentum (Moskowitz, Ooi, Pedersen 2012): die Rendite der letzten 6–12 Monate sagt etwas über den nächsten Monat; den letzten Monat auszulassen umgeht die kurzfristige Umkehr."
+}

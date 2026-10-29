@@ -1,0 +1,10 @@
+{
+  "name": "Kurzfristige Umkehr S&P 500",
+  "markt": "sp500",
+  "regel": "umkehr",
+  "parameter": {"tage": [3, 5], "schwelle": [1.5, 2.0], "halten": [5, 10]},
+  "short": false,
+  "kosten_bp": 3,
+  "holdout_ab": "2015-01-01",
+  "warum": "Nach starken Verkäufen in wenigen Tagen erholen sich Indizes oft, weil Zwangsverkäufe und Überreaktionen nachlassen (Liquiditätsprämie)."
+}

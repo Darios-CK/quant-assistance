@@ -3,7 +3,7 @@
 Jeder Punkt aus der Anforderungsliste vom 28.10.2026 mit Stand.
 ✅ umgesetzt · 🟡 teilweise · 🔜 geplant (Stufe) · ❌ gratis nicht machbar
 
-**Stufen:** 1–2 Ereignisse, Ketten, Earnings (fertig) · 3 Backtests & Kennzahlen · 4 Faktoren, Signale & Fundamentaldaten · 5 Risiko & Portfolio · 6 weitere Datenquellen & Lieferketten
+**Stufen:** 1–2 Ereignisse, Ketten, Earnings (fertig) · 3 Backtests & Kennzahlen (Kern fertig) · 4 Faktoren, Signale & Fundamentaldaten · 5 Risiko & Portfolio · 6 weitere Datenquellen & Lieferketten
 
 ## Denkweise
 | Punkt | Stand |
@@ -25,20 +25,20 @@ Jeder Punkt aus der Anforderungsliste vom 28.10.2026 mit Stand.
 | Zeitzonen, Handelskalender | ✅ Reaktionstag je Börse (Frankfurt 17:30, New York 16:00, Krypto UTC), Feiertage über echte Handelstage |
 | Renditen statt Preise | ✅ |
 | Log- vs. einfache Renditen | ✅ einfache Renditen in Ereignis-Studien (bewusst: über Firmen addierbar) · 🔜 3: Log-Renditen für Zeitreihen-Modelle |
-| Overfitting | ✅ Ereignis-Studien ohne optimierte Parameter · 🔜 3: Strategie-Parameter mit Strafe |
-| Data Snooping | ✅ Benjamini-Hochberg je Bericht, Regel „jede Variante zählt“ (CLAUDE.md) · 🔜 3: Versuchsprotokoll über alle Läufe |
-| Out-of-Sample | 🟡 Hälften-Test · 🔜 3: fester Holdout-Zeitraum, der nie zum Entwickeln genutzt wird |
-| Walk-Forward | 🔜 3 |
-| Zeitreihen-Cross-Validation (Purging, Embargo) | 🔜 3 |
-| Deflated Sharpe Ratio | 🔜 3 |
+| Overfitting | ✅ Ereignis-Studien ohne optimierte Parameter · ✅ Backtests: wenige Parameter je Regel, Auswahl nur auf Entwicklungsdaten |
+| Data Snooping | ✅ Benjamini-Hochberg je Bericht, Regel „jede Variante zählt“ (CLAUDE.md) · ✅ Versuchsprotokoll `data/trials.jsonl` über alle Läufe |
+| Out-of-Sample | ✅ Hälften-Test (Ereignisse) · ✅ Backtests: `holdout_ab`, nie zur Parameterwahl genutzt |
+| Walk-Forward | ✅ jährlich neu gewählt, nur aus Vorjahren |
+| Zeitreihen-Cross-Validation (Purging, Embargo) | 🟡 PBO über zeitliche Blöcke (CSCV) · 🔜 Purging/Embargo für Modelle mit überlappenden Zielen (Stufe 4) |
+| Deflated Sharpe Ratio | ✅ mit Zahl aller je getesteten Varianten |
 | Regime-Wechsel | 🟡 `--von/--bis`, Hälften, Zins- vs. Info-Schock · 🔜 4: Regime automatisch (VIX, Zinskurve, Trend) |
 | Ökonomische Begründung | ✅ Pflichtfeld „warum“ je Kettenglied |
-| Robustheit (Zeiträume, Märkte, Parameter) | 🟡 Zeiträume, Märkte · 🔜 3: Parameter-Gitter |
+| Robustheit (Zeiträume, Märkte, Parameter) | ✅ Zeiträume, Märkte, Parameter-Gitter (Anteil positiver Varianten, PBO) |
 
 ## Kennzahlen (Stufe 3)
-Sharpe, Sortino, Max Drawdown, Calmar, annualisierte Volatilität, Schiefe/Kurtosis, Gewinn/Verlust-Verhältnis, IC, Information Ratio, Turnover – 🔜 3.
+✅ Sharpe, Sortino, Max Drawdown, Calmar, annualisierte Volatilität, Schiefe/Kurtosis, Trefferquote, Gewinn/Verlust-Verhältnis, Turnover, Beta, Alpha zum Markt, Krisen-Korrelation, VaR/Expected Shortfall, PSR, Stresstests (2000, 2008, März 2020, 2022) – `qa/metrics.py`, `qa backtest`. 🔜 IC und Information Ratio (bei Signalen über viele Titel, Stufe 4).
 Beta ✅ (Marktbereinigung) · Hit Rate ✅ („% ↑“ in den Berichten) · Alpha nach Fama-French 🔜 4 (French Library) · Krisen-Korrelationen 🔜 5.
-Transaktionskosten, Slippage 🔜 3 (Annahmen je Markt) · Market Impact, Kapazität 🟡 3 (grob über Volumen) · Liquidität 🟡 (Volumen gratis, historische Spreads ❌) · Leerverkaufskosten ❌ · Steuern 🔜 5 (einfache Annahme Abgeltungsteuer).
+Transaktionskosten, Slippage ✅ als Kosten je Positionswechsel (`kosten_bp`) · Market Impact, Kapazität 🟡 3 (grob über Volumen) · Liquidität 🟡 (Volumen gratis, historische Spreads ❌) · Leerverkaufskosten ❌ · Steuern 🔜 5 (einfache Annahme Abgeltungsteuer).
 
 ## Risiko und Portfolio (Stufe 5)
 Positionsgrößen (Volatility Targeting, Risk Parity), Kelly (Bruchteil), Diversifikation, Stop-Loss und Limits, Stresstests (2000, 2008, März 2020, 2022), VaR und Expected Shortfall, Hebel und Margin – alle 🔜 5.

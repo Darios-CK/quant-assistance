@@ -26,6 +26,7 @@ cp .env.example .env    # nur für Konjunkturdaten: kostenlosen FRED-Schlüssel 
 .venv/bin/python -m qa earnings NVDA --maerkte AMD,TSM,bitcoin   # wer reagiert auf Nvidias Quartalszahlen?
 .venv/bin/python -m qa earnings AAPL,MSFT,GOOGL,AMZN             # Muster über viele Firmen und Jahre
 .venv/bin/python -m qa kette chains/oel_transport.json           # Kausalkette Glied für Glied prüfen
+.venv/bin/python -m qa backtest strategies/trend_dax.json        # Strategie testen: Kosten, Testzeitraum, Walk-Forward, Deflated Sharpe, PBO
 ```
 
 In Claude Code geht es auch in Worten:
@@ -40,7 +41,7 @@ Was schon umgesetzt ist und was noch kommt: [docs/ROADMAP.md](docs/ROADMAP.md).
 .venv/bin/streamlit run app.py      # öffnet http://localhost:8501
 ```
 
-Bereiche: automatische Berichte lesen, Ereignis-Analyse, Kette prüfen, Quartalszahlen.
+Bereiche: automatische Berichte lesen, Ereignis-Analyse, Kette prüfen, Quartalszahlen, Backtest.
 
 ## Betrieb ohne eigenen Rechner (kostenlos)
 

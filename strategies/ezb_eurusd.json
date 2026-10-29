@@ -1,0 +1,12 @@
+{
+  "name": "EUR/USD nach EZB-Überraschungen",
+  "markt": "eurusd",
+  "regel": "ereignis",
+  "ausloeser": {"quelle": "ezb", "mass": "gesamt"},
+  "richtung": "mit",
+  "parameter": {"halten": [1, 5, 10, 20], "schwelle": [0.0, 0.5, 1.0]},
+  "short": true,
+  "kosten_bp": 1,
+  "holdout_ab": "2018-01-01",
+  "warum": "Die Ereignis-Analyse zeigt: nach harten EZB-Überraschungen steigt EUR/USD auch noch in der Woche danach (langsame Verarbeitung). Gehandelt wird erst zum Schluss des Reaktionstags."
+}

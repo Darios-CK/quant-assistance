@@ -2,6 +2,7 @@
     python -m qa ereignis ezb | fed | fred:<Reihe> | earnings:<Ticker> | kurs:<Symbol>  [options]
     python -m qa earnings NVDA,AMD,INTC  [--maerkte …]
     python -m qa kette chains/<datei>.json
+    python -m qa backtest strategies/<datei>.json
     python -m qa maerkte
 """
 
@@ -16,7 +17,7 @@ from pathlib import Path
 import pandas as pd
 
 from qa import assets as asset_loader
-from qa import chain, triggers
+from qa import backtest, chain, triggers
 from qa.cache import ROOT
 from qa.report import render
 from qa.sources import earnings, prices
@@ -142,6 +143,11 @@ def run_chain(args) -> tuple[str, pd.DataFrame, str]:
     return text, per_event, f"kette_{Path(args.datei).stem}"
 
 
+def run_backtest(args) -> tuple[str, pd.DataFrame, str]:
+    text, detail = backtest.run(Path(args.datei))
+    return text, detail, f"backtest_{Path(args.datei).stem}"
+
+
 def cmd_markets(_args) -> None:
     print("Kürzel           Symbol       Name")
     for alias, (symbol, name) in prices.ALIASES.items():
@@ -184,6 +190,11 @@ def parser() -> argparse.ArgumentParser:
     k.add_argument("datei", help="z. B. chains/oel_transport.json")
     k.add_argument("--ablage", help="fester Name unter reports/auto/ (für den täglichen Lauf)")
     k.set_defaults(func=run_chain)
+
+    b = sub.add_parser("backtest", help="Strategie aus einer JSON-Datei testen (Kosten, Testzeitraum, Walk-Forward, Deflated Sharpe, PBO)")
+    b.add_argument("datei", help="z. B. strategies/trend_dax.json")
+    b.add_argument("--ablage", help="fester Name unter reports/auto/ (für den täglichen Lauf)")
+    b.set_defaults(func=run_backtest)
 
     m = sub.add_parser("maerkte", help="Kürzel für Märkte anzeigen")
     m.set_defaults(func=cmd_markets)

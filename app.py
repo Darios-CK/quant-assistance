@@ -70,7 +70,7 @@ def secrets():
         return {}
 
 
-page = st.sidebar.radio("Bereich", ["Berichte", "Ereignis-Analyse", "Kette prüfen", "Quartalszahlen", "Impressum", "Datenschutz"])
+page = st.sidebar.radio("Bereich", ["Berichte", "Ereignis-Analyse", "Kette prüfen", "Quartalszahlen", "Backtest", "Impressum", "Datenschutz"])
 st.sidebar.caption("Testbetrieb. Nur gemessene Werte aus der Vergangenheit, keine Anlageberatung. "
                    "Daten: Yahoo Finance, FRED/ALFRED, Bundesbank, EZB, SF Fed.")
 
@@ -132,6 +132,19 @@ elif page == "Kette prüfen":
         tmp.parent.mkdir(parents=True, exist_ok=True)
         tmp.write_text(text, encoding="utf-8")
         show(["kette", str(tmp)], "kette")
+
+elif page == "Backtest":
+    st.title("Backtest")
+    st.caption("Regel als JSON. Parameter werden nur auf den Daten vor 'holdout_ab' gewählt; danach zählt der Testzeitraum. "
+               "Deflated Sharpe und PBO berücksichtigen, wie viele Varianten probiert wurden.")
+    files = sorted((ROOT / "strategies").glob("*.json"))
+    choice = st.selectbox("Vorlage", [f.name for f in files])
+    text = st.text_area("Strategie (anpassbar)", (ROOT / "strategies" / choice).read_text(encoding="utf-8"), height=320)
+    if st.button("Testen", type="primary"):
+        tmp = ROOT / "data" / "web_strategie.json"
+        tmp.parent.mkdir(parents=True, exist_ok=True)
+        tmp.write_text(text, encoding="utf-8")
+        show(["backtest", str(tmp)], "backtest")
 
 elif page == "Impressum":
     gaps = legal.missing(secrets())

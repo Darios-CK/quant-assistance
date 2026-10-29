@@ -1,0 +1,10 @@
+{
+  "name": "Trendfolge DAX",
+  "markt": "dax",
+  "regel": "trend",
+  "parameter": {"schnell": [20, 50, 100], "langsam": [150, 200, 300]},
+  "short": false,
+  "kosten_bp": 5,
+  "holdout_ab": "2017-01-01",
+  "warum": "Märkte laufen in Trends, weil Anleger Nachrichten langsam verarbeiten und Verluste spät begrenzen; außerhalb des Trends meidet die Regel lange Abwärtsphasen."
+}

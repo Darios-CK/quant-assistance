@@ -6,5 +6,9 @@
   {"name": "earnings_bigtech", "titel": "Quartalszahlen US-Tech zusammen", "args": ["earnings", "AAPL,MSFT,GOOGL,AMZN,META,NVDA"]},
   {"name": "earnings_dax", "titel": "Quartalszahlen DAX-Schwergewichte zusammen", "args": ["earnings", "SAP.DE,SIE.DE,ALV.DE,DTE.DE,MBG.DE,BAS.DE"]},
   {"name": "earnings_nvda_umfeld", "titel": "Wer reagiert auf Nvidias Zahlen?", "args": ["earnings", "NVDA", "--maerkte", "AMD,TSM,ASML,SAP.DE,bitcoin"]},
-  {"name": "ppi", "titel": "US-Erzeugerpreise (PPI)", "args": ["ereignis", "fred:PPIFIS"]}
+  {"name": "ppi", "titel": "US-Erzeugerpreise (PPI)", "args": ["ereignis", "fred:PPIFIS"]},
+  {"name": "backtest_trend_dax", "titel": "Backtest: Trendfolge DAX", "args": ["backtest", "strategies/trend_dax.json"]},
+  {"name": "backtest_momentum_sp500", "titel": "Backtest: Momentum S&P 500", "args": ["backtest", "strategies/momentum_sp500.json"]},
+  {"name": "backtest_umkehr_sp500", "titel": "Backtest: Kurzfristige Umkehr S&P 500", "args": ["backtest", "strategies/umkehr_sp500.json"]},
+  {"name": "backtest_ezb_eurusd", "titel": "Backtest: EUR/USD nach EZB-Überraschungen", "args": ["backtest", "strategies/ezb_eurusd.json"]}
 ]

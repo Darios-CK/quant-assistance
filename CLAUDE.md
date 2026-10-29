@@ -8,6 +8,7 @@ Berichte an den Nutzer: **Deutsch**. Code, Kommentare, Commit-Messages: Englisch
 - `qa/triggers.py` eine Schreibweise für alle Auslöser (ezb, fed, fred:, earnings:, kurs:).
 - `qa/study.py` Statistik (Marktbereinigung, Steigung, Drittel, Hälften-Test, BH-Korrektur), `qa/quality.py` Datenprüfung, `qa/assets.py` Märkte laden.
 - `qa/chain.py` Kettenprüfung aus `chains/*.json`; `qa/report.py` Bericht; `qa/__main__.py` Befehlszeile.
+- `qa/backtest.py` Backtests aus `strategies/*.json` (trend, momentum, umkehr, ereignis), `qa/metrics.py` Kennzahlen, Deflated Sharpe, PBO; Versuchsprotokoll `data/trials.jsonl`.
 - Befehle für Claude Code: `/kette` (Denkweise: weit denken, hart messen, ehrlich berichten), `/ereignis`.
 - Stand aller Anforderungen: `docs/ROADMAP.md` – bei neuen Funktionen dort nachführen.
 - Betrieb ohne eigenen Rechner: `routine.json` + `qa/routine.py` (täglicher Lauf nach `reports/auto/`, GitHub Actions `.github/workflows/routine.yml`), Weboberfläche `app.py` (Streamlit Community Cloud). Repository und Streamlit-App sind auf Wunsch des Nutzers (28.10.) öffentlich im Testbetrieb (Streamlit fand das private Repository nicht) – Yahoo erlaubt nur private Nutzung, das Risiko ist dem Nutzer bekannt. Impressum/Datenschutz: `qa/legal.py`, Angaben aus Streamlit-Secrets.
@@ -17,14 +18,14 @@ Berichte an den Nutzer: **Deutsch**. Code, Kommentare, Commit-Messages: Englisch
 ## Befehle
 - Tests: `.venv/bin/python -m pytest -q`
 - Analyse: `.venv/bin/python -m qa ereignis ezb|fed|fred:<Reihe>|earnings:<Ticker>|kurs:<Symbol> [--maerkte …] [--von …] [--bis …] [--art …]`
-- Earnings: `.venv/bin/python -m qa earnings <Ticker>[,<Ticker>…] [--maerkte …]` · Kette: `.venv/bin/python -m qa kette chains/<datei>.json`
+- Earnings: `.venv/bin/python -m qa earnings <Ticker>[,<Ticker>…] [--maerkte …]` · Kette: `.venv/bin/python -m qa kette chains/<datei>.json` · Backtest: `.venv/bin/python -m qa backtest strategies/<datei>.json`
 - Märkte-Kürzel: `.venv/bin/python -m qa maerkte`
 
 ## Regeln für Analysen (wichtiger als alles andere)
 - **Zahlen nur aus Messungen.** Jede Zahl in einer Antwort stammt aus einem Bericht oder einer Rechnung in diesem Projekt – nie aus dem Gedächtnis des Sprachmodells. Kursverläufe und Ereignisse vor dem Trainingsende kennt das Modell auswendig; das ist kein Beleg.
 - **Immer Fallzahl, p/q-Wert und Zeitraum nennen.** „Belastbar“ nur, wenn der Bericht es sagt (q < 0,10, mindestens 20 Fälle).
 - **Nichts aus der Zukunft:** Makrodaten nur als Erstveröffentlichung (ALFRED), erwartete Werte nur aus vorher bekannten Daten, Reaktion erst ab dem Schlusskurs vor dem Ereignis.
-- **Jede getestete Variante zählt.** Wer zehn Varianten probiert und eine zeigt, muss die anderen neun erwähnen.
+- **Jede getestete Variante zählt.** Wer zehn Varianten probiert und eine zeigt, muss die anderen neun erwähnen. Backtests: Testzeitraum (`holdout_ab`) nie nachträglich verschieben, um ein Ergebnis zu retten; neue Parameter-Varianten landen im Versuchsprotokoll und erhöhen die Hürde.
 - **Regime prüfen:** wichtige Ergebnisse auch für Teilzeiträume rechnen (`--von/--bis`, z. B. vor/nach 2014 wegen Negativzinsen).
 - Bekannte Grenzen nennen: Tagesdaten (andere Nachrichten am selben Tag), Yahoo ohne delistete Firmen, Futures ohne Roll-Bereinigung, kein Konsens bei FRED-Reihen.
 - Keine Kauf-/Verkaufsempfehlungen; beschreiben, was gemessen wurde.
