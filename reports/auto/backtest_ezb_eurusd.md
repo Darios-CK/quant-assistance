@@ -5,11 +5,11 @@
 - **Markt:** EUR/USD · **Regel:** ereignis (auch short) · **Kosten:** 1,0 Bp je Positionswechsel
 - **Gewählte Parameter:** {"halten": 1, "schwelle": 1.0} – ausgewählt nur auf Daten vor 01.01.2018
 - **Getestete Varianten:** 12 in diesem Lauf, 12 insgesamt für eurusd/ereignis (Versuchsprotokoll) · 83 % der Varianten mit positivem Sharpe vor dem Testzeitraum
-- **Erstellt:** 29.10.2026 11:38
+- **Erstellt:** 30.10.2026 11:30
 
 ## Einordnung: ❌ hält nicht stand: Deflated Sharpe ≤ 0,95 (Glück nicht auszuschließen); PBO ≥ 0,5 (Auswahl nicht besser als Zufall)
 
-- **Sharpe Entwicklung → Test:** 0,32 → 0,41 (+25 %) · Kaufen-und-Halten im Test: -0,07
+- **Sharpe Entwicklung → Test:** 0,32 → 0,41 (+25 %) · Kaufen-und-Halten im Test: -0,06
 - **Deflated Sharpe** (Entwicklungsdaten, 12 Versuche berücksichtigt): 0,64 – Wahrscheinlichkeit, dass der echte Sharpe über 0 liegt (Ziel > 0,95)
 - **PBO** (Entwicklungsdaten, 8 Blöcke): 0,90 – Anteil der Aufteilungen, in denen die beste Variante danach unter dem Median lag (Ziel < 0,5)
 
@@ -19,12 +19,12 @@
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | Entwicklung (Parameterwahl) | 2003–2017 | +0,8 % | 0,32 | 0,42 | -7,9 % | 0,11 | +2,7 % | +1 % |
 | **Test (nie zur Wahl genutzt)** | 2018–2026 | +0,4 % | 0,41 | 0,76 | -1,1 % | 0,34 | +0,9 % | +1 % |
-| Kaufen-und-Halten im Test | 2018–2026 | -0,7 % | -0,07 | -0,10 | -23,3 % | -0,03 | +7,1 % | – |
+| Kaufen-und-Halten im Test | 2018–2026 | -0,7 % | -0,06 | -0,09 | -23,3 % | -0,03 | +7,1 % | – |
 | Walk-Forward (jährlich neu gewählt) | 2008–2026 | +0,8 % | 0,24 | 0,32 | -8,9 % | 0,09 | +3,6 % | – |
 
 ## Risiko im Testzeitraum
 
-Schiefe 7,70 · Kurtosis (Überschuss) 284,3 · Trefferquote 69 % · Gewinn/Verlust-Verhältnis 1,02 · VaR 95 % (1 Tag) +0,00 % · Expected Shortfall 95 % -0,00 % · Turnover 3,5 Wechsel p. a. · Beta -0,00 · Alpha p. a. +0,4 % · Korrelation an den 10 % schlechtesten Markttagen -0,08
+Schiefe 7,70 · Kurtosis (Überschuss) 284,4 · Trefferquote 69 % · Gewinn/Verlust-Verhältnis 1,02 · VaR 95 % (1 Tag) +0,00 % · Expected Shortfall 95 % -0,00 % · Turnover 3,5 Wechsel p. a. · Beta -0,00 · Alpha p. a. +0,4 % · Korrelation an den 10 % schlechtesten Markttagen -0,08
 
 ## Stresstests (gewählte Parameter, Gesamtrendite in der Phase)
 

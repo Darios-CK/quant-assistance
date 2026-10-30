@@ -5,11 +5,11 @@
 - **Markt:** DAX · **Regel:** trend (nur long) · **Kosten:** 5,0 Bp je Positionswechsel
 - **Gewählte Parameter:** {"schnell": 50, "langsam": 150} – ausgewählt nur auf Daten vor 01.01.2017
 - **Getestete Varianten:** 9 in diesem Lauf, 9 insgesamt für dax/trend (Versuchsprotokoll) · 100 % der Varianten mit positivem Sharpe vor dem Testzeitraum
-- **Erstellt:** 29.10.2026 11:38
+- **Erstellt:** 30.10.2026 11:30
 
 ## Einordnung: ✅ hält der Prüfung stand, schlägt Kaufen-und-Halten aber nicht
 
-- **Sharpe Entwicklung → Test:** 0,71 → 0,21 (-71 %) · Kaufen-und-Halten im Test: 0,55
+- **Sharpe Entwicklung → Test:** 0,71 → 0,21 (-71 %) · Kaufen-und-Halten im Test: 0,54
 - **Deflated Sharpe** (Entwicklungsdaten, 9 Versuche berücksichtigt): 1,00 – Wahrscheinlichkeit, dass der echte Sharpe über 0 liegt (Ziel > 0,95)
 - **PBO** (Entwicklungsdaten, 8 Blöcke): 0,09 – Anteil der Aufteilungen, in denen die beste Variante danach unter dem Median lag (Ziel < 0,5)
 
@@ -19,12 +19,12 @@
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | Entwicklung (Parameterwahl) | 1988–2016 | +9,9 % | 0,71 | 1,00 | -29,0 % | 0,34 | +14,9 % | +66 % |
 | **Test (nie zur Wahl genutzt)** | 2017–2026 | +1,9 % | 0,21 | 0,27 | -46,3 % | 0,04 | +13,9 % | +72 % |
-| Kaufen-und-Halten im Test | 2017–2026 | +8,6 % | 0,55 | 0,76 | -38,8 % | 0,22 | +18,2 % | – |
+| Kaufen-und-Halten im Test | 2017–2026 | +8,6 % | 0,54 | 0,76 | -38,8 % | 0,22 | +18,2 % | – |
 | Walk-Forward (jährlich neu gewählt) | 1993–2026 | +7,5 % | 0,57 | 0,78 | -46,3 % | 0,16 | +14,7 % | – |
 
 ## Risiko im Testzeitraum
 
-Schiefe -1,97 · Kurtosis (Überschuss) 22,1 · Trefferquote 53 % · Gewinn/Verlust-Verhältnis 0,92 · VaR 95 % (1 Tag) -1,35 % · Expected Shortfall 95 % -2,29 % · Turnover 1,8 Wechsel p. a. · Beta 0,59 · Alpha p. a. -2,9 % · Korrelation an den 10 % schlechtesten Markttagen 0,66
+Schiefe -1,96 · Kurtosis (Überschuss) 22,1 · Trefferquote 53 % · Gewinn/Verlust-Verhältnis 0,92 · VaR 95 % (1 Tag) -1,35 % · Expected Shortfall 95 % -2,29 % · Turnover 1,8 Wechsel p. a. · Beta 0,59 · Alpha p. a. -2,9 % · Korrelation an den 10 % schlechtesten Markttagen 0,66
 
 ## Stresstests (gewählte Parameter, Gesamtrendite in der Phase)
 

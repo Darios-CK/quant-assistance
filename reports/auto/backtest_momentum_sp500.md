@@ -5,11 +5,11 @@
 - **Markt:** S&P 500 · **Regel:** momentum (nur long) · **Kosten:** 3,0 Bp je Positionswechsel
 - **Gewählte Parameter:** {"lookback": 126, "skip": 0} – ausgewählt nur auf Daten vor 01.01.2015
 - **Getestete Varianten:** 4 in diesem Lauf, 4 insgesamt für sp500/momentum (Versuchsprotokoll) · 100 % der Varianten mit positivem Sharpe vor dem Testzeitraum
-- **Erstellt:** 29.10.2026 11:38
+- **Erstellt:** 30.10.2026 11:30
 
 ## Einordnung: ❌ hält nicht stand: PBO ≥ 0,5 (Auswahl nicht besser als Zufall)
 
-- **Sharpe Entwicklung → Test:** 0,51 → 0,66 (+28 %) · Kaufen-und-Halten im Test: 0,73
+- **Sharpe Entwicklung → Test:** 0,51 → 0,65 (+27 %) · Kaufen-und-Halten im Test: 0,72
 - **Deflated Sharpe** (Entwicklungsdaten, 4 Versuche berücksichtigt): 1,00 – Wahrscheinlichkeit, dass der echte Sharpe über 0 liegt (Ziel > 0,95)
 - **PBO** (Entwicklungsdaten, 8 Blöcke): 0,54 – Anteil der Aufteilungen, in denen die beste Variante danach unter dem Median lag (Ziel < 0,5)
 
@@ -18,13 +18,13 @@
 | Zeitraum | Jahre | Rendite p. a. | Sharpe | Sortino | Max Drawdown | Calmar | Volatilität | Investiert |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | Entwicklung (Parameterwahl) | 1928–2014 | +5,7 % | 0,51 | 0,71 | -72,4 % | 0,08 | +12,2 % | +65 % |
-| **Test (nie zur Wahl genutzt)** | 2015–2026 | +7,2 % | 0,66 | 0,90 | -19,0 % | 0,38 | +11,6 % | +78 % |
-| Kaufen-und-Halten im Test | 2015–2026 | +11,9 % | 0,73 | 1,02 | -33,9 % | 0,35 | +17,6 % | – |
+| **Test (nie zur Wahl genutzt)** | 2015–2026 | +7,2 % | 0,65 | 0,89 | -19,0 % | 0,38 | +11,6 % | +78 % |
+| Kaufen-und-Halten im Test | 2015–2026 | +11,9 % | 0,72 | 1,02 | -33,9 % | 0,35 | +17,6 % | – |
 | Walk-Forward (jährlich neu gewählt) | 1933–2026 | +6,1 % | 0,57 | 0,79 | -44,0 % | 0,14 | +11,7 % | – |
 
 ## Risiko im Testzeitraum
 
-Schiefe -0,76 · Kurtosis (Überschuss) 5,7 · Trefferquote 54 % · Gewinn/Verlust-Verhältnis 0,97 · VaR 95 % (1 Tag) -1,22 % · Expected Shortfall 95 % -1,91 % · Turnover 7,8 Wechsel p. a. · Beta 0,43 · Alpha p. a. +2,1 % · Korrelation an den 10 % schlechtesten Markttagen 0,05
+Schiefe -0,76 · Kurtosis (Überschuss) 5,7 · Trefferquote 54 % · Gewinn/Verlust-Verhältnis 0,97 · VaR 95 % (1 Tag) -1,22 % · Expected Shortfall 95 % -1,91 % · Turnover 7,8 Wechsel p. a. · Beta 0,43 · Alpha p. a. +2,0 % · Korrelation an den 10 % schlechtesten Markttagen 0,05
 
 ## Stresstests (gewählte Parameter, Gesamtrendite in der Phase)
 
