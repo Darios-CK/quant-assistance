@@ -5,7 +5,7 @@
 - **Markt:** EUR/USD · **Regel:** ereignis (auch short) · **Kosten:** 1,0 Bp je Positionswechsel
 - **Gewählte Parameter:** {"halten": 1, "schwelle": 1.0} – ausgewählt nur auf Daten vor 01.01.2018
 - **Getestete Varianten:** 12 in diesem Lauf, 12 insgesamt für eurusd/ereignis (Versuchsprotokoll) · 83 % der Varianten mit positivem Sharpe vor dem Testzeitraum
-- **Erstellt:** 30.10.2026 11:30
+- **Erstellt:** 02.11.2026 13:42
 
 ## Einordnung: ❌ hält nicht stand: Deflated Sharpe ≤ 0,95 (Glück nicht auszuschließen); PBO ≥ 0,5 (Auswahl nicht besser als Zufall)
 
@@ -24,7 +24,7 @@
 
 ## Risiko im Testzeitraum
 
-Schiefe 7,70 · Kurtosis (Überschuss) 284,4 · Trefferquote 69 % · Gewinn/Verlust-Verhältnis 1,02 · VaR 95 % (1 Tag) +0,00 % · Expected Shortfall 95 % -0,00 % · Turnover 3,5 Wechsel p. a. · Beta -0,00 · Alpha p. a. +0,4 % · Korrelation an den 10 % schlechtesten Markttagen -0,08
+Schiefe 7,70 · Kurtosis (Überschuss) 284,5 · Trefferquote 69 % · Gewinn/Verlust-Verhältnis 1,02 · VaR 95 % (1 Tag) +0,00 % · Expected Shortfall 95 % -0,00 % · Turnover 3,5 Wechsel p. a. · Beta -0,00 · Alpha p. a. +0,4 % · Korrelation an den 10 % schlechtesten Markttagen -0,08
 
 ## Stresstests (gewählte Parameter, Gesamtrendite in der Phase)
 
