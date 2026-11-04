@@ -1,18 +1,18 @@
 # Automatische Berichte
 
-Stand: 03.11.2026 12:55 UTC · neu berechnet an jedem Werktag
+Stand: 04.11.2026 13:09 UTC · neu berechnet an jedem Werktag
 
 | Bericht | Status | Dauer |
 |---|---|---:|
-| [EZB-Überraschungen seit 1999](ezb.md) | ok | 7 s |
-| [EZB-Überraschungen 2014–2022 (Negativzinsen)](ezb_negativzins.md) | ok | 0 s |
+| [EZB-Überraschungen seit 1999](ezb.md) | ok | 5 s |
+| [EZB-Überraschungen 2014–2022 (Negativzinsen)](ezb_negativzins.md) | ok | 1 s |
 | [Fed-Überraschungen seit 1988](fed.md) | ok | 2 s |
-| [Kette: Ölpreis-Schock nach oben](kette_oel.md) | ok | 7 s |
-| [Quartalszahlen US-Tech zusammen](earnings_bigtech.md) | ok | 3 s |
-| [Quartalszahlen DAX-Schwergewichte zusammen](earnings_dax.md) | ok | 3 s |
+| [Kette: Ölpreis-Schock nach oben](kette_oel.md) | ok | 6 s |
+| [Quartalszahlen US-Tech zusammen](earnings_bigtech.md) | ok | 6 s |
+| [Quartalszahlen DAX-Schwergewichte zusammen](earnings_dax.md) | ok | 6 s |
 | [Wer reagiert auf Nvidias Zahlen?](earnings_nvda_umfeld.md) | ok | 1 s |
 | US-Erzeugerpreise (PPI) | fehlgeschlagen: FRED_API_KEY fehlt. Kostenlos unter https://fred.stlouisfed.org/docs/api/api_key.html anlegen und in quant-analyst/.env eintragen (Vorlage: .env.example). | 0 s |
 | [Backtest: Trendfolge DAX](backtest_trend_dax.md) | ok | 0 s |
 | [Backtest: Momentum S&P 500](backtest_momentum_sp500.md) | ok | 0 s |
-| [Backtest: Kurzfristige Umkehr S&P 500](backtest_umkehr_sp500.md) | ok | 0 s |
-| [Backtest: EUR/USD nach EZB-Überraschungen](backtest_ezb_eurusd.md) | ok | 0 s |
+| [Backtest: Kurzfristige Umkehr S&P 500](backtest_umkehr_sp500.md) | ok | 1 s |
+| [Backtest: EUR/USD nach EZB-Überraschungen](backtest_ezb_eurusd.md) | ok | 1 s |
