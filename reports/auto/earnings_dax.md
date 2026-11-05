@@ -4,14 +4,14 @@
 - **Ereignisse:** 419 von 28.07.2004 bis 28.10.2026
 - **Typische Überraschung (1 Standardabweichung):** 30,87 %
 - **Quelle:** Yahoo Finance (Gewinntermine mit Konsens) · Kurse: Yahoo Finance, FRED, Bundesbank, EZB (Tageswerte)
-- **Erstellt:** 04.11.2026 13:09
+- **Erstellt:** 05.11.2026 13:22
 
 Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte, wenn die Überraschung um eine typische Größe höher ausfiel. *Oberes/unteres Drittel* = Ereignisse mit den größten bzw. kleinsten Überraschungen (Ø Bewegung, Anteil steigend, Fälle). *Normal* = durchschnittliche Bewegung über gleich viele Tage ohne Bezug zum Ereignis. *q* = p-Wert nach Korrektur für alle Tests dieser Tabelle; belastbar heißt q < 0,10 und mindestens 20 Fälle. *Hälften gleich* = Richtung in der ersten und zweiten Hälfte der Ereignisse dieselbe. *(bereinigt)* = Einzelaktie/Sektor abzüglich Beta × Index (S&P 500 bzw. DAX), Beta aus dem Jahr vor dem Ereignis.
 
 | Markt | Horizont | Fälle | Je typ. Überraschung | Oberes Drittel | Unteres Drittel | Normal | p | q | Hälften gleich | Einordnung |
 |---|---|---:|---:|---|---|---:|---:|---:|---|---|
 | Alle 6 Firmen zusammen (bereinigt) | Reaktionstag | 419 | +0,21% | +0,24% (58 % ↑, n=139) | -0,34% (39 % ↑, n=139) | – | 0,133 | 0,361 | nein | kein Muster |
-| Alle 6 Firmen zusammen (bereinigt) | 1 Woche | 419 | +0,48% | +0,91% (65 % ↑, n=139) | -0,35% (42 % ↑, n=139) | – | 0,010 | 0,073 | ja | belastbar |
+| Alle 6 Firmen zusammen (bereinigt) | 1 Woche | 419 | +0,49% | +0,92% (65 % ↑, n=139) | -0,35% (42 % ↑, n=139) | – | 0,009 | 0,073 | ja | belastbar |
 | Alle 6 Firmen zusammen (bereinigt) | 1 Monat | 416 | +0,34% | +0,70% (54 % ↑, n=138) | -0,01% (47 % ↑, n=138) | – | 0,196 | 0,361 | nein | kein Muster |
 | Alle 6 Firmen zusammen (bereinigt) | 60 Tage | 416 | -0,12% | +0,73% (50 % ↑, n=138) | +0,33% (51 % ↑, n=138) | – | 0,762 | 0,858 | nein | kein Muster |
 | SAP.DE (bereinigt) | Reaktionstag | 67 | -0,60% | -1,09% (55 % ↑, n=22) | +0,59% (50 % ↑, n=22) | – | 0,289 | 0,475 | nein | kein Muster |
@@ -31,11 +31,11 @@ Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte
 | DTE.DE (bereinigt) | 1 Monat | 66 | +0,30% | +1,74% (64 % ↑, n=22) | -0,31% (55 % ↑, n=22) | – | 0,611 | 0,814 | ja | kein Muster |
 | DTE.DE (bereinigt) | 60 Tage | 66 | -0,75% | +2,32% (59 % ↑, n=22) | +2,47% (64 % ↑, n=22) | – | 0,472 | 0,696 | nein | kein Muster |
 | MBG.DE (bereinigt) | Reaktionstag | 88 | +0,68% | +0,77% (62 % ↑, n=29) | -0,91% (38 % ↑, n=29) | – | 0,010 | 0,073 | ja | belastbar |
-| MBG.DE (bereinigt) | 1 Woche | 88 | +1,32% | +1,79% (86 % ↑, n=29) | -1,87% (17 % ↑, n=29) | – | 0,003 | 0,042 | ja | belastbar |
+| MBG.DE (bereinigt) | 1 Woche | 88 | +1,33% | +1,83% (86 % ↑, n=29) | -1,87% (17 % ↑, n=29) | – | 0,003 | 0,039 | ja | belastbar |
 | MBG.DE (bereinigt) | 1 Monat | 87 | +2,11% | +2,07% (62 % ↑, n=29) | -2,34% (34 % ↑, n=29) | – | <0,001 | 0,013 | ja | belastbar |
 | MBG.DE (bereinigt) | 60 Tage | 87 | +1,66% | +2,28% (62 % ↑, n=29) | -2,75% (31 % ↑, n=29) | – | 0,068 | 0,320 | ja | Tendenz |
 | BAS.DE (bereinigt) | Reaktionstag | 67 | -0,09% | -0,60% (55 % ↑, n=22) | -0,89% (23 % ↑, n=22) | – | 0,727 | 0,858 | nein | kein Muster |
-| BAS.DE (bereinigt) | 1 Woche | 67 | +0,22% | -0,07% (50 % ↑, n=22) | -1,36% (27 % ↑, n=22) | – | 0,573 | 0,803 | ja | kein Muster |
+| BAS.DE (bereinigt) | 1 Woche | 67 | +0,22% | -0,07% (50 % ↑, n=22) | -1,36% (27 % ↑, n=22) | – | 0,570 | 0,798 | ja | kein Muster |
 | BAS.DE (bereinigt) | 1 Monat | 66 | -1,43% | -1,37% (36 % ↑, n=22) | -0,25% (32 % ↑, n=22) | – | 0,015 | 0,086 | ja | belastbar |
 | BAS.DE (bereinigt) | 60 Tage | 66 | -0,71% | -1,41% (41 % ↑, n=22) | -3,04% (36 % ↑, n=22) | – | 0,396 | 0,616 | nein | kein Muster |
 
