@@ -1,16 +1,16 @@
 # Ereignis-Analyse: Quartalszahlen von 6 Firmen
 
 - **Überraschung:** Gewinn je Aktie gegenüber Analysten-Konsens in % (begrenzt auf ±100 %)
-- **Ereignisse:** 419 von 28.07.2004 bis 28.10.2026
-- **Typische Überraschung (1 Standardabweichung):** 30,87 %
+- **Ereignisse:** 420 von 28.07.2004 bis 05.11.2026
+- **Typische Überraschung (1 Standardabweichung):** 30,83 %
 - **Quelle:** Yahoo Finance (Gewinntermine mit Konsens) · Kurse: Yahoo Finance, FRED, Bundesbank, EZB (Tageswerte)
-- **Erstellt:** 06.11.2026 13:05
+- **Erstellt:** 09.11.2026 14:07
 
 Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte, wenn die Überraschung um eine typische Größe höher ausfiel. *Oberes/unteres Drittel* = Ereignisse mit den größten bzw. kleinsten Überraschungen (Ø Bewegung, Anteil steigend, Fälle). *Normal* = durchschnittliche Bewegung über gleich viele Tage ohne Bezug zum Ereignis. *q* = p-Wert nach Korrektur für alle Tests dieser Tabelle; belastbar heißt q < 0,10 und mindestens 20 Fälle. *Hälften gleich* = Richtung in der ersten und zweiten Hälfte der Ereignisse dieselbe. *(bereinigt)* = Einzelaktie/Sektor abzüglich Beta × Index (S&P 500 bzw. DAX), Beta aus dem Jahr vor dem Ereignis.
 
 | Markt | Horizont | Fälle | Je typ. Überraschung | Oberes Drittel | Unteres Drittel | Normal | p | q | Hälften gleich | Einordnung |
 |---|---|---:|---:|---|---|---:|---:|---:|---|---|
-| Alle 6 Firmen zusammen (bereinigt) | Reaktionstag | 419 | +0,21% | +0,24% (58 % ↑, n=139) | -0,34% (39 % ↑, n=139) | – | 0,133 | 0,361 | nein | kein Muster |
+| Alle 6 Firmen zusammen (bereinigt) | Reaktionstag | 420 | +0,21% | +0,24% (58 % ↑, n=140) | -0,34% (39 % ↑, n=140) | – | 0,132 | 0,361 | nein | kein Muster |
 | Alle 6 Firmen zusammen (bereinigt) | 1 Woche | 419 | +0,49% | +0,92% (65 % ↑, n=139) | -0,35% (42 % ↑, n=139) | – | 0,009 | 0,073 | ja | belastbar |
 | Alle 6 Firmen zusammen (bereinigt) | 1 Monat | 416 | +0,34% | +0,70% (54 % ↑, n=138) | -0,01% (47 % ↑, n=138) | – | 0,196 | 0,361 | nein | kein Muster |
 | Alle 6 Firmen zusammen (bereinigt) | 60 Tage | 416 | -0,12% | +0,73% (50 % ↑, n=138) | +0,33% (51 % ↑, n=138) | – | 0,762 | 0,858 | nein | kein Muster |
@@ -25,8 +25,8 @@ Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte
 | ALV.DE (bereinigt) | Reaktionstag | 65 | +0,26% | +0,65% (67 % ↑, n=21) | -0,98% (24 % ↑, n=21) | – | 0,206 | 0,361 | ja | kein Muster |
 | ALV.DE (bereinigt) | 1 Woche | 65 | +0,42% | +1,89% (86 % ↑, n=21) | -0,38% (38 % ↑, n=21) | – | 0,164 | 0,361 | ja | kein Muster |
 | ALV.DE (bereinigt) | 1 Monat | 65 | +0,05% | +0,94% (62 % ↑, n=21) | +0,47% (57 % ↑, n=21) | – | 0,914 | 0,914 | nein | kein Muster |
-| ALV.DE (bereinigt) | 60 Tage | 65 | -0,13% | +0,46% (57 % ↑, n=21) | +0,48% (67 % ↑, n=21) | – | 0,836 | 0,867 | nein | kein Muster |
-| DTE.DE (bereinigt) | Reaktionstag | 66 | -0,06% | -0,02% (55 % ↑, n=22) | -0,04% (45 % ↑, n=22) | – | 0,825 | 0,867 | nein | kein Muster |
+| ALV.DE (bereinigt) | 60 Tage | 65 | -0,13% | +0,46% (57 % ↑, n=21) | +0,48% (67 % ↑, n=21) | – | 0,836 | 0,873 | nein | kein Muster |
+| DTE.DE (bereinigt) | Reaktionstag | 67 | -0,06% | -0,02% (55 % ↑, n=22) | -0,04% (45 % ↑, n=22) | – | 0,841 | 0,873 | nein | kein Muster |
 | DTE.DE (bereinigt) | 1 Woche | 66 | +0,11% | +0,43% (59 % ↑, n=22) | +0,06% (55 % ↑, n=22) | – | 0,766 | 0,858 | nein | kein Muster |
 | DTE.DE (bereinigt) | 1 Monat | 66 | +0,30% | +1,74% (64 % ↑, n=22) | -0,31% (55 % ↑, n=22) | – | 0,611 | 0,814 | ja | kein Muster |
 | DTE.DE (bereinigt) | 60 Tage | 66 | -0,75% | +2,32% (59 % ↑, n=22) | +2,47% (64 % ↑, n=22) | – | 0,472 | 0,696 | nein | kein Muster |
