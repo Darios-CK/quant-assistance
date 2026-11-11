@@ -4,18 +4,18 @@
 - **Ereignisse:** 483 von 18.04.2002 bis 02.11.2026
 - **Typische Überraschung (1 Standardabweichung):** 25,06 %
 - **Quelle:** Yahoo Finance (Gewinntermine mit Konsens) · Kurse: Yahoo Finance, FRED, Bundesbank, EZB (Tageswerte)
-- **Erstellt:** 10.11.2026 13:39
+- **Erstellt:** 11.11.2026 12:51
 
 Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte, wenn die Überraschung um eine typische Größe höher ausfiel. *Oberes/unteres Drittel* = Ereignisse mit den größten bzw. kleinsten Überraschungen (Ø Bewegung, Anteil steigend, Fälle). *Normal* = durchschnittliche Bewegung über gleich viele Tage ohne Bezug zum Ereignis. *q* = p-Wert nach Korrektur für alle Tests dieser Tabelle; belastbar heißt q < 0,10 und mindestens 20 Fälle. *Hälften gleich* = Richtung in der ersten und zweiten Hälfte der Ereignisse dieselbe. *(bereinigt)* = Einzelaktie/Sektor abzüglich Beta × Index (S&P 500 bzw. DAX), Beta aus dem Jahr vor dem Ereignis.
 
 | Markt | Horizont | Fälle | Je typ. Überraschung | Oberes Drittel | Unteres Drittel | Normal | p | q | Hälften gleich | Einordnung |
 |---|---|---:|---:|---|---|---:|---:|---:|---|---|
 | Alle 6 Firmen zusammen (bereinigt) | Reaktionstag | 480 | +1,56% | +2,89% (69 % ↑, n=160) | -0,75% (42 % ↑, n=160) | – | <0,001 | <0,001 | ja | belastbar |
-| Alle 6 Firmen zusammen (bereinigt) | 1 Woche | 479 | +1,71% | +2,71% (62 % ↑, n=159) | -1,33% (36 % ↑, n=159) | – | <0,001 | <0,001 | ja | belastbar |
+| Alle 6 Firmen zusammen (bereinigt) | 1 Woche | 480 | +1,71% | +2,69% (61 % ↑, n=160) | -1,24% (36 % ↑, n=160) | – | <0,001 | <0,001 | ja | belastbar |
 | Alle 6 Firmen zusammen (bereinigt) | 1 Monat | 475 | +1,59% | +3,02% (58 % ↑, n=158) | -0,86% (44 % ↑, n=158) | – | 0,002 | 0,009 | ja | belastbar |
 | Alle 6 Firmen zusammen (bereinigt) | 60 Tage | 474 | +1,77% | +6,89% (68 % ↑, n=158) | +3,10% (44 % ↑, n=158) | – | 0,016 | 0,041 | ja | belastbar |
-| AAPL (bereinigt) | Reaktionstag | 88 | +1,18% | +3,26% (79 % ↑, n=29) | -0,54% (38 % ↑, n=29) | – | 0,032 | 0,069 | ja | belastbar |
-| AAPL (bereinigt) | 1 Woche | 87 | +0,98% | +3,82% (76 % ↑, n=29) | -0,44% (45 % ↑, n=29) | – | 0,189 | 0,278 | ja | kein Muster |
+| AAPL (bereinigt) | Reaktionstag | 88 | +1,18% | +3,26% (79 % ↑, n=29) | -0,54% (38 % ↑, n=29) | – | 0,032 | 0,070 | ja | belastbar |
+| AAPL (bereinigt) | 1 Woche | 88 | +0,97% | +3,82% (76 % ↑, n=29) | -0,44% (45 % ↑, n=29) | – | 0,189 | 0,278 | ja | kein Muster |
 | AAPL (bereinigt) | 1 Monat | 87 | +1,08% | +4,49% (62 % ↑, n=29) | +0,83% (59 % ↑, n=29) | – | 0,314 | 0,407 | nein | kein Muster |
 | AAPL (bereinigt) | 60 Tage | 87 | +2,81% | +10,45% (79 % ↑, n=29) | +2,89% (45 % ↑, n=29) | – | 0,086 | 0,151 | ja | Tendenz |
 | MSFT (bereinigt) | Reaktionstag | 99 | +1,76% | +2,94% (76 % ↑, n=33) | -1,31% (45 % ↑, n=33) | – | <0,001 | 0,002 | ja | belastbar |
