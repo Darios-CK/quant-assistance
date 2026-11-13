@@ -4,13 +4,13 @@
 - **Ereignisse:** 421 von 28.07.2004 bis 12.11.2026
 - **Typische Überraschung (1 Standardabweichung):** 30,81 %
 - **Quelle:** Yahoo Finance (Gewinntermine mit Konsens) · Kurse: Yahoo Finance, FRED, Bundesbank, EZB (Tageswerte)
-- **Erstellt:** 12.11.2026 13:53
+- **Erstellt:** 13.11.2026 13:16
 
 Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte, wenn die Überraschung um eine typische Größe höher ausfiel. *Oberes/unteres Drittel* = Ereignisse mit den größten bzw. kleinsten Überraschungen (Ø Bewegung, Anteil steigend, Fälle). *Normal* = durchschnittliche Bewegung über gleich viele Tage ohne Bezug zum Ereignis. *q* = p-Wert nach Korrektur für alle Tests dieser Tabelle; belastbar heißt q < 0,10 und mindestens 20 Fälle. *Hälften gleich* = Richtung in der ersten und zweiten Hälfte der Ereignisse dieselbe. *(bereinigt)* = Einzelaktie/Sektor abzüglich Beta × Index (S&P 500 bzw. DAX), Beta aus dem Jahr vor dem Ereignis.
 
 | Markt | Horizont | Fälle | Je typ. Überraschung | Oberes Drittel | Unteres Drittel | Normal | p | q | Hälften gleich | Einordnung |
 |---|---|---:|---:|---|---|---:|---:|---:|---|---|
-| Alle 6 Firmen zusammen (bereinigt) | Reaktionstag | 421 | +0,21% | +0,24% (58 % ↑, n=140) | -0,33% (39 % ↑, n=140) | – | 0,134 | 0,371 | nein | kein Muster |
+| Alle 6 Firmen zusammen (bereinigt) | Reaktionstag | 421 | +0,21% | +0,24% (58 % ↑, n=140) | -0,33% (39 % ↑, n=140) | – | 0,135 | 0,371 | nein | kein Muster |
 | Alle 6 Firmen zusammen (bereinigt) | 1 Woche | 420 | +0,49% | +0,92% (65 % ↑, n=140) | -0,35% (42 % ↑, n=140) | – | 0,009 | 0,073 | ja | belastbar |
 | Alle 6 Firmen zusammen (bereinigt) | 1 Monat | 416 | +0,34% | +0,70% (54 % ↑, n=138) | -0,01% (47 % ↑, n=138) | – | 0,196 | 0,371 | nein | kein Muster |
 | Alle 6 Firmen zusammen (bereinigt) | 60 Tage | 416 | -0,12% | +0,73% (50 % ↑, n=138) | +0,33% (51 % ↑, n=138) | – | 0,762 | 0,853 | nein | kein Muster |
@@ -22,7 +22,7 @@ Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte
 | SIE.DE (bereinigt) | 1 Woche | 66 | +0,81% | +1,52% (64 % ↑, n=22) | -0,56% (50 % ↑, n=22) | – | 0,087 | 0,347 | ja | Tendenz |
 | SIE.DE (bereinigt) | 1 Monat | 66 | +0,73% | +1,58% (64 % ↑, n=22) | +0,46% (55 % ↑, n=22) | – | 0,199 | 0,371 | ja | kein Muster |
 | SIE.DE (bereinigt) | 60 Tage | 66 | -0,36% | +0,90% (50 % ↑, n=22) | +0,80% (41 % ↑, n=22) | – | 0,645 | 0,821 | nein | kein Muster |
-| ALV.DE (bereinigt) | Reaktionstag | 66 | +0,25% | +0,63% (68 % ↑, n=22) | -0,88% (27 % ↑, n=22) | – | 0,219 | 0,384 | ja | kein Muster |
+| ALV.DE (bereinigt) | Reaktionstag | 66 | +0,25% | +0,63% (68 % ↑, n=22) | -0,86% (27 % ↑, n=22) | – | 0,225 | 0,394 | ja | kein Muster |
 | ALV.DE (bereinigt) | 1 Woche | 65 | +0,42% | +1,89% (86 % ↑, n=21) | -0,38% (38 % ↑, n=21) | – | 0,164 | 0,371 | ja | kein Muster |
 | ALV.DE (bereinigt) | 1 Monat | 65 | +0,05% | +0,94% (62 % ↑, n=21) | +0,47% (57 % ↑, n=21) | – | 0,914 | 0,914 | nein | kein Muster |
 | ALV.DE (bereinigt) | 60 Tage | 65 | -0,13% | +0,46% (57 % ↑, n=21) | +0,48% (67 % ↑, n=21) | – | 0,836 | 0,873 | nein | kein Muster |

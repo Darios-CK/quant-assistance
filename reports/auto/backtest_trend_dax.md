@@ -5,7 +5,7 @@
 - **Markt:** DAX · **Regel:** trend (nur long) · **Kosten:** 5,0 Bp je Positionswechsel
 - **Gewählte Parameter:** {"schnell": 50, "langsam": 150} – ausgewählt nur auf Daten vor 01.01.2017
 - **Getestete Varianten:** 9 in diesem Lauf, 9 insgesamt für dax/trend (Versuchsprotokoll) · 100 % der Varianten mit positivem Sharpe vor dem Testzeitraum
-- **Erstellt:** 12.11.2026 13:53
+- **Erstellt:** 13.11.2026 13:16
 
 ## Einordnung: ✅ hält der Prüfung stand, schlägt Kaufen-und-Halten aber nicht
 
@@ -18,7 +18,7 @@
 | Zeitraum | Jahre | Rendite p. a. | Sharpe | Sortino | Max Drawdown | Calmar | Volatilität | Investiert |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | Entwicklung (Parameterwahl) | 1988–2016 | +9,9 % | 0,71 | 1,00 | -29,0 % | 0,34 | +14,9 % | +66 % |
-| **Test (nie zur Wahl genutzt)** | 2017–2026 | +2,2 % | 0,23 | 0,29 | -46,3 % | 0,05 | +14,0 % | +73 % |
+| **Test (nie zur Wahl genutzt)** | 2017–2026 | +2,2 % | 0,23 | 0,30 | -46,3 % | 0,05 | +14,0 % | +73 % |
 | Kaufen-und-Halten im Test | 2017–2026 | +8,9 % | 0,56 | 0,78 | -38,8 % | 0,23 | +18,2 % | – |
 | Walk-Forward (jährlich neu gewählt) | 1993–2026 | +7,6 % | 0,57 | 0,79 | -46,3 % | 0,16 | +14,7 % | – |
 

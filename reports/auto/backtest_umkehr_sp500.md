@@ -5,11 +5,11 @@
 - **Markt:** S&P 500 · **Regel:** umkehr (nur long) · **Kosten:** 3,0 Bp je Positionswechsel
 - **Gewählte Parameter:** {"tage": 5, "schwelle": 2.0, "halten": 5} – ausgewählt nur auf Daten vor 01.01.2015
 - **Getestete Varianten:** 8 in diesem Lauf, 8 insgesamt für sp500/umkehr (Versuchsprotokoll) · 100 % der Varianten mit positivem Sharpe vor dem Testzeitraum
-- **Erstellt:** 12.11.2026 13:53
+- **Erstellt:** 13.11.2026 13:16
 
 ## Einordnung: ❌ hält nicht stand: Deflated Sharpe ≤ 0,95 (Glück nicht auszuschließen)
 
-- **Sharpe Entwicklung → Test:** 0,22 → 0,09 (-58 %) · Kaufen-und-Halten im Test: 0,71
+- **Sharpe Entwicklung → Test:** 0,22 → 0,09 (-59 %) · Kaufen-und-Halten im Test: 0,71
 - **Deflated Sharpe** (Entwicklungsdaten, 8 Versuche berücksichtigt): 0,92 – Wahrscheinlichkeit, dass der echte Sharpe über 0 liegt (Ziel > 0,95)
 - **PBO** (Entwicklungsdaten, 8 Blöcke): 0,26 – Anteil der Aufteilungen, in denen die beste Variante danach unter dem Median lag (Ziel < 0,5)
 
@@ -19,12 +19,12 @@
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | Entwicklung (Parameterwahl) | 1928–2014 | +1,6 % | 0,22 | 0,32 | -42,3 % | 0,04 | +9,3 % | +9 % |
 | **Test (nie zur Wahl genutzt)** | 2015–2026 | +0,4 % | 0,09 | 0,13 | -34,0 % | 0,01 | +10,6 % | +7 % |
-| Kaufen-und-Halten im Test | 2015–2026 | +11,7 % | 0,71 | 1,00 | -33,9 % | 0,34 | +17,7 % | – |
+| Kaufen-und-Halten im Test | 2015–2026 | +11,7 % | 0,71 | 1,00 | -33,9 % | 0,34 | +17,6 % | – |
 | Walk-Forward (jährlich neu gewählt) | 1933–2026 | +1,2 % | 0,17 | 0,24 | -43,5 % | 0,03 | +9,9 % | – |
 
 ## Risiko im Testzeitraum
 
-Schiefe -0,65 · Kurtosis (Überschuss) 109,5 · Trefferquote 53 % · Gewinn/Verlust-Verhältnis 0,95 · VaR 95 % (1 Tag) +0,00 % · Expected Shortfall 95 % -0,06 % · Turnover 4,8 Wechsel p. a. · Beta 0,36 · Alpha p. a. -3,6 % · Korrelation an den 10 % schlechtesten Markttagen 0,74
+Schiefe -0,65 · Kurtosis (Überschuss) 109,5 · Trefferquote 53 % · Gewinn/Verlust-Verhältnis 0,96 · VaR 95 % (1 Tag) +0,00 % · Expected Shortfall 95 % -0,06 % · Turnover 4,8 Wechsel p. a. · Beta 0,36 · Alpha p. a. -3,6 % · Korrelation an den 10 % schlechtesten Markttagen 0,74
 
 ## Stresstests (gewählte Parameter, Gesamtrendite in der Phase)
 
