@@ -5,7 +5,7 @@
 - **Markt:** DAX · **Regel:** trend (nur long) · **Kosten:** 5,0 Bp je Positionswechsel
 - **Gewählte Parameter:** {"schnell": 50, "langsam": 150} – ausgewählt nur auf Daten vor 01.01.2017
 - **Getestete Varianten:** 9 in diesem Lauf, 9 insgesamt für dax/trend (Versuchsprotokoll) · 100 % der Varianten mit positivem Sharpe vor dem Testzeitraum
-- **Erstellt:** 13.11.2026 13:16
+- **Erstellt:** 16.11.2026 13:52
 
 ## Einordnung: ✅ hält der Prüfung stand, schlägt Kaufen-und-Halten aber nicht
 
@@ -24,7 +24,7 @@
 
 ## Risiko im Testzeitraum
 
-Schiefe -1,94 · Kurtosis (Überschuss) 21,9 · Trefferquote 53 % · Gewinn/Verlust-Verhältnis 0,93 · VaR 95 % (1 Tag) -1,35 % · Expected Shortfall 95 % -2,29 % · Turnover 1,8 Wechsel p. a. · Beta 0,59 · Alpha p. a. -2,8 % · Korrelation an den 10 % schlechtesten Markttagen 0,66
+Schiefe -1,95 · Kurtosis (Überschuss) 21,9 · Trefferquote 53 % · Gewinn/Verlust-Verhältnis 0,93 · VaR 95 % (1 Tag) -1,35 % · Expected Shortfall 95 % -2,29 % · Turnover 1,8 Wechsel p. a. · Beta 0,59 · Alpha p. a. -2,8 % · Korrelation an den 10 % schlechtesten Markttagen 0,66
 
 ## Stresstests (gewählte Parameter, Gesamtrendite in der Phase)
 
