@@ -4,7 +4,7 @@
 - **Ereignisse:** 422 von 28.07.2004 bis 12.11.2026
 - **Typische Überraschung (1 Standardabweichung):** 30,77 %
 - **Quelle:** Yahoo Finance (Gewinntermine mit Konsens) · Kurse: Yahoo Finance, FRED, Bundesbank, EZB (Tageswerte)
-- **Erstellt:** 17.11.2026 14:43
+- **Erstellt:** 18.11.2026 14:22
 
 Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte, wenn die Überraschung um eine typische Größe höher ausfiel. *Oberes/unteres Drittel* = Ereignisse mit den größten bzw. kleinsten Überraschungen (Ø Bewegung, Anteil steigend, Fälle). *Normal* = durchschnittliche Bewegung über gleich viele Tage ohne Bezug zum Ereignis. *q* = p-Wert nach Korrektur für alle Tests dieser Tabelle; belastbar heißt q < 0,10 und mindestens 20 Fälle. *Hälften gleich* = Richtung in der ersten und zweiten Hälfte der Ereignisse dieselbe. *(bereinigt)* = Einzelaktie/Sektor abzüglich Beta × Index (S&P 500 bzw. DAX), Beta aus dem Jahr vor dem Ereignis.
 
@@ -12,14 +12,14 @@ Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte
 |---|---|---:|---:|---|---|---:|---:|---:|---|---|
 | Alle 6 Firmen zusammen (bereinigt) | Reaktionstag | 422 | +0,21% | +0,24% (58 % ↑, n=140) | -0,33% (39 % ↑, n=140) | – | 0,135 | 0,371 | nein | kein Muster |
 | Alle 6 Firmen zusammen (bereinigt) | 1 Woche | 420 | +0,49% | +0,92% (65 % ↑, n=140) | -0,35% (42 % ↑, n=140) | – | 0,009 | 0,073 | ja | belastbar |
-| Alle 6 Firmen zusammen (bereinigt) | 1 Monat | 416 | +0,34% | +0,70% (54 % ↑, n=138) | -0,01% (47 % ↑, n=138) | – | 0,196 | 0,371 | nein | kein Muster |
+| Alle 6 Firmen zusammen (bereinigt) | 1 Monat | 417 | +0,35% | +0,68% (53 % ↑, n=139) | -0,03% (47 % ↑, n=139) | – | 0,195 | 0,371 | nein | kein Muster |
 | Alle 6 Firmen zusammen (bereinigt) | 60 Tage | 416 | -0,12% | +0,73% (50 % ↑, n=138) | +0,33% (51 % ↑, n=138) | – | 0,762 | 0,853 | nein | kein Muster |
 | SAP.DE (bereinigt) | Reaktionstag | 67 | -0,60% | -1,09% (55 % ↑, n=22) | +0,59% (50 % ↑, n=22) | – | 0,289 | 0,475 | nein | kein Muster |
 | SAP.DE (bereinigt) | 1 Woche | 67 | -0,90% | -0,28% (55 % ↑, n=22) | +1,55% (64 % ↑, n=22) | – | 0,179 | 0,371 | nein | kein Muster |
-| SAP.DE (bereinigt) | 1 Monat | 66 | -1,55% | -1,18% (50 % ↑, n=22) | +2,40% (55 % ↑, n=22) | – | 0,111 | 0,347 | nein | kein Muster |
-| SAP.DE (bereinigt) | 60 Tage | 66 | -2,07% | -1,39% (45 % ↑, n=22) | +4,29% (73 % ↑, n=22) | – | 0,109 | 0,347 | nein | kein Muster |
+| SAP.DE (bereinigt) | 1 Monat | 67 | -1,55% | -1,33% (50 % ↑, n=22) | +2,40% (55 % ↑, n=22) | – | 0,108 | 0,340 | nein | kein Muster |
+| SAP.DE (bereinigt) | 60 Tage | 66 | -2,07% | -1,39% (45 % ↑, n=22) | +4,29% (73 % ↑, n=22) | – | 0,109 | 0,340 | nein | kein Muster |
 | SIE.DE (bereinigt) | Reaktionstag | 67 | +0,54% | +1,19% (64 % ↑, n=22) | -0,10% (50 % ↑, n=22) | – | 0,148 | 0,371 | ja | kein Muster |
-| SIE.DE (bereinigt) | 1 Woche | 66 | +0,81% | +1,52% (64 % ↑, n=22) | -0,56% (50 % ↑, n=22) | – | 0,087 | 0,347 | ja | Tendenz |
+| SIE.DE (bereinigt) | 1 Woche | 66 | +0,81% | +1,52% (64 % ↑, n=22) | -0,56% (50 % ↑, n=22) | – | 0,087 | 0,340 | ja | Tendenz |
 | SIE.DE (bereinigt) | 1 Monat | 66 | +0,73% | +1,58% (64 % ↑, n=22) | +0,46% (55 % ↑, n=22) | – | 0,199 | 0,371 | ja | kein Muster |
 | SIE.DE (bereinigt) | 60 Tage | 66 | -0,36% | +0,90% (50 % ↑, n=22) | +0,80% (41 % ↑, n=22) | – | 0,645 | 0,821 | nein | kein Muster |
 | ALV.DE (bereinigt) | Reaktionstag | 66 | +0,25% | +0,63% (68 % ↑, n=22) | -0,86% (27 % ↑, n=22) | – | 0,225 | 0,394 | ja | kein Muster |

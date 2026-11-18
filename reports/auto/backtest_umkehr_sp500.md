@@ -5,7 +5,7 @@
 - **Markt:** S&P 500 · **Regel:** umkehr (nur long) · **Kosten:** 3,0 Bp je Positionswechsel
 - **Gewählte Parameter:** {"tage": 5, "schwelle": 2.0, "halten": 5} – ausgewählt nur auf Daten vor 01.01.2015
 - **Getestete Varianten:** 8 in diesem Lauf, 8 insgesamt für sp500/umkehr (Versuchsprotokoll) · 100 % der Varianten mit positivem Sharpe vor dem Testzeitraum
-- **Erstellt:** 17.11.2026 14:43
+- **Erstellt:** 18.11.2026 14:22
 
 ## Einordnung: ❌ hält nicht stand: Deflated Sharpe ≤ 0,95 (Glück nicht auszuschließen)
 
@@ -19,7 +19,7 @@
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | Entwicklung (Parameterwahl) | 1928–2014 | +1,6 % | 0,22 | 0,32 | -42,3 % | 0,04 | +9,3 % | +9 % |
 | **Test (nie zur Wahl genutzt)** | 2015–2026 | +0,4 % | 0,09 | 0,13 | -34,0 % | 0,01 | +10,6 % | +7 % |
-| Kaufen-und-Halten im Test | 2015–2026 | +11,4 % | 0,70 | 0,98 | -33,9 % | 0,34 | +17,6 % | – |
+| Kaufen-und-Halten im Test | 2015–2026 | +11,3 % | 0,70 | 0,98 | -33,9 % | 0,33 | +17,7 % | – |
 | Walk-Forward (jährlich neu gewählt) | 1933–2026 | +1,2 % | 0,17 | 0,24 | -43,5 % | 0,03 | +9,9 % | – |
 
 ## Risiko im Testzeitraum

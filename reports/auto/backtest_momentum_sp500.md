@@ -5,11 +5,11 @@
 - **Markt:** S&P 500 · **Regel:** momentum (nur long) · **Kosten:** 3,0 Bp je Positionswechsel
 - **Gewählte Parameter:** {"lookback": 126, "skip": 0} – ausgewählt nur auf Daten vor 01.01.2015
 - **Getestete Varianten:** 4 in diesem Lauf, 4 insgesamt für sp500/momentum (Versuchsprotokoll) · 100 % der Varianten mit positivem Sharpe vor dem Testzeitraum
-- **Erstellt:** 17.11.2026 14:43
+- **Erstellt:** 18.11.2026 14:22
 
 ## Einordnung: ❌ hält nicht stand: PBO ≥ 0,5 (Auswahl nicht besser als Zufall)
 
-- **Sharpe Entwicklung → Test:** 0,51 → 0,60 (+17 %) · Kaufen-und-Halten im Test: 0,70
+- **Sharpe Entwicklung → Test:** 0,51 → 0,59 (+15 %) · Kaufen-und-Halten im Test: 0,70
 - **Deflated Sharpe** (Entwicklungsdaten, 4 Versuche berücksichtigt): 1,00 – Wahrscheinlichkeit, dass der echte Sharpe über 0 liegt (Ziel > 0,95)
 - **PBO** (Entwicklungsdaten, 8 Blöcke): 0,54 – Anteil der Aufteilungen, in denen die beste Variante danach unter dem Median lag (Ziel < 0,5)
 
@@ -18,8 +18,8 @@
 | Zeitraum | Jahre | Rendite p. a. | Sharpe | Sortino | Max Drawdown | Calmar | Volatilität | Investiert |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | Entwicklung (Parameterwahl) | 1928–2014 | +5,7 % | 0,51 | 0,71 | -72,4 % | 0,08 | +12,2 % | +65 % |
-| **Test (nie zur Wahl genutzt)** | 2015–2026 | +6,5 % | 0,60 | 0,82 | -19,0 % | 0,34 | +11,7 % | +78 % |
-| Kaufen-und-Halten im Test | 2015–2026 | +11,4 % | 0,70 | 0,98 | -33,9 % | 0,34 | +17,6 % | – |
+| **Test (nie zur Wahl genutzt)** | 2015–2026 | +6,5 % | 0,59 | 0,81 | -19,0 % | 0,34 | +11,7 % | +78 % |
+| Kaufen-und-Halten im Test | 2015–2026 | +11,3 % | 0,70 | 0,98 | -33,9 % | 0,33 | +17,7 % | – |
 | Walk-Forward (jährlich neu gewählt) | 1933–2026 | +6,0 % | 0,56 | 0,78 | -44,0 % | 0,14 | +11,7 % | – |
 
 ## Risiko im Testzeitraum
