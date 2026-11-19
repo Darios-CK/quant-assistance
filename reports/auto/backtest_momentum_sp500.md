@@ -5,7 +5,7 @@
 - **Markt:** S&P 500 · **Regel:** momentum (nur long) · **Kosten:** 3,0 Bp je Positionswechsel
 - **Gewählte Parameter:** {"lookback": 126, "skip": 0} – ausgewählt nur auf Daten vor 01.01.2015
 - **Getestete Varianten:** 4 in diesem Lauf, 4 insgesamt für sp500/momentum (Versuchsprotokoll) · 100 % der Varianten mit positivem Sharpe vor dem Testzeitraum
-- **Erstellt:** 18.11.2026 14:22
+- **Erstellt:** 19.11.2026 14:34
 
 ## Einordnung: ❌ hält nicht stand: PBO ≥ 0,5 (Auswahl nicht besser als Zufall)
 
@@ -19,12 +19,12 @@
 |---|---|---:|---:|---:|---:|---:|---:|---:|
 | Entwicklung (Parameterwahl) | 1928–2014 | +5,7 % | 0,51 | 0,71 | -72,4 % | 0,08 | +12,2 % | +65 % |
 | **Test (nie zur Wahl genutzt)** | 2015–2026 | +6,5 % | 0,59 | 0,81 | -19,0 % | 0,34 | +11,7 % | +78 % |
-| Kaufen-und-Halten im Test | 2015–2026 | +11,3 % | 0,70 | 0,98 | -33,9 % | 0,33 | +17,7 % | – |
+| Kaufen-und-Halten im Test | 2015–2026 | +11,4 % | 0,70 | 0,98 | -33,9 % | 0,34 | +17,6 % | – |
 | Walk-Forward (jährlich neu gewählt) | 1933–2026 | +6,0 % | 0,56 | 0,78 | -44,0 % | 0,14 | +11,7 % | – |
 
 ## Risiko im Testzeitraum
 
-Schiefe -0,81 · Kurtosis (Überschuss) 5,8 · Trefferquote 54 % · Gewinn/Verlust-Verhältnis 0,96 · VaR 95 % (1 Tag) -1,23 % · Expected Shortfall 95 % -1,93 % · Turnover 7,9 Wechsel p. a. · Beta 0,44 · Alpha p. a. +1,6 % · Korrelation an den 10 % schlechtesten Markttagen 0,07
+Schiefe -0,81 · Kurtosis (Überschuss) 5,8 · Trefferquote 54 % · Gewinn/Verlust-Verhältnis 0,96 · VaR 95 % (1 Tag) -1,23 % · Expected Shortfall 95 % -1,93 % · Turnover 8,0 Wechsel p. a. · Beta 0,44 · Alpha p. a. +1,5 % · Korrelation an den 10 % schlechtesten Markttagen 0,07
 
 ## Stresstests (gewählte Parameter, Gesamtrendite in der Phase)
 
