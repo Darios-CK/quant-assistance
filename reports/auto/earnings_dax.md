@@ -4,7 +4,7 @@
 - **Ereignisse:** 422 von 28.07.2004 bis 12.11.2026
 - **Typische Überraschung (1 Standardabweichung):** 30,75 %
 - **Quelle:** Yahoo Finance (Gewinntermine mit Konsens) · Kurse: Yahoo Finance, FRED, Bundesbank, EZB (Tageswerte)
-- **Erstellt:** 19.11.2026 14:34
+- **Erstellt:** 20.11.2026 14:12
 
 Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte, wenn die Überraschung um eine typische Größe höher ausfiel. *Oberes/unteres Drittel* = Ereignisse mit den größten bzw. kleinsten Überraschungen (Ø Bewegung, Anteil steigend, Fälle). *Normal* = durchschnittliche Bewegung über gleich viele Tage ohne Bezug zum Ereignis. *q* = p-Wert nach Korrektur für alle Tests dieser Tabelle; belastbar heißt q < 0,10 und mindestens 20 Fälle. *Hälften gleich* = Richtung in der ersten und zweiten Hälfte der Ereignisse dieselbe. *(bereinigt)* = Einzelaktie/Sektor abzüglich Beta × Index (S&P 500 bzw. DAX), Beta aus dem Jahr vor dem Ereignis.
 
@@ -12,18 +12,18 @@ Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte
 |---|---|---:|---:|---|---|---:|---:|---:|---|---|
 | Alle 6 Firmen zusammen (bereinigt) | Reaktionstag | 422 | +0,21% | +0,24% (58 % ↑, n=140) | -0,33% (39 % ↑, n=140) | – | 0,139 | 0,376 | nein | kein Muster |
 | Alle 6 Firmen zusammen (bereinigt) | 1 Woche | 422 | +0,48% | +0,92% (65 % ↑, n=140) | -0,34% (42 % ↑, n=140) | – | 0,010 | 0,073 | ja | belastbar |
-| Alle 6 Firmen zusammen (bereinigt) | 1 Monat | 417 | +0,34% | +0,68% (53 % ↑, n=139) | -0,03% (47 % ↑, n=139) | – | 0,201 | 0,377 | nein | kein Muster |
+| Alle 6 Firmen zusammen (bereinigt) | 1 Monat | 417 | +0,34% | +0,68% (53 % ↑, n=139) | -0,03% (47 % ↑, n=139) | – | 0,201 | 0,380 | nein | kein Muster |
 | Alle 6 Firmen zusammen (bereinigt) | 60 Tage | 416 | -0,12% | +0,73% (50 % ↑, n=138) | +0,33% (51 % ↑, n=138) | – | 0,765 | 0,857 | nein | kein Muster |
 | SAP.DE (bereinigt) | Reaktionstag | 67 | -0,60% | -1,09% (55 % ↑, n=22) | +0,59% (50 % ↑, n=22) | – | 0,289 | 0,475 | nein | kein Muster |
-| SAP.DE (bereinigt) | 1 Woche | 67 | -0,90% | -0,28% (55 % ↑, n=22) | +1,55% (64 % ↑, n=22) | – | 0,179 | 0,377 | nein | kein Muster |
+| SAP.DE (bereinigt) | 1 Woche | 67 | -0,90% | -0,28% (55 % ↑, n=22) | +1,55% (64 % ↑, n=22) | – | 0,179 | 0,380 | nein | kein Muster |
 | SAP.DE (bereinigt) | 1 Monat | 67 | -1,55% | -1,37% (50 % ↑, n=22) | +2,40% (55 % ↑, n=22) | – | 0,108 | 0,340 | nein | kein Muster |
 | SAP.DE (bereinigt) | 60 Tage | 66 | -2,07% | -1,39% (45 % ↑, n=22) | +4,29% (73 % ↑, n=22) | – | 0,109 | 0,340 | nein | kein Muster |
 | SIE.DE (bereinigt) | Reaktionstag | 67 | +0,54% | +1,19% (64 % ↑, n=22) | -0,10% (50 % ↑, n=22) | – | 0,148 | 0,376 | ja | kein Muster |
 | SIE.DE (bereinigt) | 1 Woche | 67 | +0,81% | +1,52% (64 % ↑, n=22) | -0,56% (50 % ↑, n=22) | – | 0,084 | 0,335 | ja | Tendenz |
-| SIE.DE (bereinigt) | 1 Monat | 66 | +0,73% | +1,58% (64 % ↑, n=22) | +0,46% (55 % ↑, n=22) | – | 0,199 | 0,377 | ja | kein Muster |
+| SIE.DE (bereinigt) | 1 Monat | 66 | +0,73% | +1,58% (64 % ↑, n=22) | +0,46% (55 % ↑, n=22) | – | 0,199 | 0,380 | ja | kein Muster |
 | SIE.DE (bereinigt) | 60 Tage | 66 | -0,36% | +0,90% (50 % ↑, n=22) | +0,80% (41 % ↑, n=22) | – | 0,645 | 0,821 | nein | kein Muster |
 | ALV.DE (bereinigt) | Reaktionstag | 66 | +0,23% | +0,63% (68 % ↑, n=22) | -0,72% (32 % ↑, n=22) | – | 0,264 | 0,463 | ja | kein Muster |
-| ALV.DE (bereinigt) | 1 Woche | 66 | +0,38% | +1,85% (86 % ↑, n=22) | -0,10% (45 % ↑, n=22) | – | 0,202 | 0,377 | ja | kein Muster |
+| ALV.DE (bereinigt) | 1 Woche | 66 | +0,38% | +1,85% (86 % ↑, n=22) | -0,09% (45 % ↑, n=22) | – | 0,203 | 0,380 | ja | kein Muster |
 | ALV.DE (bereinigt) | 1 Monat | 65 | +0,01% | +0,94% (62 % ↑, n=21) | +0,81% (62 % ↑, n=21) | – | 0,990 | 0,990 | nein | kein Muster |
 | ALV.DE (bereinigt) | 60 Tage | 65 | -0,13% | +0,46% (57 % ↑, n=21) | +0,66% (67 % ↑, n=21) | – | 0,842 | 0,873 | nein | kein Muster |
 | DTE.DE (bereinigt) | Reaktionstag | 67 | -0,06% | -0,02% (55 % ↑, n=22) | -0,04% (45 % ↑, n=22) | – | 0,841 | 0,873 | nein | kein Muster |

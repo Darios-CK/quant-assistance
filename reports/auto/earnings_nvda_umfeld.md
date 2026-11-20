@@ -4,7 +4,7 @@
 - **Ereignisse:** 67 von 13.02.2007 bis 17.11.2026
 - **Typische Überraschung (1 Standardabweichung):** 11,52 %
 - **Quelle:** Yahoo Finance (Gewinntermine mit Konsens) · Kurse: Yahoo Finance, FRED, Bundesbank, EZB (Tageswerte)
-- **Erstellt:** 19.11.2026 14:34
+- **Erstellt:** 20.11.2026 14:12
 
 Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte, wenn die Überraschung um eine typische Größe höher ausfiel. *Oberes/unteres Drittel* = Ereignisse mit den größten bzw. kleinsten Überraschungen (Ø Bewegung, Anteil steigend, Fälle). *Normal* = durchschnittliche Bewegung über gleich viele Tage ohne Bezug zum Ereignis. *q* = p-Wert nach Korrektur für alle Tests dieser Tabelle; belastbar heißt q < 0,10 und mindestens 20 Fälle. *Hälften gleich* = Richtung in der ersten und zweiten Hälfte der Ereignisse dieselbe. *(bereinigt)* = Einzelaktie/Sektor abzüglich Beta × Index (S&P 500 bzw. DAX), Beta aus dem Jahr vor dem Ereignis.
 
@@ -29,7 +29,7 @@ Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte
 | SAP.DE (bereinigt) | Reaktionstag | 67 | +0,01% | -0,01% (55 % ↑, n=22) | -0,29% (41 % ↑, n=22) | – | 0,952 | 0,954 | nein | kein Muster |
 | SAP.DE (bereinigt) | 1 Woche | 66 | +0,07% | -0,15% (41 % ↑, n=22) | -0,58% (41 % ↑, n=22) | – | 0,815 | 0,954 | nein | kein Muster |
 | SAP.DE (bereinigt) | 1 Monat | 66 | +0,84% | +2,59% (77 % ↑, n=22) | +1,36% (50 % ↑, n=22) | – | 0,137 | 0,823 | ja | kein Muster |
-| SAP.DE (bereinigt) | 60 Tage | 66 | +1,81% | +4,56% (82 % ↑, n=22) | +1,23% (45 % ↑, n=22) | – | 0,118 | 0,823 | ja | kein Muster |
+| SAP.DE (bereinigt) | 60 Tage | 66 | +1,81% | +4,61% (82 % ↑, n=22) | +1,23% (45 % ↑, n=22) | – | 0,119 | 0,823 | ja | kein Muster |
 | Bitcoin | Reaktionstag | 49 | -0,12% | -0,61% (44 % ↑, n=16) | -0,61% (38 % ↑, n=16) | +0,17% | 0,779 | 0,954 | nein | kein Muster |
 | Bitcoin | 1 Woche | 48 | +2,00% | +0,80% (50 % ↑, n=16) | -1,61% (44 % ↑, n=16) | +1,05% | 0,089 | 0,823 | ja | Tendenz |
 | Bitcoin | 1 Monat | 48 | +4,25% | +6,50% (62 % ↑, n=16) | +3,78% (69 % ↑, n=16) | +3,98% | 0,079 | 0,823 | ja | Tendenz |
