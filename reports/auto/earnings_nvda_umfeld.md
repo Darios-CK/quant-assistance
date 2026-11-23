@@ -4,7 +4,7 @@
 - **Ereignisse:** 67 von 13.02.2007 bis 17.11.2026
 - **Typische Überraschung (1 Standardabweichung):** 11,52 %
 - **Quelle:** Yahoo Finance (Gewinntermine mit Konsens) · Kurse: Yahoo Finance, FRED, Bundesbank, EZB (Tageswerte)
-- **Erstellt:** 20.11.2026 14:12
+- **Erstellt:** 23.11.2026 16:15
 
 Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte, wenn die Überraschung um eine typische Größe höher ausfiel. *Oberes/unteres Drittel* = Ereignisse mit den größten bzw. kleinsten Überraschungen (Ø Bewegung, Anteil steigend, Fälle). *Normal* = durchschnittliche Bewegung über gleich viele Tage ohne Bezug zum Ereignis. *q* = p-Wert nach Korrektur für alle Tests dieser Tabelle; belastbar heißt q < 0,10 und mindestens 20 Fälle. *Hälften gleich* = Richtung in der ersten und zweiten Hälfte der Ereignisse dieselbe. *(bereinigt)* = Einzelaktie/Sektor abzüglich Beta × Index (S&P 500 bzw. DAX), Beta aus dem Jahr vor dem Ereignis.
 
@@ -13,25 +13,25 @@ Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte
 | NVDA (bereinigt) | Reaktionstag | 67 | -0,10% | +2,32% (50 % ↑, n=22) | -0,56% (50 % ↑, n=22) | – | 0,922 | 0,954 | nein | kein Muster |
 | NVDA (bereinigt) | 1 Woche | 66 | -0,81% | +1,82% (50 % ↑, n=22) | -1,20% (36 % ↑, n=22) | – | 0,535 | 0,954 | nein | kein Muster |
 | NVDA (bereinigt) | 1 Monat | 66 | -0,92% | +4,07% (50 % ↑, n=22) | -1,17% (50 % ↑, n=22) | – | 0,609 | 0,954 | nein | kein Muster |
-| NVDA (bereinigt) | 60 Tage | 65 | +0,82% | +9,38% (57 % ↑, n=21) | -4,16% (33 % ↑, n=21) | – | 0,774 | 0,954 | nein | kein Muster |
+| NVDA (bereinigt) | 60 Tage | 66 | +0,82% | +8,00% (55 % ↑, n=22) | -4,39% (32 % ↑, n=22) | – | 0,774 | 0,954 | nein | kein Muster |
 | AMD (bereinigt) | Reaktionstag | 67 | -0,04% | +0,99% (55 % ↑, n=22) | +0,24% (50 % ↑, n=22) | – | 0,896 | 0,954 | nein | kein Muster |
 | AMD (bereinigt) | 1 Woche | 66 | -0,89% | +0,56% (64 % ↑, n=22) | -0,78% (36 % ↑, n=22) | – | 0,360 | 0,954 | ja | kein Muster |
 | AMD (bereinigt) | 1 Monat | 66 | -0,13% | +3,85% (45 % ↑, n=22) | -2,48% (41 % ↑, n=22) | – | 0,952 | 0,954 | nein | kein Muster |
-| AMD (bereinigt) | 60 Tage | 65 | -1,98% | +1,87% (43 % ↑, n=21) | -7,45% (43 % ↑, n=21) | – | 0,597 | 0,954 | nein | kein Muster |
+| AMD (bereinigt) | 60 Tage | 66 | -1,97% | +2,71% (45 % ↑, n=22) | -7,50% (41 % ↑, n=22) | – | 0,594 | 0,954 | nein | kein Muster |
 | TSM (bereinigt) | Reaktionstag | 67 | +0,34% | +0,70% (55 % ↑, n=22) | +0,23% (59 % ↑, n=22) | – | 0,183 | 0,876 | ja | kein Muster |
 | TSM (bereinigt) | 1 Woche | 66 | +0,09% | -0,91% (41 % ↑, n=22) | +0,43% (64 % ↑, n=22) | – | 0,808 | 0,954 | nein | kein Muster |
 | TSM (bereinigt) | 1 Monat | 66 | +0,24% | +1,42% (68 % ↑, n=22) | +0,99% (59 % ↑, n=22) | – | 0,748 | 0,954 | ja | kein Muster |
-| TSM (bereinigt) | 60 Tage | 65 | +1,42% | +4,69% (71 % ↑, n=21) | +3,82% (71 % ↑, n=21) | – | 0,291 | 0,954 | ja | kein Muster |
+| TSM (bereinigt) | 60 Tage | 66 | +1,41% | +4,41% (68 % ↑, n=22) | +3,22% (68 % ↑, n=22) | – | 0,288 | 0,954 | ja | kein Muster |
 | ASML (bereinigt) | Reaktionstag | 67 | +0,01% | +0,25% (41 % ↑, n=22) | -0,03% (45 % ↑, n=22) | – | 0,954 | 0,954 | nein | kein Muster |
 | ASML (bereinigt) | 1 Woche | 66 | -0,11% | -1,48% (36 % ↑, n=22) | -0,78% (36 % ↑, n=22) | – | 0,774 | 0,954 | nein | kein Muster |
 | ASML (bereinigt) | 1 Monat | 66 | +0,49% | +1,07% (59 % ↑, n=22) | +0,40% (59 % ↑, n=22) | – | 0,542 | 0,954 | ja | kein Muster |
-| ASML (bereinigt) | 60 Tage | 65 | +0,58% | +0,09% (57 % ↑, n=21) | +1,79% (57 % ↑, n=21) | – | 0,690 | 0,954 | nein | kein Muster |
+| ASML (bereinigt) | 60 Tage | 66 | +0,57% | -0,11% (55 % ↑, n=22) | +1,29% (55 % ↑, n=22) | – | 0,688 | 0,954 | nein | kein Muster |
 | SAP.DE (bereinigt) | Reaktionstag | 67 | +0,01% | -0,01% (55 % ↑, n=22) | -0,29% (41 % ↑, n=22) | – | 0,952 | 0,954 | nein | kein Muster |
 | SAP.DE (bereinigt) | 1 Woche | 66 | +0,07% | -0,15% (41 % ↑, n=22) | -0,58% (41 % ↑, n=22) | – | 0,815 | 0,954 | nein | kein Muster |
 | SAP.DE (bereinigt) | 1 Monat | 66 | +0,84% | +2,59% (77 % ↑, n=22) | +1,36% (50 % ↑, n=22) | – | 0,137 | 0,823 | ja | kein Muster |
 | SAP.DE (bereinigt) | 60 Tage | 66 | +1,81% | +4,61% (82 % ↑, n=22) | +1,23% (45 % ↑, n=22) | – | 0,119 | 0,823 | ja | kein Muster |
 | Bitcoin | Reaktionstag | 49 | -0,12% | -0,61% (44 % ↑, n=16) | -0,61% (38 % ↑, n=16) | +0,17% | 0,779 | 0,954 | nein | kein Muster |
-| Bitcoin | 1 Woche | 48 | +2,00% | +0,80% (50 % ↑, n=16) | -1,61% (44 % ↑, n=16) | +1,05% | 0,089 | 0,823 | ja | Tendenz |
+| Bitcoin | 1 Woche | 49 | +1,99% | +0,80% (50 % ↑, n=16) | -1,61% (44 % ↑, n=16) | +1,05% | 0,086 | 0,823 | ja | Tendenz |
 | Bitcoin | 1 Monat | 48 | +4,25% | +6,50% (62 % ↑, n=16) | +3,78% (69 % ↑, n=16) | +3,98% | 0,079 | 0,823 | ja | Tendenz |
 | Bitcoin | 60 Tage | 48 | -0,98% | +7,26% (56 % ↑, n=16) | +18,37% (81 % ↑, n=16) | +13,01% | 0,815 | 0,954 | nein | kein Muster |
 
@@ -39,7 +39,7 @@ Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte
 
 - Konsens laut Yahoo; ältere Quartale können lückenhaft sein.
 - Überraschung nur beim Gewinn je Aktie – Umsatz und Ausblick fehlen, bewegen den Kurs aber oft stärker.
-- NVDA: 2 Tag(e) mit Bewegung über 25% (03.07.2008, 11.11.2016) – Split, Tickerwechsel oder echter Crash? prüfen.
+- NVDA: 3 Tag(e) mit Bewegung über 25% (03.07.2008, 11.11.2016, 23.11.2026) – Split, Tickerwechsel oder echter Crash? prüfen.
 - AMD: 1 Tag(e) mit Bewegung über 25% (22.04.2016) – Split, Tickerwechsel oder echter Crash? prüfen.
 - Bitcoin: 2 Tag(e) mit Bewegung über 25% (07.12.2017, 12.03.2020) – Split, Tickerwechsel oder echter Crash? prüfen.
 - Reaktion = Schlusskurs vor dem Ereignis bis Schlusskurs am Reaktionstag (+ Horizont). Ereignisse nach Börsenschluss (z. B. Fed für europäische Märkte) zählen ab dem nächsten Handelstag.
