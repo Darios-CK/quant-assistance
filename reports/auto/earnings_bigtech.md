@@ -4,14 +4,14 @@
 - **Ereignisse:** 484 von 18.04.2002 bis 17.11.2026
 - **Typische Überraschung (1 Standardabweichung):** 25,03 %
 - **Quelle:** Yahoo Finance (Gewinntermine mit Konsens) · Kurse: Yahoo Finance, FRED, Bundesbank, EZB (Tageswerte)
-- **Erstellt:** 24.11.2026 16:02
+- **Erstellt:** 26.11.2026 15:30
 
 Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte, wenn die Überraschung um eine typische Größe höher ausfiel. *Oberes/unteres Drittel* = Ereignisse mit den größten bzw. kleinsten Überraschungen (Ø Bewegung, Anteil steigend, Fälle). *Normal* = durchschnittliche Bewegung über gleich viele Tage ohne Bezug zum Ereignis. *q* = p-Wert nach Korrektur für alle Tests dieser Tabelle; belastbar heißt q < 0,10 und mindestens 20 Fälle. *Hälften gleich* = Richtung in der ersten und zweiten Hälfte der Ereignisse dieselbe. *(bereinigt)* = Einzelaktie/Sektor abzüglich Beta × Index (S&P 500 bzw. DAX), Beta aus dem Jahr vor dem Ereignis.
 
 | Markt | Horizont | Fälle | Je typ. Überraschung | Oberes Drittel | Unteres Drittel | Normal | p | q | Hälften gleich | Einordnung |
 |---|---|---:|---:|---|---|---:|---:|---:|---|---|
 | Alle 6 Firmen zusammen (bereinigt) | Reaktionstag | 481 | +1,56% | +2,89% (69 % ↑, n=160) | -0,75% (42 % ↑, n=160) | – | <0,001 | <0,001 | ja | belastbar |
-| Alle 6 Firmen zusammen (bereinigt) | 1 Woche | 480 | +1,71% | +2,69% (61 % ↑, n=160) | -1,24% (36 % ↑, n=160) | – | <0,001 | <0,001 | ja | belastbar |
+| Alle 6 Firmen zusammen (bereinigt) | 1 Woche | 481 | +1,70% | +2,69% (61 % ↑, n=160) | -1,24% (36 % ↑, n=160) | – | <0,001 | <0,001 | ja | belastbar |
 | Alle 6 Firmen zusammen (bereinigt) | 1 Monat | 476 | +1,60% | +3,02% (58 % ↑, n=158) | -0,90% (44 % ↑, n=158) | – | 0,002 | 0,009 | ja | belastbar |
 | Alle 6 Firmen zusammen (bereinigt) | 60 Tage | 475 | +1,78% | +6,89% (68 % ↑, n=158) | +3,10% (44 % ↑, n=158) | – | 0,016 | 0,040 | ja | belastbar |
 | AAPL (bereinigt) | Reaktionstag | 88 | +1,18% | +3,26% (79 % ↑, n=29) | -0,54% (38 % ↑, n=29) | – | 0,032 | 0,070 | ja | belastbar |
@@ -35,7 +35,7 @@ Lesehilfe: *Je typ. Überraschung* = wie stark sich der Markt im Schnitt bewegte
 | META (bereinigt) | 1 Monat | 56 | +1,61% | +3,73% (50 % ↑, n=18) | -4,49% (28 % ↑, n=18) | – | 0,357 | 0,434 | ja | kein Muster |
 | META (bereinigt) | 60 Tage | 55 | +0,72% | +9,51% (72 % ↑, n=18) | +1,84% (50 % ↑, n=18) | – | 0,790 | 0,819 | nein | kein Muster |
 | NVDA (bereinigt) | Reaktionstag | 67 | -0,10% | +2,32% (50 % ↑, n=22) | -0,56% (50 % ↑, n=22) | – | 0,922 | 0,922 | nein | kein Muster |
-| NVDA (bereinigt) | 1 Woche | 66 | -0,81% | +1,82% (50 % ↑, n=22) | -1,20% (36 % ↑, n=22) | – | 0,535 | 0,624 | nein | kein Muster |
+| NVDA (bereinigt) | 1 Woche | 67 | -0,81% | +1,50% (50 % ↑, n=22) | -1,20% (36 % ↑, n=22) | – | 0,530 | 0,618 | nein | kein Muster |
 | NVDA (bereinigt) | 1 Monat | 66 | -0,92% | +4,07% (50 % ↑, n=22) | -1,17% (50 % ↑, n=22) | – | 0,609 | 0,682 | nein | kein Muster |
 | NVDA (bereinigt) | 60 Tage | 66 | +0,82% | +8,00% (55 % ↑, n=22) | -4,39% (32 % ↑, n=22) | – | 0,774 | 0,819 | nein | kein Muster |
 
